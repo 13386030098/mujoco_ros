@@ -1,0 +1,8 @@
+prefix=/home/zzz/mujoco_ros/install
+
+Name: master_driver
+Description: Description of master_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs robot_msgs

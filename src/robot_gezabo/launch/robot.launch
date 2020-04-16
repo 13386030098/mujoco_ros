@@ -1,0 +1,16 @@
+<launch>
+  <include file="$(find robot_gezabo)/launch/robot_control.launch" />  
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find robot_gezabo)/worlds/robot.world"/>
+    <!-- more default parameters can be changed here -->
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="recording" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+<param name="robot_description" command="cat $(find robot_description)/urdf/robot_gezabo.urdf" />
+<node name="gazebo_sim" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+    args="-param robot_description -urdf -model robot_model -z 0"/>
+</launch>

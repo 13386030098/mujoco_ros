@@ -1,0 +1,8 @@
+prefix=/home/zzz/mujoco_ros/devel
+
+Name: mujoco_driver
+Description: Description of mujoco_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

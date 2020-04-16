@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<robot name="visual">
+    <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+    <material name="light_grey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+
+  <link name="graber_4t_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/14_graber_4t.stl" />
+        </geometry>
+        <origin rpy="-1.5708 -1.5708 0" xyz="0 0 1"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+  <joint name="4t_r5_joint" type="revolute">
+        <parent link="graber_4t_link"/>
+        <child link="graber_r5_link"/>
+        <origin rpy="-0.52333 0 0" xyz="0 0.0569 0.6348"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="2.0" lower="-1.57" upper="1.57" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="graber_r5_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/15_graber_r5.stl" />
+        </geometry>
+        <origin rpy="1.5708 1.5708 0" xyz="0 0 0"/>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="r5_r67_joint" type="revolute">
+        <parent link="graber_r5_link"/>
+        <child link="graber_r67_link"/>
+        <origin rpy="0.261799388 0 0" xyz="0 0.11338 -0.17756"/>
+         <axis xyz="0 1 0"/>
+        <limit effort="2.0" lower="-1.57" upper="1.57" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+      <link name="graber_r67_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/16_graber_r67.stl" />
+        </geometry>
+        <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+<joint name="r67_r8_joint" type="revolute">
+        <parent link="graber_r67_link"/>
+        <child link="graber_r8_link"/>
+        <origin rpy="0 0 0" xyz="0.005 0.39069 -0.05209"/>
+         <axis xyz="1 0 0"/>
+        <limit effort="2.0" lower="-1.57" upper="1.57" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+    <link name="graber_r8_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/18_graber_r8.stl" />
+        </geometry>
+        <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+  <joint name="r8_r9_joint" type="revolute">
+        <parent link="graber_r8_link"/>
+        <child link="graber_r9_link"/>
+        <origin rpy="0.17453 0 0" xyz="0.04 0.0 0.200"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="2.0" lower="-1.57" upper="1.57" velocity="2.0"/>
+        <mimic joint="r67_r8_joint" multiplier="-1.0" offset="0.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+    <link name="graber_r9_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/19_graber_r9.stl" />
+        </geometry>
+        <origin rpy="1.5708 0 1.5708" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+  <joint name="r9_r10_joint" type="revolute">
+        <parent link="graber_r9_link"/>
+        <child link="graber_r10_link"/>
+        <origin rpy="-0.17453 0 0" xyz="0 0.3 0"/>
+        <axis xyz="1 0 0"/>
+        <limit effort="2.0" lower="-1.57" upper="1.57" velocity="2.0"/>
+         <mimic joint="r67_r8_joint" multiplier="1.0" offset="0.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+    <link name="graber_r10_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/110_graber_r10.stl" />
+        </geometry>
+        <origin rpy="-1.5708 1.5708 1.5708" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+<joint name="r10_slide_joint" type="prismatic">
+        <parent link="graber_r10_link"/>
+        <child link="graber_r10_slide_link"/>
+        <origin rpy="0 0 0" xyz="-0.045 -0.025 0.200"/>
+        <axis xyz="0 0 -1"/>
+        <limit effort="2.0" lower="-0.1" upper="0.25" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+
+    <link name="graber_r10_slide_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/111_graber_r10_slider.stl" />
+        </geometry>
+        <origin rpy="-1.5708 0 0" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+<joint name="slide_pole_joint" type="fixed">
+        <parent link="graber_r10_slide_link"/>
+        <child link="graber_r10_pole_link"/>
+        <origin rpy="-1.5708 0 0" xyz="0 0.025 0"/>
+  </joint>
+    <link name="graber_r10_pole_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://robot_description/meshes/visual/112_graber_r10_pole.stl" />
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+	<joint name="end_effector_joint" type="fixed">
+		<parent link="graber_r10_pole_link"/>
+		<child link="remote_center"/>
+		<origin rpy="0 0 0" xyz="0 0.4 0" />
+	</joint>
+<link name="remote_center"/>
+<joint name="center_end_joint" type="fixed">
+	<parent link="remote_center" />
+	<child link="graber_end" />
+	<origin rpy="0 0 0" xyz="0 0.1 0" />
+</joint>
+<link name="graber_end"/>
+
+
+
+</robot>

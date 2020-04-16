@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/zzz/mujoco_ros/devel/setup.sh

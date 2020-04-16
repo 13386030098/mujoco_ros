@@ -1,0 +1,2 @@
+master_driver:mujoco_driver:omega7_drive:robot_description:robot_gezabo:robot_inverse_kinematic:robot_msgs
+-DCATKIN_DEVEL_PREFIX=/home/zzz/mujoco_ros/devel -DCMAKE_INSTALL_PREFIX=/home/zzz/mujoco_ros/install -G Unix Makefiles

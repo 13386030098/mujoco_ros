@@ -1,0 +1,8 @@
+prefix=/home/zzz/mujoco_ros/devel
+
+Name: robot_inverse_kinematic
+Description: Description of robot_inverse_kinematic
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs

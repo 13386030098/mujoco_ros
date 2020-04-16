@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="visual">
+    <material name="blue">
+    <color rgba="0 0 0.8 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+    <material name="light_grey">
+        <color rgba="0.7 0.7 0.7 1.0"/>
+    </material>
+
+  <link name="graber_4t_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://davinci_description/meshes/visual/14_graber_4t.stl" />
+        </geometry>
+        <origin rpy="-1.5708 -1.5708 0" xyz="0 0 1"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+  <joint name="4t_r5_joint" type="revolute">
+        <parent link="graber_4t_link"/>
+        <child link="graber_r5_link"/>
+        <origin rpy="-0.52333 0 0" xyz="0 0.0569 0.6348"/>
+        <axis xyz="0 1 0"/>
+        <limit effort="2.0" lower="-3.14" upper="3.14" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="graber_r5_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://davinci_description/meshes/visual/15_graber_r5.stl" />
+        </geometry>
+        <origin rpy="1.5708 1.5708 0" xyz="0 0 0"/>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="r5_r67_joint" type="revolute">
+        <parent link="graber_r5_link"/>
+        <child link="graber_r67_link"/>
+        <origin rpy="0.2616 0 0" xyz="0 0.11338 -0.17756"/>
+         <axis xyz="0 1 0"/>
+        <limit effort="2.0" lower="-3.14" upper="3.14" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+      <link name="graber_r67_link">
+    <visual>
+        <geometry>
+            <mesh filename="package://davinci_description/meshes/visual/16_graber_r67_affine.stl" />
+        </geometry>
+        <origin rpy="0 0 3.14" xyz="0 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+
+<joint name="r67_r8_joint" type="revolute">
+        <parent link="graber_r67_link"/>
+        <child link="graber_r8_link"/>
+        <origin rpy="0 0 0" xyz="0.0 0.68677 0.0"/>
+         <axis xyz="1 0 0"/>
+        <limit effort="2.0" lower="-3.14" upper="3.14" velocity="2.0"/>
+        <dynamics dmaping="0.0" friction="0.0"/>
+  </joint>
+
+    <link name="graber_r8_link">
+    <visual>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0.04 0 0"/>
+        <material name="light_grey"/>
+    </visual>
+  </link>
+<link name="tool0"/>
+  <joint name="link_r8-tool0" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="graber_r8_link"/>
+    <child link="tool0"/>
+  </joint>
+
+</robot>

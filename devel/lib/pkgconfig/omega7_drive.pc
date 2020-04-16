@@ -1,0 +1,8 @@
+prefix=/home/zzz/mujoco_ros/devel
+
+Name: omega7_drive
+Description: Description of omega7_drive
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

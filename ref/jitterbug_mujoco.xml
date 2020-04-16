@@ -1,0 +1,152 @@
+<mujoco model="KatitaV5">
+
+    
+    <compiler coordinate="global" />
+
+    <asset>
+        <material name="grid1cm" reflectance=".2" texrepeat="100 100" texture="grid" texuniform="true" />
+    </asset>
+
+    <visual>
+        <global offheight="1440" offwidth="2560" />
+    </visual>
+
+    <option timestep="0.0002" />
+
+    <default>
+        
+        <geom density="7700" material="self" />
+    </default>
+
+    <worldbody>
+        
+        <light name="light" pos="0 0 1" />
+
+        
+        <geom material="grid1cm" name="floor" pos="0 0 0" size="0.5 0.5 0.01" type="plane" />
+
+        
+	<camera name="Global" pos="0 -0.2 1.1" />
+        <camera mode="fixed" name="Spectator" pos="0 -0.4 .25" quat="0.819152 0.5735764 0 0" />
+
+        
+        <body name="jitterbug" pos="0 0 0.035" quat="1 0 0 0">
+            <joint name="root" type="free" />
+
+            
+
+            
+            
+            <geom density="38.5" name="coreBody1" pos="0 0 .04" size=".0055 .006 .011" type="box" />
+            <geom density="770" name="coreBody2" pos="0 0 .021" size=".008 .006 .008" type="box" />
+            <geom fromto="0 0 .026 0 .012 .026" name="screw1" size=".002" type="cylinder" />
+            <geom name="screw2" pos="0 .017 .026" size=".014 .006 .0005" type="ellipsoid" />
+
+
+            
+            
+            <body name="leg2upper">
+                <geom fromto=".0287 -.0308 .07 .005 .0035 .05" size=".00061" type="cylinder" />
+                <geom pos=".0287 -.0308 .07" size=".00061" type="sphere" />
+                <joint axis="-2.32 -3.68 0" damping="0.00001" name="joint1Leg2" pos=".003 .0035 .049" stiffness="0.4" type="hinge" />
+
+                <body name="leg2lower">
+                    <geom fromto=".0287 -.0308 0.005 .0287 -.0308 .07" size=".00061" type="cylinder" />
+                    <geom density="1100" name="foot2" pos=".0287 -.0308 .005" size=".003" type="sphere" />
+                    <joint axis="-2.32 -3.68 0" damping="0.00001" name="joint2Leg2" pos=".0287 -.0308 .068" stiffness="0.4" type="hinge" />
+                </body>
+            </body>
+
+            
+            <body name="leg3upper">
+                <geom fromto="-.0287 -.0308 .07 -.005 .0035 .05" size=".00061" type="cylinder" />
+                <geom pos="-.0287 -.0308 .07" size=".00061" type="sphere" />
+                <joint axis="2.32 -3.68 0" damping="0.00001" name="joint1Leg3" pos="-.003 .0035 .049" stiffness="0.4" type="hinge" />
+
+                <body name="leg3lower">
+                    <geom fromto="-.0287 -.0308 0.005 -.0287 -.0308 .07" size=".00061" type="cylinder" />
+                    <geom density="1100" name="foot3" pos="-.0287 -.0308 .005" size=".003" type="sphere" />
+                    <joint axis="2.32 -3.68 0" damping="0.00001" name="joint2Leg3" pos="-.0287 -.0308 .068" stiffness="0.4" type="hinge" />
+                </body>
+            </body>
+
+            
+            
+            <body name="leg1upper">
+                <geom fromto=".0287 .0328 .068 .003 .0035 .049" size=".00061" type="cylinder" />
+                <geom pos="0.0287 0.0328 0.068" size=".00061" type="sphere" />
+                <joint axis="2.32 -2.68 0" damping="0.00001" name="joint1Leg1" pos=".003 .0035 .049" stiffness="0.4" type="hinge" />
+
+                <body name="leg1lower">
+                    <geom fromto=".0287 .0328 0.003 .0287 .0328 .068" size=".00061" type="cylinder" />
+                    <geom density="1100" name="foot1" pos=".0287 .0328 .003" size=".003" type="sphere" />
+                    <joint axis="2.32 -2.68 0" damping="0.00001" name="joint2Leg1" pos=".0287 .0328 .068" stiffness="0.4" type="hinge" />
+                </body>
+            </body>
+
+            
+            <body name="leg4upper">
+                <geom fromto="-.0287 .0328 .068 -.003 .0035 .049" size=".00061" type="cylinder" />
+                <geom pos="-.0287 .0328 .068" size=".00061" type="sphere" />
+                <joint axis="-2.32 -2.68 0" damping="0.00001" name="joint1Leg4" pos="-.003 .0035 .049" stiffness="0.4" type="hinge" />
+
+                <body name="leg4lower">
+                    <geom fromto="-.0287 .0328 0.003 -.0287 .0328 .068" size=".00061" type="cylinder" />
+                    <geom density="1100" name="foot4" pos="-.0287 .0328 .003" size=".003" type="sphere" />
+                    <joint axis="-2.32 -2.68 0" damping="0.00001" name="joint2Leg4" pos="-.0287 .0328 .068" stiffness="0.4" type="hinge" />
+                </body>
+            </body>
+
+            
+            <body name="mass" pos="0 -.004 .061" quat="1 0 0 0">
+                <geom fromto="0 -.004 .05 0 -.004 .0625" material="effector" name="threadMass" size=".001" type="cylinder" />
+                <geom material="effector" name="mass" pos=".0043 -.004 .061" size="0.008 0.01 0.003" type="ellipsoid" />
+                <joint axis="0 0 1" name="jointMass" pos="0 -.004 .05" type="hinge" />
+            </body>
+
+        </body>
+
+        
+        <body name="target" pos="0 0 0.035">
+            <geom conaffinity="0" contype="0" material="target" name="target" pos="0 0 0.035" size=".01" type="sphere" />
+            <geom conaffinity="0" contype="0" density="0" material="target" name="targetPointer" pos="0.01 0 0.035" size=".005" type="sphere" />
+        </body>
+
+
+    </worldbody>
+
+    <sensor>
+        <framelinvel name="jitterbug_framelinvel" objname="jitterbug" objtype="body" />
+    </sensor>
+
+    <actuator>
+
+        
+        <general biasprm="0 0 -0.8" biastype="affine" ctrllimited="true" ctrlrange="-1 1" dynprm="0.1 0 0" dyntype="none" gainprm="1 0 0" gaintype="fixed" gear="0.00833" joint="jointMass" />
+    </actuator>
+
+<asset>
+      <texture builtin="gradient" height="800" mark="random" markrgb="1 1 1" name="skybox" rgb1=".4 .6 .8" rgb2="0 0 0" type="skybox" width="800" />
+  </asset>
+<visual>
+    <headlight ambient=".4 .4 .4" diffuse=".8 .8 .8" specular="0.1 0.1 0.1" />
+    <map znear=".01" />
+    <quality shadowsize="2048" />
+  </visual>
+<asset>
+    <texture builtin="checker" height="300" mark="edge" markrgb=".2 .3 .4" name="grid" rgb1=".1 .2 .3" rgb2=".2 .3 .4" type="2d" width="300" />
+    <material name="grid" reflectance=".2" texrepeat="1 1" texture="grid" texuniform="true" />
+    <material name="self" rgba=".7 .5 .3 1" />
+    <material name="self_default" rgba=".7 .5 .3 1" />
+    <material name="self_highlight" rgba="0 .5 .3 1" />
+    <material name="effector" rgba=".7 .4 .2 1" />
+    <material name="effector_default" rgba=".7 .4 .2 1" />
+    <material name="effector_highlight" rgba="0 .5 .3 1" />
+    <material name="decoration" rgba=".3 .5 .7 1" />
+    <material name="eye" rgba="0 .2 1 1" />
+    <material name="target" rgba=".6 .3 .3 1" />
+    <material name="target_default" rgba=".6 .3 .3 1" />
+    <material name="target_highlight" rgba=".6 .3 .3 .4" />
+    <material name="site" rgba=".5 .5 .5 .3" />
+  </asset>
+</mujoco>
