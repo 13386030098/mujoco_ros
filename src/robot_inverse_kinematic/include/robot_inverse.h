@@ -86,7 +86,7 @@ public:
       printf("invalid index.[1-11]");
     }
     frame=Eigen::Affine3d::Identity();
-    for(int i=0;i<index;i++)
+    for(int i=8;i<index;i++)
     {
       frame = frame*
           transXYZRPY(xyz_rpy_(i,0),xyz_rpy_(i,1),xyz_rpy_(i,2),
@@ -105,7 +105,7 @@ public:
     link1_angle = std::asin(frame_graber_end_to_remote_center_translation(2)/slide_length);
     joint_values[0] = roll2_angle;
     joint_values[1] = link1_angle-0.174533;
-    joint_values[2] = slide_length-0.1;
+    joint_values[2] = slide_length- 0.0935949;
   }
 };
 

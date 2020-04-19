@@ -88,10 +88,12 @@ Version:1.50
                         <inertial pos="0.046702 -0.021926 0.003509" quat="0.5 0.5 -0.5 0.5" mass="0.646" diaginertia="0.0088 -0.0006 0.0026" />
                         <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
                         <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll2" />
+                        <site rgba=".1 .1 .9 1" name="roll2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                         <body name="para2" pos="0.06078 -0.0025 -0.27804" quat="0.664463 0.664463 0.241845 -0.241845 ">
                             <inertial pos="-0.065697 -0.000264 0.023081" quat="0.5 0.5 -0.5 0.5" mass="0.213" diaginertia="0.0002 0.0002 0.0002" />
                             <joint name="para2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
                             <geom rgba="0.94 1 1 1" type="mesh"  mesh="para2" />
+                            <site rgba=".1 .1 .9 1" name="para2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                             <body name="para3" pos="-0.2 0 -0.0415" quat="0.5 0 0 0.866025 ">
                                 <inertial pos="-0.153695 -0.000029 0.024048" quat="0.5 0.5 -0.5 0.5" mass="0.329" diaginertia="0.0002 0.0002 0.0002" />
                                 <joint name="para3_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
@@ -104,6 +106,7 @@ Version:1.50
                                         <inertial pos="-0.00013 -0.00153 -0.02645" quat="0.5 0.5 -0.5 0.5" mass="0.19373" diaginertia="0.0014 0.0014 0.0002" />
                                         <joint name="instrument_joint" type="slide" pos="0 0 0" axis="0 0 1" limited="true" range="-0.20 0.20" damping="10.0"/>
                                         <geom rgba="0.94 1 0.94 1" type="mesh"  mesh="instrument"/>
+                                        <site rgba=".1 .1 .9 1" name="instrument_joint_site" size=".003 .003 .003" type="ellipsoid"/>
                                         <body name="rotate" pos="0 0 0.3759" quat="1 0 0 0">
                                             <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
                                             <joint name="rotate_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
@@ -117,7 +120,7 @@ Version:1.50
                                                     <joint name="clip1_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
                                                     <geom rgba="1 1 1 1" type="mesh"  mesh="clip1"/>
                                                 </body>
-                                                <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
+                                             <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
 <!--                                                    <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
                                                     <joint name="clip2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
                                                     <geom rgba="1 1 1 1" type="mesh"  mesh="clip2"/>-->
@@ -180,19 +183,13 @@ Version:1.50
         <jointvel name="Sjv_roll_joint"       joint="roll_joint"/>
         <jointvel name="Sjv_clip1_joint"      joint="clip1_joint"/>
 
-<!--        <accelerometer name="S_roll2_joint" 	 site="roll2_joint"/>
-        <accelerometer name="S_para2_joint" 	 site="para2_joint"/>
-        <accelerometer name="S_instrument_joint" site="instrument_joint"/>
-        <accelerometer name="S_rotate_joint" 	 site="rotate_joint"/>
-        <accelerometer name="S_roll_joint" 	 site="roll_joint"/>
-        <accelerometer name="S_clip1_joint" 	 site="clip1_joint"/>
 
-        <torque name="S_roll2_joint" 	  site="roll2_joint"/>
-        <torque name="S_para2_joint" 	  site="para2_joint"/>
-        <force  name="S_instrument_joint" site="instrument_joint"/>
-        <torque name="S_rotate_joint" 	  site="rotate_joint"/>
-        <torque name="S_roll_joint" 	  site="roll_joint"/>
-        <torque name="S_clip1_joint" 	  site="clip1_joint"/>-->
+        <torque name="S_roll2_joint" 	  site="roll2_joint_site"/>
+        <torque name="S_para2_joint" 	  site="para2_joint_site"/>
+        <force  name="S_instrument_joint" site="instrument_joint_site"/>
+<!--        <torque name="S_rotate_joint" 	  site="rotate_joint_site"/>
+        <torque name="S_roll_joint" 	  site="roll_joint_site"/>
+        <torque name="S_clip1_joint" 	  site="clip1_joint_site"/>-->
 
         <actuatorpos name="Sap_roll2" 	   actuator="roll2" />
         <actuatorpos name="Sap_para2"	   actuator="para2" />
