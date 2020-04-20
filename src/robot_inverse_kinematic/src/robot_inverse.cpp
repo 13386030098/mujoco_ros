@@ -74,9 +74,9 @@ public:
     scale_p_x = 0.3;
     scale_p_y = 0.3;
     scale_p_z = 0.3;
-    scale_r_x = 0.3;
-    scale_r_y = 0.3;
-    scale_r_z = 0.3;
+    scale_r_x = 0.6;
+    scale_r_y = 0.6;
+    scale_r_z = 0.6;
 
     std::cout<<"teleoperation start ..."<<std::endl;
     pub = nh.advertise<robot_msgs::ik>("/ik", 100, true);
@@ -117,36 +117,40 @@ public:
     slave_desire_rpy_y_increase[2] = direction_rpy_y * scale_r_z*(master_rpy[2]-master_rpy_zero[2]);
 
     roll   = slave_desire_rpy_r_increase[0];
-    pitch = slave_desire_rpy_p_increase[1];
-    yaw  = slave_desire_rpy_y_increase[2];
+    pitch  = slave_desire_rpy_p_increase[1];
+    yaw    = slave_desire_rpy_y_increase[2];
 
-    slave_desire_rotation = (Eigen::AngleAxisd(yaw,Eigen::Vector3d::UnitZ()))*(Eigen::AngleAxisd(pitch,
-                                   Eigen::Vector3d::UnitY()))*(Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX()))
-                                  *slave_rotation_zero;
+//    slave_desire_rotation = (Eigen::AngleAxisd(yaw,Eigen::Vector3d::UnitZ()))*(Eigen::AngleAxisd(pitch,
+//                                   Eigen::Vector3d::UnitY()))*(Eigen::AngleAxisd(roll, Eigen::Vector3d::UnitX()))
+//                                 *slave_rotation_zero;
 
     frame_end = Eigen::Translation3d(slave_desire_pos);
 
     joint_values.resize(6);
     kinematics_.getIk(frame_end, joint_values);
 
-    frame_end_constant = slave_desire_rotation.inverse();
+//    frame_end_constant = slave_desire_rotation.inverse();
 
-    double rotate_angle = std::atan2(frame_end_constant(2,0), frame_end_constant(2,1));
-    double roll_angle = std::atan2((frame_end_constant(2,1) * std::cos(rotate_angle) - frame_end_constant(2,0)*std::sin(rotate_angle)), frame_end_constant(2,2));
-    double clip_angle = std::acos(frame_end_constant(0,0) * std::cos(rotate_angle) + frame_end_constant(0,1)*std::sin(rotate_angle));
+//    double rotate_angle = std::atan2(frame_end_constant(2,0), frame_end_constant(2,1));
+//    double roll_angle = std::atan2((frame_end_constant(2,1) * std::cos(rotate_angle) - frame_end_constant(2,0)*std::sin(rotate_angle)), frame_end_constant(2,2));
+//    double clip_angle = std::acos(frame_end_constant(0,0) * std::cos(rotate_angle) + frame_end_constant(0,1)*std::sin(rotate_angle));
 
-    joint_values[3] = rotate_angle;
-    joint_values[4] = roll_angle;
-    joint_values[5] = clip_angle;
+    rotate_angle = slave_desire_rpy_r_increase[0];
+    roll_angle = slave_desire_rpy_p_increase[1];
+    clip_angle = slave_desire_rpy_y_increase[2];
+
+    joint_values[3] = clip_angle;
+    joint_values[4] = rotate_angle;
+    joint_values[5] = roll_angle;
 
     robot_msgs::ik ik_msg;
     ik_msg.data.resize(6);
     ik_msg.data[0] = joint_values[0];
     ik_msg.data[1] = joint_values[1];
     ik_msg.data[2] = joint_values[2];
-//    ik_msg.data[3] = joint_values[3] - 1.5708;
-//    ik_msg.data[4] = joint_values[4] + 1.5708;
-//    ik_msg.data[5] = joint_values[5];
+    ik_msg.data[3] = joint_values[3];
+    ik_msg.data[4] = joint_values[4];
+    ik_msg.data[5] = joint_values[5];
 
     pub.publish(ik_msg);
 

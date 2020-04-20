@@ -7,22 +7,13 @@ Version:1.50
 <mujoco model="robot">
 
     <compiler coordinate="local" angle="radian" inertiafromgeom="true" meshdir="meshes/"/>
-    <option timestep="0.002" iterations="50"/>
+    <option timestep="2e-3" iterations="10" tolerance="1e-10" impratio="20"/>
     <size njmax="600" nconmax="150" nstack="300000"/>
-
-
-
-<!--<compiler angle="radian" meshdir="mesh/" texturedir="texture/"/>
-<option timestep="0.002" iterations="50" apirate="50"/>
-<size njmax="600" nconmax="150" nstack="300000"/>-->
-    <default class="IMU">
-            <site material="MatIMU" type="box" group="4"/>
-    </default>
 
     <default>
         <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
-        <geom friction=".5 .1 .1" contype='1' conaffinity='1' condim='4'  margin="1e-3" solref=".01 1" solimp=".99 .99 .01" />
-        <joint armature="0.01" damping="1" limited="true"/>
+        <geom contype='1' conaffinity='1' condim='4'  margin="1e-3" solref=".01 1" solimp=".99 .99 .01" />
+        <joint limited="true" damping="10" armature=".01"/>
     </default>
 
     <visual>
@@ -49,17 +40,16 @@ Version:1.50
         <mesh name="instrument"  file="instrument.stl"/>
         <mesh name="rotate"      file="rotate.stl"    />
         <mesh name="roll"        file="roll.stl"      />
-        <mesh name="clip1"        file="clip.stl"      />
-        <mesh name="clip2"        file="clip.stl"      />
+        <mesh name="clip1"       file="clip.stl"      />
+        <mesh name="clip2"       file="clip.stl"      />
         <!--Textures-->
-        <texture name="floor_tex"   type="2d"       builtin="checker" rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
-        <texture name="robot_tex"     type="2d"     builtin="flat" height="32" width="32" rgb1="0.45 0.45 0.45" />
-        <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100" height="100" rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
+        <texture name="floor_tex"   type="2d"       builtin="checker"  rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
+        <texture name="robot_tex"   type="2d"       builtin="flat"     height="32"     width="32"      rgb1="0.45 0.45 0.45" />
+        <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100"     height="100"    rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
 
          <!--Materials-->
         <material name='floor_mat'      texture="floor_tex"  shininess="0.8" texrepeat="10 10" specular="0.7"  reflectance="0.5" />
-        <material name="robot_mat"        texture="robot_tex"   shininess="0.9" specular="0.75" reflectance="0.3"/>
-        <material name="MatIMU" rgba=".1 .1 .9 1"/>
+        <material name="robot_mat"      texture="robot_tex"  shininess="0.9" specular="0.75"   reflectance="0.3"/>
     </asset>
 
     <!--Contacts-->
@@ -82,48 +72,48 @@ Version:1.50
                 <geom rgba="0.94 1 1 1" type="mesh"  mesh="base_4"/>
                 <body name="roll1" pos="0 0 -0.15236273603" quat="1 0 0 0">
                     <inertial pos="0.044235 0.000033 0.049109" quat="0.5 0.5 -0.5 0.5" mass="0.394" diaginertia="0.0006 0.0025 0.0023" />
-                    <joint name="roll1_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1000.0"/>
+                    <joint name="roll1_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
                     <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll1" />
                     <body name="roll2" pos="0.1619 0 -0.11296" quat="0.991445 0 0.130526 0 ">
                         <inertial pos="0.046702 -0.021926 0.003509" quat="0.5 0.5 -0.5 0.5" mass="0.646" diaginertia="0.0088 -0.0006 0.0026" />
-                        <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
+                        <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
                         <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll2" />
                         <site rgba=".1 .1 .9 1" name="roll2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                         <body name="para2" pos="0.06078 -0.0025 -0.27804" quat="0.664463 0.664463 0.241845 -0.241845 ">
                             <inertial pos="-0.065697 -0.000264 0.023081" quat="0.5 0.5 -0.5 0.5" mass="0.213" diaginertia="0.0002 0.0002 0.0002" />
-                            <joint name="para2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
+                            <joint name="para2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
                             <geom rgba="0.94 1 1 1" type="mesh"  mesh="para2" />
                             <site rgba=".1 .1 .9 1" name="para2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                             <body name="para3" pos="-0.2 0 -0.0415" quat="0.5 0 0 0.866025 ">
                                 <inertial pos="-0.153695 -0.000029 0.024048" quat="0.5 0.5 -0.5 0.5" mass="0.329" diaginertia="0.0002 0.0002 0.0002" />
-                                <joint name="para3_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
+                                <joint name="para3_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-1 1" />
                                 <geom rgba="0.94 1 1 1" type="mesh"  mesh="para3" />
-                                <body name="slide" pos="-0.350 0 0.0305" quat="1 0 0 0">
+                               <body name="slide" pos="-0.350 0 0.0305" quat="1 0 0 0">
                                     <inertial pos="-0.062296 0.123021 0.007665" quat="0.5 0.5 -0.5 0.5" mass="1.256" diaginertia="0.0002 0.0002 0.0002" />
-                                    <joint name="slide_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="10.0"/>
+                                    <joint name="slide_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
                                     <geom rgba="0.94 1 0.94 1" type="mesh"  mesh="slide"/>
-                                    <body name="instrument" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
+                                     <body name="instrument" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
                                         <inertial pos="-0.00013 -0.00153 -0.02645" quat="0.5 0.5 -0.5 0.5" mass="0.19373" diaginertia="0.0014 0.0014 0.0002" />
-                                        <joint name="instrument_joint" type="slide" pos="0 0 0" axis="0 0 1" limited="true" range="-0.20 0.20" damping="10.0"/>
+                                        <joint name="instrument_joint" type="slide" pos="0 0 0" axis="0 0 1"  range="-0.20 0.20" />
                                         <geom rgba="0.94 1 0.94 1" type="mesh"  mesh="instrument"/>
                                         <site rgba=".1 .1 .9 1" name="instrument_joint_site" size=".003 .003 .003" type="ellipsoid"/>
                                         <body name="rotate" pos="0 0 0.3759" quat="1 0 0 0">
                                             <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
-                                            <joint name="rotate_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
+                                            <joint name="rotate_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="1"/>
                                             <geom rgba="1 1 1 1" type="mesh"  mesh="rotate"/>
                                             <body name="roll" pos="0 0 0" quat="3.2758e-05 0.707107 0.707107 3.2758e-05">
                                                 <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
-                                                <joint name="roll_joint" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="-3.14159 3.14159" damping="1"/>
+                                                <joint name="roll_joint" type="hinge" pos="0 0 0" axis="1 0 0"  range="-3.14159 3.14159" />
                                                 <geom rgba="1 1 1 1" type="mesh"  mesh="roll" />
                                                 <body name="clip1" pos="0 0.0003 -0.0089" quat="0.707107 -0.707107 0 0">
                                                     <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
-                                                    <joint name="clip1_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
+                                                    <joint name="clip1_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="1"/>
                                                     <geom rgba="1 1 1 1" type="mesh"  mesh="clip1"/>
                                                 </body>
-                                             <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
-<!--                                                    <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
-                                                    <joint name="clip2_joint" type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159" damping="1"/>
-                                                    <geom rgba="1 1 1 1" type="mesh"  mesh="clip2"/>-->
+                                                <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
+                                                    <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
+                                                    <joint name="clip2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="1"/>
+                                                    <geom rgba="1 1 1 1" type="mesh"  mesh="clip2"/>
                                                 </body>
                                             </body>
                                         </body>
@@ -149,24 +139,23 @@ Version:1.50
     </tendon>-->
 
     <equality>
-<!--        <tendon name="para2_to_para3" 	tendon1="para2_to_para3"/>
+<!--    <tendon name="para2_to_para3" 	tendon1="para2_to_para3"/>
         <tendon name="para3_slide" 	tendon1="para3_slide"/>-->
         <joint name="para2_joint_to_para3_joint" joint1="para2_joint" joint2="para3_joint" polycoef="0 -1 0 0 0"/>
         <joint name="para3_joint_to_slide_joint" joint1="para2_joint" joint2="slide_joint" polycoef="0 1 0 0 0"/>
-<!--        <joint name="clip1_joint_to_clip2_joint" joint1="clip1_joint" joint2="clip2_joint" polycoef="0 1 0 0 0"/>-->
+        <joint name="clip1_joint_to_clip2_joint" joint1="clip1_joint" joint2="clip2_joint" polycoef="0 -1 0 0 0"/>
     </equality>
 
 
     <!--ACTUATORS-->
     <actuator>
         <!--robot-->
-        <position name='roll2' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='roll2_joint' kp="500"/>
-        <position name='para2' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='para2_joint' kp="500"/>
-        <position name='instrument' ctrllimited="true" ctrlrange="-0.20 0.20" joint='instrument_joint' kp="500"/>
-        <position name='rotate' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='rotate_joint' kp="500"/>
-        <position name='roll' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='roll_joint' kp="100"/>
-        <position name='clip1' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='clip1_joint' kp="100"/>-->
-<!--        <position name='clip2' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='clip2_joint' kp="100"/>-->
+        <position name='roll2' ctrllimited="false" ctrlrange="-3.14159 3.14159" joint='roll2_joint' kp="500"/>
+        <position name='para2' ctrllimited="false" ctrlrange="-3.14159 3.14159" joint='para2_joint' kp="500"/>
+        <position name='instrument' ctrllimited="false" ctrlrange="-0.20 0.20" joint='instrument_joint' kp="500"/>
+        <position name='rotate' ctrllimited="false" ctrlrange="-3.14159 3.14159" joint='rotate_joint' kp="500"/>
+        <position name='roll' ctrllimited="false" ctrlrange="-3.14159 3.14159" joint='roll_joint' kp="100"/>
+        <position name='clip1' ctrllimited="false" ctrlrange="-3.14159 3.14159" joint='clip1_joint' kp="100"/>
     </actuator>
     <sensor>
         <jointpos name="Sjp_roll2_joint"      joint="roll2_joint"/>
@@ -183,27 +172,12 @@ Version:1.50
         <jointvel name="Sjv_roll_joint"       joint="roll_joint"/>
         <jointvel name="Sjv_clip1_joint"      joint="clip1_joint"/>
 
-
         <torque name="S_roll2_joint" 	  site="roll2_joint_site"/>
         <torque name="S_para2_joint" 	  site="para2_joint_site"/>
         <force  name="S_instrument_joint" site="instrument_joint_site"/>
 <!--        <torque name="S_rotate_joint" 	  site="rotate_joint_site"/>
         <torque name="S_roll_joint" 	  site="roll_joint_site"/>
         <torque name="S_clip1_joint" 	  site="clip1_joint_site"/>-->
-
-        <actuatorpos name="Sap_roll2" 	   actuator="roll2" />
-        <actuatorpos name="Sap_para2"	   actuator="para2" />
-        <actuatorpos name="Sap_instrument" actuator="instrument" />
-        <actuatorpos name="Sap_rotate" 	   actuator="rotate" />
-        <actuatorpos name="Sap_roll" 	   actuator="roll" />
-        <actuatorpos name="Sap_clip1" 	   actuator="clip1" />
-
-        <actuatorfrc name="Saf_roll2" 	   actuator="roll2"/>
-        <actuatorfrc name="Saf_para2" 	   actuator="para2"/>
-        <actuatorfrc name="Saf_instrument" actuator="instrument"/>
-        <actuatorfrc name="Saf_rotate" 	   actuator="rotate"/>
-        <actuatorfrc name="Saf_roll" 	   actuator="roll"/>
-        <actuatorfrc name="Saf_clip1" 	   actuator="clip1"/>
 
     </sensor>
 </mujoco>
