@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/read_node.dir/src/read.cpp.o  -o /home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/read_node  -L/opt/ros/kinetic/lib -rdynamic 

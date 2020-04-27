@@ -375,12 +375,6 @@ robot_description_BINARY_DIR:STATIC=/home/zzz/mujoco_ros/build/robot_description
 robot_description_SOURCE_DIR:STATIC=/home/zzz/mujoco_ros/src/robot_description
 
 //Value Computed by CMake
-robot_drive_BINARY_DIR:STATIC=/home/zzz/mujoco_ros/build/robot_driver
-
-//Value Computed by CMake
-robot_drive_SOURCE_DIR:STATIC=/home/zzz/mujoco_ros/src/robot_driver
-
-//Value Computed by CMake
 robot_gezabo_BINARY_DIR:STATIC=/home/zzz/mujoco_ros/build/robot_gezabo
 
 //Value Computed by CMake

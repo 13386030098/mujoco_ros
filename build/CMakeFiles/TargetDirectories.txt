@@ -135,7 +135,9 @@
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/rebuild_cache.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/edit_cache.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/test.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/write_node.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/read_node.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/local.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/robot_inverse.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/strip.dir
-/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/local.dir
-/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/test.dir

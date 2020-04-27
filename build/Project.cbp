@@ -971,6 +971,98 @@
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/omega7_drive/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
+      <Target title="write_node">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/write_node" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
+            <Add option="-DROS_PACKAGE_NAME=&quot;robot_inverse_kinematic&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/zzz/mujoco_ros/devel/include" />
+            <Add directory="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 write_node" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="write_node/fast">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/write_node" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
+            <Add option="-DROS_PACKAGE_NAME=&quot;robot_inverse_kinematic&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/zzz/mujoco_ros/devel/include" />
+            <Add directory="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 write_node/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="read_node">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/read_node" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
+            <Add option="-DROS_PACKAGE_NAME=&quot;robot_inverse_kinematic&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/zzz/mujoco_ros/devel/include" />
+            <Add directory="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 read_node" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
+      <Target title="read_node/fast">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/read_node" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
+         <Option object_output="./" />
+         <Option type="1" />
+         <Option compiler="gcc" />
+         <Compiler>
+            <Add option="-DROS_BUILD_SHARED_LIBS=1" />
+            <Add option="-DROS_PACKAGE_NAME=&quot;robot_inverse_kinematic&quot;" />
+            <Add option="-DROSCONSOLE_BACKEND_LOG4CXX" />
+            <Add directory="/home/zzz/mujoco_ros/devel/include" />
+            <Add directory="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/include" />
+            <Add directory="/opt/ros/kinetic/include" />
+            <Add directory="/opt/ros/kinetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp" />
+            <Add directory="/usr/include/eigen3" />
+         </Compiler>
+         <MakeCommands>
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 read_node/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
+         </MakeCommands>
+      </Target>
       <Target title="robot_inverse">
          <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
@@ -1024,8 +1116,14 @@
       <Unit filename="/home/zzz/mujoco_ros/src/omega7_drive/src/read_pose.cpp">
          <Option target="read_pose"/>
       </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/read.cpp">
+         <Option target="read_node"/>
+      </Unit>
       <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/robot_inverse.cpp">
          <Option target="robot_inverse"/>
+      </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/write.cpp">
+         <Option target="write_node"/>
       </Unit>
       <Unit filename="/usr/src/gmock/src/gmock-all.cc">
          <Option target="gmock"/>

@@ -40,4 +40,10 @@ link_directories(${catkin_LIBRARY_DIRS})
 add_executable(robot_inverse src/robot_inverse.cpp)
 target_link_libraries(robot_inverse ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_executable(write_node src/write.cpp)
+target_link_libraries(robot_inverse ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+add_executable(read_node src/read.cpp)
+target_link_libraries(robot_inverse ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
 

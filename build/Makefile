@@ -1076,6 +1076,32 @@ read_pose/fast:
 .PHONY : read_pose/fast
 
 #=============================================================================
+# Target rules for targets named write_node
+
+# Build rule for target.
+write_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 write_node
+.PHONY : write_node
+
+# fast build rule for target.
+write_node/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/build
+.PHONY : write_node/fast
+
+#=============================================================================
+# Target rules for targets named read_node
+
+# Build rule for target.
+read_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 read_node
+.PHONY : read_node
+
+# fast build rule for target.
+read_node/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/build
+.PHONY : read_node/fast
+
+#=============================================================================
 # Target rules for targets named robot_inverse
 
 # Build rule for target.
@@ -1171,6 +1197,8 @@ help:
 	@echo "... omega_driver_node"
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... read_pose"
+	@echo "... write_node"
+	@echo "... read_node"
 	@echo "... robot_inverse"
 .PHONY : help
 

@@ -10,22 +10,6 @@
 cstddef
 -
 
-/home/zzz/mujoco_ros/devel/include/robot_msgs/omega.h
-string
--
-vector
--
-map
--
-ros/types.h
--
-ros/serialization.h
--
-ros/builtin_message_traits.h
--
-ros/message_operations.h
--
-
 /home/zzz/mujoco_ros/src/omega7_drive/src/read_pose.cpp
 iostream
 -

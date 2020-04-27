@@ -3,7 +3,6 @@
 
 omega7_drive/CMakeFiles/read_pose.dir/src/read_pose.cpp.o
  /home/zzz/davinci/src/omega7_drive/include/omega7_drive/dhdc.h
- /home/zzz/mujoco_ros/devel/include/robot_msgs/omega.h
  /home/zzz/mujoco_ros/src/omega7_drive/src/read_pose.cpp
  /opt/ros/kinetic/include/geometry_msgs/Point.h
  /opt/ros/kinetic/include/ros/advertise_options.h

@@ -100,16 +100,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target test
+test/fast: test
 
-.PHONY : install/strip/fast
+.PHONY : test/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -122,16 +122,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : test/fast
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,6 +166,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/write_node.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/write_node.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/write_node.dir/rule
+
+# Convenience name for target.
+write_node: robot_inverse_kinematic/CMakeFiles/write_node.dir/rule
+
+.PHONY : write_node
+
+# fast build rule for target.
+write_node/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/build
+.PHONY : write_node/fast
+
+# Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/read_node.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/read_node.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/read_node.dir/rule
+
+# Convenience name for target.
+read_node: robot_inverse_kinematic/CMakeFiles/read_node.dir/rule
+
+.PHONY : read_node
+
+# fast build rule for target.
+read_node/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/build
+.PHONY : read_node/fast
+
+# Convenience name for target.
 robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
 .PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
@@ -179,6 +209,33 @@ robot_inverse: robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
 robot_inverse/fast:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build
 .PHONY : robot_inverse/fast
+
+src/read.o: src/read.cpp.o
+
+.PHONY : src/read.o
+
+# target to build an object file
+src/read.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/src/read.cpp.o
+.PHONY : src/read.cpp.o
+
+src/read.i: src/read.cpp.i
+
+.PHONY : src/read.i
+
+# target to preprocess a source file
+src/read.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/src/read.cpp.i
+.PHONY : src/read.cpp.i
+
+src/read.s: src/read.cpp.s
+
+.PHONY : src/read.s
+
+# target to generate assembly for a file
+src/read.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/src/read.cpp.s
+.PHONY : src/read.cpp.s
 
 src/robot_inverse.o: src/robot_inverse.cpp.o
 
@@ -207,6 +264,33 @@ src/robot_inverse.cpp.s:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/src/robot_inverse.cpp.s
 .PHONY : src/robot_inverse.cpp.s
 
+src/write.o: src/write.cpp.o
+
+.PHONY : src/write.o
+
+# target to build an object file
+src/write.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/src/write.cpp.o
+.PHONY : src/write.cpp.o
+
+src/write.i: src/write.cpp.i
+
+.PHONY : src/write.i
+
+# target to preprocess a source file
+src/write.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/src/write.cpp.i
+.PHONY : src/write.cpp.i
+
+src/write.s: src/write.cpp.s
+
+.PHONY : src/write.s
+
+# target to generate assembly for a file
+src/write.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/src/write.cpp.s
+.PHONY : src/write.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -217,13 +301,21 @@ help:
 	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... test"
+	@echo "... write_node"
+	@echo "... read_node"
+	@echo "... install/local"
 	@echo "... robot_inverse"
 	@echo "... install/strip"
-	@echo "... install/local"
-	@echo "... test"
+	@echo "... src/read.o"
+	@echo "... src/read.i"
+	@echo "... src/read.s"
 	@echo "... src/robot_inverse.o"
 	@echo "... src/robot_inverse.i"
 	@echo "... src/robot_inverse.s"
+	@echo "... src/write.o"
+	@echo "... src/write.i"
+	@echo "... src/write.s"
 .PHONY : help
 
 

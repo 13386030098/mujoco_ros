@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/write_node.dir/src/write.cpp.o  -o /home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/write_node  -L/opt/ros/kinetic/lib -rdynamic 
