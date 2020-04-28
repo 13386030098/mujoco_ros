@@ -6,14 +6,15 @@ Version:1.50
 
 <mujoco model="robot">
 
-    <compiler coordinate="local" angle="radian" inertiafromgeom="true" meshdir="meshes/"/>
-    <option timestep="2e-3" iterations="10" tolerance="1e-10" impratio="20"/>
-    <size njmax="600" nconmax="150" nstack="300000"/>
-
-    <default>
-        <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
-        <geom contype='1' conaffinity='1' condim='4'  margin="1e-3" solref=".01 1" solimp=".99 .99 .01" />
-        <joint limited="true" damping="10" armature=".01"/>
+   <compiler coordinate="local" angle="radian" inertiafromgeom="true" meshdir="meshes/"/>
+<!--   <option timestep="2e-3" iterations="10" tolerance="1e-10" impratio="20"/>-->
+   <option timestep="0.00252" iterations="2" tolerance="1e-8" impratio="20"/>
+<!--  <option timestep="0.00255" iterations='1'/>-->
+<!--   <size njmax="-1" nconmax="-1" nstack="-1"/>-->
+   <default>
+       <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
+       <geom friction=".5 .1 .1" margin="0.002" contype="1" conaffinity="0" type="mesh"/>
+       <joint limited="true"  armature=".01"/>
     </default>
 
     <visual>
@@ -72,29 +73,29 @@ Version:1.50
                 <geom rgba="0.94 1 1 1" type="mesh"  mesh="base_4"/>
                 <body name="roll1" pos="0 0 -0.15236273603" quat="1 0 0 0">
                     <inertial pos="0.044235 0.000033 0.049109" quat="0.5 0.5 -0.5 0.5" mass="0.394" diaginertia="0.0006 0.0025 0.0023" />
-                    <joint name="roll1_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
+                    <joint name="roll1_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="10000"/>
                     <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll1" />
                     <body name="roll2" pos="0.1619 0 -0.11296" quat="0.991445 0 0.130526 0 ">
                         <inertial pos="0.046702 -0.021926 0.003509" quat="0.5 0.5 -0.5 0.5" mass="0.646" diaginertia="0.0088 -0.0006 0.0026" />
-                        <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
+                        <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3 3" damping="10"/>
                         <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll2" />
                         <site rgba=".1 .1 .9 1" name="roll2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                         <body name="para2" pos="0.06078 -0.0025 -0.27804" quat="0.664463 0.664463 0.241845 -0.241845 ">
                             <inertial pos="-0.065697 -0.000264 0.023081" quat="0.5 0.5 -0.5 0.5" mass="0.213" diaginertia="0.0002 0.0002 0.0002" />
-                            <joint name="para2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
+                            <joint name="para2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="10"/>
                             <geom rgba="0.94 1 1 1" type="mesh"  mesh="para2" />
                             <site rgba=".1 .1 .9 1" name="para2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                             <body name="para3" pos="-0.2 0 -0.0415" quat="0.5 0 0 0.866025 ">
                                 <inertial pos="-0.153695 -0.000029 0.024048" quat="0.5 0.5 -0.5 0.5" mass="0.329" diaginertia="0.0002 0.0002 0.0002" />
-                                <joint name="para3_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-1 1" />
+                                <joint name="para3_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="10"/>
                                 <geom rgba="0.94 1 1 1" type="mesh"  mesh="para3" />
                                <body name="slide" pos="-0.350 0 0.0305" quat="1 0 0 0">
                                     <inertial pos="-0.062296 0.123021 0.007665" quat="0.5 0.5 -0.5 0.5" mass="1.256" diaginertia="0.0002 0.0002 0.0002" />
-                                    <joint name="slide_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" />
+                                    <joint name="slide_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="10"/>
                                     <geom rgba="0.94 1 0.94 1" type="mesh"  mesh="slide"/>
                                      <body name="instrument" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
                                         <inertial pos="-0.00013 -0.00153 -0.02645" quat="0.5 0.5 -0.5 0.5" mass="0.19373" diaginertia="0.0014 0.0014 0.0002" />
-                                        <joint name="instrument_joint" type="slide" pos="0 0 0" axis="0 0 1"  range="-0.20 0.20" />
+                                        <joint name="instrument_joint" type="slide" pos="0 0 0" axis="0 0 1"  range="-0.20 0.20" damping="10"/>
                                         <geom rgba="0.94 1 0.94 1" type="mesh"  mesh="instrument"/>
                                         <site rgba=".1 .1 .9 1" name="instrument_joint_site" size=".003 .003 .003" type="ellipsoid"/>
                                         <body name="rotate" pos="0 0 0.3759" quat="1 0 0 0">
@@ -103,7 +104,7 @@ Version:1.50
                                             <geom rgba="1 1 1 1" type="mesh"  mesh="rotate"/>
                                             <body name="roll" pos="0 0 0" quat="3.2758e-05 0.707107 0.707107 3.2758e-05">
                                                 <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />
-                                                <joint name="roll_joint" type="hinge" pos="0 0 0" axis="1 0 0"  range="-3.14159 3.14159" />
+                                                <joint name="roll_joint" type="hinge" pos="0 0 0" axis="1 0 0"  range="-3.14159 3.14159" damping="1"/>
                                                 <geom rgba="1 1 1 1" type="mesh"  mesh="roll" />
                                                 <body name="clip1" pos="0 0.0003 -0.0089" quat="0.707107 -0.707107 0 0">
                                                     <inertial pos="0.001 0.001 0.001" quat="0.5 0.5 -0.5 0.5" mass="0.1" diaginertia="0.0014 0.0014 0.0002" />

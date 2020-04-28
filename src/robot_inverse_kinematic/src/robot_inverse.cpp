@@ -71,9 +71,9 @@ public:
     direction_rpy_r = 1;
     direction_rpy_p = 1;
     direction_rpy_y = 1;
-    scale_p_x = 0.3;
-    scale_p_y = 0.3;
-    scale_p_z = 0.3;
+    scale_p_x = 0.45;
+    scale_p_y = 0.45;
+    scale_p_z = 0.5;
     scale_r_x = 0.6;
     scale_r_y = 0.6;
     scale_r_z = 0.6;
