@@ -89,6 +89,17 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -99,17 +110,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -122,16 +122,16 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : test/fast
+.PHONY : install/local/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,46 +166,88 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-omega7_drive/CMakeFiles/read_pose.dir/rule:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 omega7_drive/CMakeFiles/read_pose.dir/rule
-.PHONY : omega7_drive/CMakeFiles/read_pose.dir/rule
+omega7_drive/CMakeFiles/omega_driver.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 omega7_drive/CMakeFiles/omega_driver.dir/rule
+.PHONY : omega7_drive/CMakeFiles/omega_driver.dir/rule
 
 # Convenience name for target.
-read_pose: omega7_drive/CMakeFiles/read_pose.dir/rule
+omega_driver: omega7_drive/CMakeFiles/omega_driver.dir/rule
 
-.PHONY : read_pose
+.PHONY : omega_driver
 
 # fast build rule for target.
-read_pose/fast:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/read_pose.dir/build.make omega7_drive/CMakeFiles/read_pose.dir/build
-.PHONY : read_pose/fast
+omega_driver/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/build
+.PHONY : omega_driver/fast
 
-src/read_pose.o: src/read_pose.cpp.o
+# Convenience name for target.
+omega7_drive/CMakeFiles/omega_dual.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 omega7_drive/CMakeFiles/omega_dual.dir/rule
+.PHONY : omega7_drive/CMakeFiles/omega_dual.dir/rule
 
-.PHONY : src/read_pose.o
+# Convenience name for target.
+omega_dual: omega7_drive/CMakeFiles/omega_dual.dir/rule
+
+.PHONY : omega_dual
+
+# fast build rule for target.
+omega_dual/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_dual.dir/build.make omega7_drive/CMakeFiles/omega_dual.dir/build
+.PHONY : omega_dual/fast
+
+src/omega_driver.o: src/omega_driver.cpp.o
+
+.PHONY : src/omega_driver.o
 
 # target to build an object file
-src/read_pose.cpp.o:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/read_pose.dir/build.make omega7_drive/CMakeFiles/read_pose.dir/src/read_pose.cpp.o
-.PHONY : src/read_pose.cpp.o
+src/omega_driver.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/src/omega_driver.cpp.o
+.PHONY : src/omega_driver.cpp.o
 
-src/read_pose.i: src/read_pose.cpp.i
+src/omega_driver.i: src/omega_driver.cpp.i
 
-.PHONY : src/read_pose.i
+.PHONY : src/omega_driver.i
 
 # target to preprocess a source file
-src/read_pose.cpp.i:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/read_pose.dir/build.make omega7_drive/CMakeFiles/read_pose.dir/src/read_pose.cpp.i
-.PHONY : src/read_pose.cpp.i
+src/omega_driver.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/src/omega_driver.cpp.i
+.PHONY : src/omega_driver.cpp.i
 
-src/read_pose.s: src/read_pose.cpp.s
+src/omega_driver.s: src/omega_driver.cpp.s
 
-.PHONY : src/read_pose.s
+.PHONY : src/omega_driver.s
 
 # target to generate assembly for a file
-src/read_pose.cpp.s:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/read_pose.dir/build.make omega7_drive/CMakeFiles/read_pose.dir/src/read_pose.cpp.s
-.PHONY : src/read_pose.cpp.s
+src/omega_driver.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/src/omega_driver.cpp.s
+.PHONY : src/omega_driver.cpp.s
+
+src/omega_driver_dual.o: src/omega_driver_dual.cpp.o
+
+.PHONY : src/omega_driver_dual.o
+
+# target to build an object file
+src/omega_driver_dual.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_dual.dir/build.make omega7_drive/CMakeFiles/omega_dual.dir/src/omega_driver_dual.cpp.o
+.PHONY : src/omega_driver_dual.cpp.o
+
+src/omega_driver_dual.i: src/omega_driver_dual.cpp.i
+
+.PHONY : src/omega_driver_dual.i
+
+# target to preprocess a source file
+src/omega_driver_dual.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_dual.dir/build.make omega7_drive/CMakeFiles/omega_dual.dir/src/omega_driver_dual.cpp.i
+.PHONY : src/omega_driver_dual.cpp.i
+
+src/omega_driver_dual.s: src/omega_driver_dual.cpp.s
+
+.PHONY : src/omega_driver_dual.s
+
+# target to generate assembly for a file
+src/omega_driver_dual.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f omega7_drive/CMakeFiles/omega_dual.dir/build.make omega7_drive/CMakeFiles/omega_dual.dir/src/omega_driver_dual.cpp.s
+.PHONY : src/omega_driver_dual.cpp.s
 
 # Help Target
 help:
@@ -216,14 +258,18 @@ help:
 	@echo "... list_install_components"
 	@echo "... install"
 	@echo "... edit_cache"
-	@echo "... rebuild_cache"
-	@echo "... read_pose"
-	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... test"
-	@echo "... src/read_pose.o"
-	@echo "... src/read_pose.i"
-	@echo "... src/read_pose.s"
+	@echo "... rebuild_cache"
+	@echo "... omega_driver"
+	@echo "... omega_dual"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... src/omega_driver.o"
+	@echo "... src/omega_driver.i"
+	@echo "... src/omega_driver.s"
+	@echo "... src/omega_driver_dual.o"
+	@echo "... src/omega_driver_dual.i"
+	@echo "... src/omega_driver_dual.s"
 .PHONY : help
 
 

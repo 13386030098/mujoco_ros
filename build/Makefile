@@ -1063,43 +1063,43 @@ geometry_msgs_generate_messages_cpp/fast:
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named read_pose
+# Target rules for targets named omega_driver
 
 # Build rule for target.
-read_pose: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 read_pose
-.PHONY : read_pose
+omega_driver: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 omega_driver
+.PHONY : omega_driver
 
 # fast build rule for target.
-read_pose/fast:
-	$(MAKE) -f omega7_drive/CMakeFiles/read_pose.dir/build.make omega7_drive/CMakeFiles/read_pose.dir/build
-.PHONY : read_pose/fast
+omega_driver/fast:
+	$(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/build
+.PHONY : omega_driver/fast
 
 #=============================================================================
-# Target rules for targets named write_node
+# Target rules for targets named omega_dual
 
 # Build rule for target.
-write_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 write_node
-.PHONY : write_node
+omega_dual: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 omega_dual
+.PHONY : omega_dual
 
 # fast build rule for target.
-write_node/fast:
-	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/write_node.dir/build.make robot_inverse_kinematic/CMakeFiles/write_node.dir/build
-.PHONY : write_node/fast
+omega_dual/fast:
+	$(MAKE) -f omega7_drive/CMakeFiles/omega_dual.dir/build.make omega7_drive/CMakeFiles/omega_dual.dir/build
+.PHONY : omega_dual/fast
 
 #=============================================================================
-# Target rules for targets named read_node
+# Target rules for targets named robot_inverse_dual
 
 # Build rule for target.
-read_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 read_node
-.PHONY : read_node
+robot_inverse_dual: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse_dual
+.PHONY : robot_inverse_dual
 
 # fast build rule for target.
-read_node/fast:
-	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/read_node.dir/build.make robot_inverse_kinematic/CMakeFiles/read_node.dir/build
-.PHONY : read_node/fast
+robot_inverse_dual/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/build
+.PHONY : robot_inverse_dual/fast
 
 #=============================================================================
 # Target rules for targets named robot_inverse
@@ -1196,9 +1196,9 @@ help:
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... omega_driver_node"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... read_pose"
-	@echo "... write_node"
-	@echo "... read_node"
+	@echo "... omega_driver"
+	@echo "... omega_dual"
+	@echo "... robot_inverse_dual"
 	@echo "... robot_inverse"
 .PHONY : help
 

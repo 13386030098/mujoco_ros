@@ -119,11 +119,12 @@
 /home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/list_install_components.dir
 /home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/install.dir
 /home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/edit_cache.dir
-/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/rebuild_cache.dir
-/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/read_pose.dir
-/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/install/local.dir
-/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/install/strip.dir
 /home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/test.dir
+/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/rebuild_cache.dir
+/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/omega_driver.dir
+/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/omega_dual.dir
+/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/install/strip.dir
+/home/zzz/mujoco_ros/build/omega7_drive/CMakeFiles/install/local.dir
 /home/zzz/mujoco_ros/build/robot_gezabo/CMakeFiles/list_install_components.dir
 /home/zzz/mujoco_ros/build/robot_gezabo/CMakeFiles/install.dir
 /home/zzz/mujoco_ros/build/robot_gezabo/CMakeFiles/rebuild_cache.dir
@@ -136,8 +137,7 @@
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/rebuild_cache.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/edit_cache.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/test.dir
-/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/write_node.dir
-/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/read_node.dir
-/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/local.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/robot_inverse.dir
 /home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/strip.dir
+/home/zzz/mujoco_ros/build/robot_inverse_kinematic/CMakeFiles/install/local.dir

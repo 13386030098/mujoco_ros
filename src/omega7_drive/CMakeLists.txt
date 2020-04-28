@@ -3,6 +3,12 @@ project(omega7_drive)
 
 add_compile_options(-std=c++11)
 
+find_package(Eigen3 REQUIRED)
+if(NOT EIGEN3_INCLUDE_DIRS)
+  set(EIGEN3_INCLUDE_DIRS "${EIGEN3_INCLUDE_DIR};/usr/include/eigen3/Eigen/Eigen")
+endif()
+
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
@@ -12,17 +18,24 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
 #  INCLUDE_DIRS include
-
+#  LIBRARIES davinci_planing
+  CATKIN_DEPENDS roscpp rospy std_msgs 
 )
 
 
 include_directories(
-  "include/omega7_driver"
+ include
   ${catkin_INCLUDE_DIRS}
-  "/home/zzz/davinci/src/omega7_drive/include/omega7_drive"
 )
-add_executable(read_pose src/read_pose.cpp)
-target_link_libraries(read_pose  ${catkin_LIBRARIES} ${Boost_LIBRARIES} "/usr/lib/libdhd.so.3" "/usr/lib/libdrd.so.3")
 
-#add_executable(read_pose_multi src/read_pose_multi.cpp)
-#target_link_libraries(read_pose_multi  ${catkin_LIBRARIES} ${Boost_LIBRARIES} "/home/zzz/davinci/src/omega7_drive/include/omega7_drive/libdhd.so.3.7.3" "/#home/zzz/davinci/src/omega7_drive/include/omega7_drive/libdrd.so.3.7.3"	)
+
+include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${EIGEN3_INCLUDE_DIRS})
+link_directories(${catkin_LIBRARY_DIRS})
+
+add_executable(omega_driver src/omega_driver.cpp)
+target_link_libraries(omega_driver  ${catkin_LIBRARIES} ${Boost_LIBRARIES} "/usr/lib/libdhd.so.3" "/usr/lib/libdrd.so.3")
+
+add_executable(omega_dual src/omega_driver_dual.cpp)
+target_link_libraries(omega_dual  ${catkin_LIBRARIES} ${Boost_LIBRARIES} "/usr/lib/libdhd.so.3" "/usr/lib/libdrd.so.3")
+
+
