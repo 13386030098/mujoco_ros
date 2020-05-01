@@ -97,7 +97,7 @@ public:
     is_first_1(true),
     is_first_2(true)
   {
-    direction_pos_x = 1;
+    direction_pos_x = -1;
     direction_pos_y = 1;
     direction_pos_z = 1;
     direction_rpy_r = 1;
