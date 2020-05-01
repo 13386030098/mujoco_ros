@@ -30,7 +30,7 @@ def callback_omega_1(data):
     sim.data.ctrl[2] = data.data[2]
     sim.data.ctrl[3] = data.data[3]
     sim.data.ctrl[4] = data.data[4]
-#    sim.data.ctrl[5] = data.data[5]
+    sim.data.ctrl[5] = data.data[5]
 
 #def acquisition(event):
 #    sim_state = sim.get_state()
@@ -55,11 +55,11 @@ def listener():
     rospy.init_node('listener', anonymous=True)
     rospy.Subscriber('/ik', ik, callback_omega_1)
 
-    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
+#    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
 
     rate = rospy.Rate(1000)
     t = 0
-    while not rospy.is_shutdown():
+    while not rospy.is_shutdown():        
         t += 1
         sim.step()
         viewer.render()
@@ -68,7 +68,7 @@ def listener():
         rate.sleep()
 
 if __name__ == '__main__':
-    model = load_model_from_path("/home/zzz/mujoco_ros/src/mujoco_description/robot.xml")
+    model = load_model_from_path("/home/zzz/mujoco_ros/src/mujoco_description/robot_grasp.xml")
 
     sim = MjSim(model)
     viewer = MjViewer(sim)
