@@ -59,13 +59,13 @@
     </contact>
   
     <default>
-        <joint limited="false" damping=".01" armature=".005" frictional="false"/>
+        <joint limited="false" damping=".01" armature=".005"/>
         <geom contype="1" conaffinity="0" friction="1 0.1 0.1" type="mesh"/>
 		<default class="gripper">
 			<joint damping="0.005" armature=".005"/>
 		</default>
     </default>
-    
+
     <worldbody>
 	<light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos=".5 0.75 1.5" dir="-.5 -0.75 -1.5"/>
 	<geom name="gnd" material="MatGnd" type="plane" contype="0" conaffinity="1" pos="0 0 0" size="1.5 1.5 0.25"/>

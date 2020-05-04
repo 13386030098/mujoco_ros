@@ -33,18 +33,25 @@
 	<mesh file="gripper_palm.stl"/>
 	<mesh file="l_finger.stl"/>
 	<mesh file="l_finger_tip.stl"/>
+        <mesh file="ball.stl"/>
 	<material name="MatGnd" specular=".3" shininess=".3" reflectance="0.3" rgba=".5 .55 .5 1"/>
   </asset>
   
   <default>
     <joint damping="1" limited="true"/>
-    <geom friction=".5 .1 .1" margin="0.002" contype="1" conaffinity="0" type="mesh"/>
+    <geom friction=".5 .1 0.1" margin="0.002" contype="1" conaffinity="0" type="mesh" condim='4' solref=".01 1" solimp=".99 .99 .01"/>
   </default>
 
   <worldbody>
 	<light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos=".5 0.75 1.5" dir="-.5 -0.75 -1.5"/>
 	<geom name="gnd" material="MatGnd" type="plane" contype="0" conaffinity="1" pos="0 0 0" size=".75 1.25 0.025"/>
-		
+
+    <body name="ball" pos="0.3 0.02 0.1" quat="0.707388 0.70738 0 0">
+        <freejoint/>
+        <inertial pos="0 0 0"  mass="1" diaginertia="0.5 0.5 0.5" />
+        <geom rgba="1 1 0.941187 1.0"  mesh="ball"/>
+    </body>
+
     <body name="r_shoulder_pan_link" pos="-.25 0 0.7">
       <inertial pos="-0.001201 0.024513 -0.098231" quat="0.927482 -0.0876561 0.0740595 -0.355821" mass="25.7993" diaginertia="0.934201 0.837701 0.242033" />
       <joint name="r_shoulder_pan_joint" type="hinge" pos="0 0 0" axis="0 0 1" range="-2.2854 0.714602" damping="10.0"/>
@@ -163,7 +170,9 @@
 
 <!--ACTUATORS-->
 <actuator>
-    <motor name='r_shoulder_lift_joint' ctrllimited="true" ctrlrange="-2 2" joint='r_shoulder_lift_joint' gear="100"/> <!--range -150 150-->
+    <motor name='r_gripper_l_finger_joint' ctrllimited="true" ctrlrange="-2 2" joint='r_gripper_l_finger_joint' gear="100"/> <!--range -150 150-->
+    <motor name='r_gripper_r_finger_joint' ctrllimited="true" ctrlrange="-2 2" joint='r_gripper_r_finger_joint' gear="100"/> <!--range -150 150-->
+
 </actuator>
 
 

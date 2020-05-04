@@ -89,6 +89,10 @@ private:
   double omega_1_button;
   double omega_2_button;
 
+  double omega_1_button_desire;
+  double omega_2_button_desire;
+
+
   bool is_first_1;
   bool is_first_2;
 
@@ -142,6 +146,8 @@ public:
         master_1_rpy[i] = omega7_msg->data[i+3];
     omega_1_button = omega7_msg->button[0];
 
+    omega_1_button_desire = omega_1_button - omega_1_button_zero;
+
     slave_1_desire_pos[0] = direction_pos_x * (master_1_pos[0]-master_1_pos_zero[0]) * scale_p_x + slave_1_pos_zero[0];
     slave_1_desire_pos[1] = direction_pos_y * (master_1_pos[1]-master_1_pos_zero[1]) * scale_p_y + slave_1_pos_zero[1];
     slave_1_desire_pos[2] = direction_pos_z * (master_1_pos[2]-master_1_pos_zero[2]) * scale_p_y + slave_1_pos_zero[2];
@@ -184,7 +190,8 @@ public:
     ik_msg.data[2] = joint_values_omega_1[2];
     ik_msg.data[3] = joint_values_omega_1[3];
     ik_msg.data[4] = joint_values_omega_1[4];
-    ik_msg.data[5] = joint_values_omega_1[5];
+//    ik_msg.data[5] = joint_values_omega_1[5];
+    ik_msg.data[5] = omega_1_button_desire;
 
     pub_omega1.publish(ik_msg);
 
@@ -214,6 +221,8 @@ public:
     for(unsigned int i=0;i<3;i++)
         master_2_rpy[i] = omega7_msg->data[i+3];
     omega_2_button = omega7_msg->button[0];
+    omega_2_button_desire = omega_2_button - omega_2_button_zero;
+
 
     slave_2_desire_pos[0] = direction_pos_x * (master_2_pos[0]-master_2_pos_zero[0]) * scale_p_x + slave_2_pos_zero[0];
     slave_2_desire_pos[1] = direction_pos_y * (master_2_pos[1]-master_2_pos_zero[1]) * scale_p_y + slave_2_pos_zero[1];
@@ -257,7 +266,7 @@ public:
     ik_msg.data[2] = joint_values_omega_2[2];
     ik_msg.data[3] = joint_values_omega_2[3];
     ik_msg.data[4] = joint_values_omega_2[4];
-    ik_msg.data[5] = joint_values_omega_2[5];
+    ik_msg.data[5] = omega_2_button_desire;
 
     pub_omega2.publish(ik_msg);
 

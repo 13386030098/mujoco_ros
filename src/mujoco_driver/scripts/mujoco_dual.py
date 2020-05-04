@@ -30,7 +30,7 @@ def callback_omega_1(data):
     sim.data.ctrl[2] = data.data[2]
     sim.data.ctrl[3] = data.data[3]
     sim.data.ctrl[4] = data.data[4]
-#    sim.data.ctrl[5] = data.data[5]
+    sim.data.ctrl[5] = data.data[5]
 
 def callback_omega_2(data):
 
@@ -40,6 +40,8 @@ def callback_omega_2(data):
     sim.data.ctrl[9]  = data.data[3]
     sim.data.ctrl[10] = data.data[4]
     sim.data.ctrl[11] = data.data[5]
+#    sim.data.ctrl[12] = -0.5
+#    sim.data.ctrl[13] = 0.5
 
 #def acquisition(event):
 #    sim_state = sim.get_state()
@@ -62,7 +64,6 @@ def callback_omega_2(data):
 
 def listener():
     rospy.init_node('listener', anonymous=True)
-    rospy.Subscriber('/ik', ik, callback_omega_1)
 
     rospy.Subscriber('omega1/ik', ik, callback_omega_1)
     rospy.Subscriber('omega2/ik', ik, callback_omega_2)

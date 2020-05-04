@@ -59,6 +59,7 @@ private:
 
   double omega_button_zero;
   double omega_button;
+  double omega_button_desire;
   bool omega_button_is_open;
   bool is_first_;
 public:
@@ -108,6 +109,8 @@ public:
         master_rpy[i] = omega7_msg->data[i+3];
     omega_button = omega7_msg->button[0];
 
+    omega_button_desire = omega_button - omega_button_zero;
+
     slave_desire_pos[0] = direction_pos_x * (master_pos[0]-master_pos_zero[0]) * scale_p_x + slave_pos_zero[0];
     slave_desire_pos[1] = direction_pos_y * (master_pos[1]-master_pos_zero[1]) * scale_p_y + slave_pos_zero[1];
     slave_desire_pos[2] = direction_pos_z * (master_pos[2]-master_pos_zero[2]) * scale_p_y + slave_pos_zero[2];
@@ -150,7 +153,7 @@ public:
     ik_msg.data[2] = joint_values[2];
     ik_msg.data[3] = joint_values[3];
     ik_msg.data[4] = joint_values[4];
-    ik_msg.data[5] = joint_values[5];
+    ik_msg.data[5] = omega_button_desire;
 
     pub.publish(ik_msg);
 

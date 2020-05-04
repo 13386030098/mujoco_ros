@@ -32,6 +32,17 @@ def callback_omega_1(data):
     sim.data.ctrl[4] = data.data[4]
     sim.data.ctrl[5] = data.data[5]
 
+def callback_omega_2(data):
+
+    sim.data.ctrl[6]  = data.data[0]
+    sim.data.ctrl[7]  = data.data[1]
+    sim.data.ctrl[8]  = data.data[2]
+    sim.data.ctrl[9]  = data.data[3]
+    sim.data.ctrl[10] = data.data[4]
+    sim.data.ctrl[11] = data.data[5]
+    sim.data.ctrl[12] = -0.3
+
+
 #def acquisition(event):
 #    sim_state = sim.get_state()
 #    joint1_pos = sim_state.qpos[1]
@@ -53,13 +64,15 @@ def callback_omega_1(data):
 
 def listener():
     rospy.init_node('listener', anonymous=True)
-    rospy.Subscriber('/ik', ik, callback_omega_1)
+
+    rospy.Subscriber('omega1/ik', ik, callback_omega_1)
+    rospy.Subscriber('omega2/ik', ik, callback_omega_2)
 
 #    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
 
     rate = rospy.Rate(1000)
     t = 0
-    while not rospy.is_shutdown():        
+    while not rospy.is_shutdown():
         t += 1
         sim.step()
         viewer.render()

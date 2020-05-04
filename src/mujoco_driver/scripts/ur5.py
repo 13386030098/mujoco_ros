@@ -17,17 +17,19 @@ def listener():
     rate = rospy.Rate(1000)
     t = 0
     while not rospy.is_shutdown():
+        sim.data.ctrl[0] = math.cos(t / 10.) * 0.03
+#        sim.data.ctrl[1] = math.cos(t / 10.) * 0.03
+
         t += 1
         sim.step()
         viewer.render()
-        sim.data.ctrl[5] = 1 * math.cos(t / 10.)
         if t > 100 and os.getenv('TESTING') is not None:
             break
         rate.sleep()
 
 
 if __name__ == '__main__':
-    model = load_model_from_path("/home/zzz/mujoco_ros/ref/UR5+gripper/UR5gripper.xml")
+    model = load_model_from_path("/home/zzz/mujoco_ros/ref/PR2/pr2_arm.xml")
     sim = MjSim(model)
     viewer = MjViewer(sim)
     try:

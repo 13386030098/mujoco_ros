@@ -55,7 +55,7 @@ def listener():
     rospy.init_node('listener', anonymous=True)
     rospy.Subscriber('/ik', ik, callback_omega_1)
 
-    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
+#    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
 
     rate = rospy.Rate(1000)
     t = 0
