@@ -1,3 +1,0 @@
-Wed Apr  8 15:41:07 2020
-ERROR: Could not open activation key file ~/mujoco_ros/src/mujoco_description/mjkey.txt
-

@@ -173,7 +173,7 @@ int main(int argc, char **argv)
     ros::AsyncSpinner spinner(1);
     spinner.start();
     teleoperation operation;
-//    operation.start();
+    operation.start();
     std::cout << "ok" << std::endl;
     ros::waitForShutdown();
     return 0;

@@ -40,7 +40,8 @@ def callback_omega_2(data):
     sim.data.ctrl[9]  = data.data[3]
     sim.data.ctrl[10] = data.data[4]
     sim.data.ctrl[11] = data.data[5]
-    sim.data.ctrl[12] = -0.3
+    sim.data.ctrl[12] = -0.2
+    sim.data.ctrl[13] = 0.1
 
 
 #def acquisition(event):
