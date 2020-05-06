@@ -162,8 +162,9 @@ class kalman:
         test = np.array(
             [0.7706851, 0.3922136, -0.38806617, 0.11385617, 0.3412635,
              -0.34814566, -0.63279235, -1.1850903, 1.1281418])
-        load_model = keras.models.load_model('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/predict_model.h5')
-        pred_train = load_model.predict(test.reshape(1, 9))
+        kalman.load_model = keras.models.load_model('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/predict_model.h5')
+        pred_train = kalman.load_model.predict(test.reshape(1, 9))
+        print(pred_train)
 
     def __del__(self):
         class_name = self.__class__.__name__
@@ -321,32 +322,132 @@ class kalman:
 
         return self.xhat_A_slide[2]
 
+# data = np.loadtxt('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/data.txt')
+#
+# col_1 = data[:,0]
+# col_2 = data[:,1]
+# col_3 = data[:,2]
+#
+# col_4 = data[:,3]
+# col_5 = data[:,4]
+# col_6 = data[:,5]
+#
+# col_7 = data[:,6]
+# col_8 = data[:,7]
+# col_9 = data[:,8]
+#
+# data_plot_1_filter = scipy.signal.savgol_filter(col_1, 51, 10)
+# data_plot_2_filter = scipy.signal.savgol_filter(col_2, 51, 10)
+# data_plot_3_filter = scipy.signal.savgol_filter(col_3, 51, 10)
+#
+# data_plot_4_filter = scipy.signal.savgol_filter(col_4, 51, 10)
+# data_plot_5_filter = scipy.signal.savgol_filter(col_5, 51, 10)
+# data_plot_6_filter = scipy.signal.savgol_filter(col_6, 51, 10)
+#
+# data_plot_7_filter = scipy.signal.savgol_filter(col_7, 51, 10)
+# data_plot_8_filter = scipy.signal.savgol_filter(col_8, 51, 10)
+# data_plot_9_filter = scipy.signal.savgol_filter(col_9, 51, 10)
+#
+# yhat_acc_1 = scipy.signal.savgol_filter(data_plot_4_filter, 51, 8, 1, 0.02) # window size 51, polynomial order 3
+# yhat_acc_2 = scipy.signal.savgol_filter(data_plot_5_filter, 51, 8, 1, 0.02) # window size 51, polynomial order 3
+# yhat_acc_3 = scipy.signal.savgol_filter(data_plot_6_filter, 51, 8, 1, 0.02) # window size 51, polynomial order 3
+#
+#
+# pos_1_filter = np.zeros(col_1.shape[0])
+# pos_2_filter = np.zeros(col_1.shape[0])
+# pos_3_filter = np.zeros(col_1.shape[0])
+#
+# vel_1_filter = np.zeros(col_1.shape[0])
+# vel_2_filter = np.zeros(col_1.shape[0])
+# vel_3_filter = np.zeros(col_1.shape[0])
+#
+# tor_1_filter = np.zeros(col_1.shape[0])
+# tor_2_filter = np.zeros(col_1.shape[0])
+# tor_3_filter = np.zeros(col_1.shape[0])
+#
+# acc_1_filter = np.zeros(col_1.shape[0])
+# acc_2_filter = np.zeros(col_1.shape[0])
+# acc_3_filter = np.zeros(col_1.shape[0])
+#
+# n_iter = col_1.shape[0]
+#
 # object_test = kalman()
 #
-# z1 = np.loadtxt('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/data_ver_3/pos_dim_3.txt').reshape(1,60000)
-# z2 = np.loadtxt('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/data_ver_3/vel_dim_3.txt').reshape(1,60000)
+# for k in range(n_iter):
+#     pos_1_filter[k] = object_test.roll_position_predict(col_1[k])
+#     pos_2_filter[k] = object_test.link_position_predict(col_2[k])
+#     pos_3_filter[k] = object_test.slide_position_predict(col_3[k])
 #
-# z = np.concatenate((z1, z2), 0)
-# z = np.mat(z)
+#     vel_1_filter[k] = object_test.roll_velocity_predict(col_4[k])
+#     vel_2_filter[k] = object_test.link_velocity_predict(col_5[k])
+#     vel_3_filter[k] = object_test.slide_velocity_predict(col_6[k])
 #
-# acc_array = np.zeros(z1.shape[1])
+#     tor_1_filter[k] = object_test.roll_torque_predict(col_7[k])
+#     tor_2_filter[k] = object_test.link_torque_predict(col_8[k])
+#     tor_3_filter[k] = object_test.slide_torque_predict(col_9[k])
 #
+# pos_vel_1 = np.concatenate((pos_1_filter.reshape(1, -1), vel_1_filter.reshape(1, -1)), 0)
+# pos_vel_2 = np.concatenate((pos_2_filter.reshape(1, -1), vel_2_filter.reshape(1, -1)), 0)
+# pos_vel_3 = np.concatenate((pos_3_filter.reshape(1, -1), vel_3_filter.reshape(1, -1)), 0)
 #
-# n_iter = col_9.shape[0]
+# pos_vel_1 = np.mat(pos_vel_1)
+# pos_vel_2 = np.mat(pos_vel_2)
+# pos_vel_3 = np.mat(pos_vel_3)
+#
 #
 # for k in range(n_iter):
+#     acc_1_filter[k] = object_test.roll_acceleration_predict(pos_vel_1[:,k])
+#     acc_2_filter[k] = object_test.link_acceleration_predict(pos_vel_2[:,k])
+#     acc_3_filter[k] = object_test.slide_acceleration_predict(pos_vel_3[:,k])
 #
-#     acc_array[k] = object_test.slide_acceleration_predict(z[:,k])
+# # plt.figure()
+# # l1,= plt.plot(data_plot_7_filter[:2000])
+# # l2,= plt.plot(tor_1_filter[:2000])
+# # plt.legend(handles=[l1, l2], labels=['S-G', 'kalman_predict'],loc='best')
+# # plt.show()
 #
-# l1,= plt.plot(yhat_acc_3[:2000])
-# l2,= plt.plot(acc_array[:2000])
-# plt.legend(handles=[l1, l2], labels=['S-G', 'kalman'],loc='best')
+# pos_1_filter = pos_1_filter.reshape(-1, 1)
+# pos_2_filter = pos_2_filter.reshape(-1, 1)
+# pos_3_filter = pos_3_filter.reshape(-1, 1)
+#
+# vel_1_filter = vel_1_filter.reshape(-1, 1)
+# vel_2_filter = vel_2_filter.reshape(-1, 1)
+# vel_3_filter = vel_3_filter.reshape(-1, 1)
+#
+# acc_1_filter = acc_1_filter.reshape(-1, 1)
+# acc_2_filter = acc_2_filter.reshape(-1, 1)
+# acc_3_filter = acc_3_filter.reshape(-1, 1)
+#
+# input_data  = np.concatenate((pos_1_filter, pos_2_filter, pos_3_filter, vel_1_filter, vel_2_filter, vel_3_filter,
+#                               acc_1_filter, acc_2_filter, acc_3_filter), 1)
+#
+#
+# pre_train = kalman.load_model.predict(input_data)
+#
+#
+# plt.figure()
+# l1,= plt.plot(tor_1_filter[58000:])
+# l2,= plt.plot(pre_train[58000:,0])
+# plt.legend(handles=[l1, l2], labels=['kalman_filter', 'kalman_predict'],loc='best')
+#
+# plt.figure()
+# l1,= plt.plot(tor_2_filter[58000:])
+# l2,= plt.plot(pre_train[58000:,1])
+# plt.legend(handles=[l1, l2], labels=['kalman_filter', 'kalman_predict'],loc='best')
+#
+# plt.figure()
+# l1,= plt.plot(tor_3_filter[58000:])
+# l2,= plt.plot(pre_train[58000:,2])
+# plt.legend(handles=[l1, l2], labels=['kalman_filter', 'kalman_predict'],loc='best')
+# #
 # plt.show()
 
 
 
+
+
 def callback_omega_1(data):
-#    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+
     sim_state = sim.get_state()
 #    print("qpos")
 #    print(sim_state.qpos[1])
