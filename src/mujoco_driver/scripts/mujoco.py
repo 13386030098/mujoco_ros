@@ -8,163 +8,174 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import scipy.signal
+import functools
 
-# from mujoco_py import load_model_from_path, MjSim, MjViewer, functions, cymj, MjSimState,const
-# from robot_msgs.msg import ik
+from mujoco_py import load_model_from_path, MjSim, MjViewer, functions, cymj, MjSimState,const
+from robot_msgs.msg import ik
 import math
 import time
-# import rospy
+import rospy
 import os
 
 
-class kalman:
+class kalman(object):
 
     load_model = 0
     delta_t = 0.02
+    __instance = None
+    __first_init = False
+
+    def __new__(cls):
+        if not cls.__instance:
+            cls.__instance = object.__new__(cls)
+        return cls.__instance
 
     def __init__(self):
+        if not self.__first_init:
         # for position prediction
         # for roll
-        self.Q_P_roll = 1e-3 # process variance
-        self.R_P_roll = 0.01**2 # estimate of measurement variance, change to see effect
-        self.xhat_P_roll = 0
-        self.xhatminus_P_roll = 0
-        self.Pminus_P_roll = 0
-        self.K_P_roll = 0
-        self.P_P_roll = 1.0
+            self.Q_P_roll = 1e-3 # process variance
+            self.R_P_roll = 0.01**2 # estimate of measurement variance, change to see effect
+            self.xhat_P_roll = 0
+            self.xhatminus_P_roll = 0
+            self.Pminus_P_roll = 0
+            self.K_P_roll = 0
+            self.P_P_roll = 1.0
 
-        # for link
-        self.Q_P_link = 1e-3 # process variance
-        self.R_P_link = 0.01**2 # estimate of measurement variance, change to see effect
-        self.xhat_P_link = 0
-        self.xhatminus_P_link = 0
-        self.Pminus_P_link = 0
-        self.K_P_link = 0
-        self.P_P_link = 1.0
+            # for link
+            self.Q_P_link = 1e-3 # process variance
+            self.R_P_link = 0.01**2 # estimate of measurement variance, change to see effect
+            self.xhat_P_link = 0
+            self.xhatminus_P_link = 0
+            self.Pminus_P_link = 0
+            self.K_P_link = 0
+            self.P_P_link = 1.0
 
-        # for slide
-        self.Q_P_slide = 1e-3 # process variance
-        self.R_P_slide = 0.01**2 # estimate of measurement variance, change to see effect
-        self.xhat_P_slide = 0
-        self.xhatminus_P_slide = 0
-        self.Pminus_P_slide = 0
-        self.K_P_slide = 0
-        self.P_P_slide = 1.0
-
-
-        # for velocity prediction
-        # for roll
-        self.Q_V_roll = 1e-3
-        self.R_V_roll = 0.01**2
-        self.xhat_V_roll = 0
-        self.xhatminus_V_roll = 0
-        self.Pminus_V_roll = 0
-        self.K_V_roll = 0
-        self.P_V_roll = 1.0
-
-        # for link
-        self.Q_V_link = 1e-3
-        self.R_V_link = 0.01**2
-        self.xhat_V_link = 0
-        self.xhatminus_V_link = 0
-        self.Pminus_V_link = 0
-        self.K_V_link = 0
-        self.P_V_link = 1.0
-
-        # for slide
-        self.Q_V_slide = 1e-3
-        self.R_V_slide = 0.01**2
-        self.xhat_V_slide = 0
-        self.xhatminus_V_slide = 0
-        self.Pminus_V_slide = 0
-        self.K_V_slide = 0
-        self.P_V_slide = 1.0
+            # for slide
+            self.Q_P_slide = 1e-3 # process variance
+            self.R_P_slide = 0.01**2 # estimate of measurement variance, change to see effect
+            self.xhat_P_slide = 0
+            self.xhatminus_P_slide = 0
+            self.Pminus_P_slide = 0
+            self.K_P_slide = 0
+            self.P_P_slide = 1.0
 
 
-        # for torque prediction
-        # for roll
-        self.Q_T_roll = 1e-3
-        self.R_T_roll = 0.1**2
-        self.xhat_T_roll = 0
-        self.xhatminus_T_roll = 0
-        self.Pminus_T_roll = 0
-        self.K_T_roll = 0
-        self.P_T_roll = 1.0
+            # for velocity prediction
+            # for roll
+            self.Q_V_roll = 1e-3
+            self.R_V_roll = 0.01**2
+            self.xhat_V_roll = 0
+            self.xhatminus_V_roll = 0
+            self.Pminus_V_roll = 0
+            self.K_V_roll = 0
+            self.P_V_roll = 1.0
 
-        # for link
-        self.Q_T_link = 1e-3
-        self.R_T_link = 0.1**2
-        self.xhat_T_link = 0
-        self.xhatminus_T_link = 0
-        self.Pminus_T_link = 0
-        self.K_T_link = 0
-        self.P_T_link = 1.0
+            # for link
+            self.Q_V_link = 1e-3
+            self.R_V_link = 0.01**2
+            self.xhat_V_link = 0
+            self.xhatminus_V_link = 0
+            self.Pminus_V_link = 0
+            self.K_V_link = 0
+            self.P_V_link = 1.0
 
-        # for slide
-        self.Q_T_slide = 1e-3
-        self.R_T_slide = 0.1**2
-        self.xhat_T_slide = 0
-        self.xhatminus_T_slide = 0
-        self.Pminus_T_slide = 0
-        self.K_T_slide = 0
-        self.P_T_slide = 1.0
-
-        # for acceleration prediction
-        # for roll
-        self.A_A_roll = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
-                           [0, 1, kalman.delta_t], [0, 0, 1]])
-        self.H_A_roll = np.mat([[1, 0, 0], [0, 1, 0]])
-
-        self.P_A_roll = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
-        self.Q_A_roll = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
-        self.R_A_roll = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
-
-        self.xhat_A_roll = np.mat(np.zeros((3, 1)))
-        self.xhatminus_A_roll = np.mat(np.zeros((3,1)))
-        self.Pminus_A_roll = np.mat(np.zeros((3,3)))
-
-        self.K_A_roll = np.mat(np.zeros((3,2)))
-        self.I_A_roll = np.mat(np.identity(3))
-
-        # for link
-        self.A_A_link = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
-                           [0, 1, kalman.delta_t], [0, 0, 1]])
-        self.H_A_link = np.mat([[1, 0, 0], [0, 1, 0]])
-
-        self.P_A_link = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
-        self.Q_A_link = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
-        self.R_A_link = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
-
-        self.xhat_A_link = np.mat(np.zeros((3, 1)))
-        self.xhatminus_A_link = np.mat(np.zeros((3,1)))
-        self.Pminus_A_link = np.mat(np.zeros((3,3)))
-
-        self.K_A_link = np.mat(np.zeros((3,2)))
-        self.I_A_link = np.mat(np.identity(3))
-
-        # for slide
-        self.A_A_slide = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
-                           [0, 1, kalman.delta_t], [0, 0, 1]])
-        self.H_A_slide = np.mat([[1, 0, 0], [0, 1, 0]])
-
-        self.P_A_slide = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
-        self.Q_A_slide = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
-        self.R_A_slide = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
-
-        self.xhat_A_slide = np.mat(np.zeros((3, 1)))
-        self.xhatminus_A_slide = np.mat(np.zeros((3,1)))
-        self.Pminus_A_slide = np.mat(np.zeros((3,3)))
-
-        self.K_A_slide = np.mat(np.zeros((3,2)))
-        self.I_A_slide = np.mat(np.identity(3))
+            # for slide
+            self.Q_V_slide = 1e-3
+            self.R_V_slide = 0.01**2
+            self.xhat_V_slide = 0
+            self.xhatminus_V_slide = 0
+            self.Pminus_V_slide = 0
+            self.K_V_slide = 0
+            self.P_V_slide = 1.0
 
 
-        test = np.array(
-            [0.7706851, 0.3922136, -0.38806617, 0.11385617, 0.3412635,
-             -0.34814566, -0.63279235, -1.1850903, 1.1281418])
-        kalman.load_model = keras.models.load_model('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/predict_model.h5')
-        pred_train = kalman.load_model.predict(test.reshape(1, 9))
-        print(pred_train)
+            # for torque prediction
+            # for roll
+            self.Q_T_roll = 1e-3
+            self.R_T_roll = 0.1**2
+            self.xhat_T_roll = 0
+            self.xhatminus_T_roll = 0
+            self.Pminus_T_roll = 0
+            self.K_T_roll = 0
+            self.P_T_roll = 1.0
+
+            # for link
+            self.Q_T_link = 1e-3
+            self.R_T_link = 0.1**2
+            self.xhat_T_link = 0
+            self.xhatminus_T_link = 0
+            self.Pminus_T_link = 0
+            self.K_T_link = 0
+            self.P_T_link = 1.0
+
+            # for slide
+            self.Q_T_slide = 1e-3
+            self.R_T_slide = 0.1**2
+            self.xhat_T_slide = 0
+            self.xhatminus_T_slide = 0
+            self.Pminus_T_slide = 0
+            self.K_T_slide = 0
+            self.P_T_slide = 1.0
+
+            # for acceleration prediction
+            # for roll
+            self.A_A_roll = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
+                               [0, 1, kalman.delta_t], [0, 0, 1]])
+            self.H_A_roll = np.mat([[1, 0, 0], [0, 1, 0]])
+
+            self.P_A_roll = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
+            self.Q_A_roll = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
+            self.R_A_roll = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
+
+            self.xhat_A_roll = np.mat(np.zeros((3, 1)))
+            self.xhatminus_A_roll = np.mat(np.zeros((3,1)))
+            self.Pminus_A_roll = np.mat(np.zeros((3,3)))
+
+            self.K_A_roll = np.mat(np.zeros((3,2)))
+            self.I_A_roll = np.mat(np.identity(3))
+
+            # for link
+            self.A_A_link = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
+                               [0, 1, kalman.delta_t], [0, 0, 1]])
+            self.H_A_link = np.mat([[1, 0, 0], [0, 1, 0]])
+
+            self.P_A_link = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
+            self.Q_A_link = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
+            self.R_A_link = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
+
+            self.xhat_A_link = np.mat(np.zeros((3, 1)))
+            self.xhatminus_A_link = np.mat(np.zeros((3,1)))
+            self.Pminus_A_link = np.mat(np.zeros((3,3)))
+
+            self.K_A_link = np.mat(np.zeros((3,2)))
+            self.I_A_link = np.mat(np.identity(3))
+
+            # for slide
+            self.A_A_slide = np.mat([[1 , kalman.delta_t, 1/2*kalman.delta_t**2],
+                               [0, 1, kalman.delta_t], [0, 0, 1]])
+            self.H_A_slide = np.mat([[1, 0, 0], [0, 1, 0]])
+
+            self.P_A_slide = np.mat([[1.0, 0, 0], [0, 1.0, 0], [0, 0, 1.0]])# error covarianc 3*3
+            self.Q_A_slide = np.mat([[0.5e-3, 0, 0], [0, 0.5e-3, 0], [0, 0, 2e-1]]) # process variance 3*3
+            self.R_A_slide = np.mat([[0.0001**2, 0], [0, 0.0001**2]]) #measurement variance 2*2
+
+            self.xhat_A_slide = np.mat(np.zeros((3, 1)))
+            self.xhatminus_A_slide = np.mat(np.zeros((3,1)))
+            self.Pminus_A_slide = np.mat(np.zeros((3,3)))
+
+            self.K_A_slide = np.mat(np.zeros((3,2)))
+            self.I_A_slide = np.mat(np.identity(3))
+
+
+            test = np.array(
+                [0.7706851, 0.3922136, -0.38806617, 0.11385617, 0.3412635,
+                 -0.34814566, -0.63279235, -1.1850903, 1.1281418])
+            kalman.load_model = keras.models.load_model('/home/zzz/mujoco_ros/src/mujoco_driver/scripts/predict_model.h5')
+            pred_train = kalman.load_model.predict(test.reshape(1, 9))
+            print(pred_train)
+
+            kalman.__first_init = True
 
     def __del__(self):
         class_name = self.__class__.__name__
@@ -443,68 +454,124 @@ class kalman:
 # plt.show()
 
 
-
-
-
 def callback_omega_1(data):
+    # start = time.time()
+    kalman_object = kalman()
 
     sim_state = sim.get_state()
-#    print("qpos")
-#    print(sim_state.qpos[1])
-#    print("qvel")
-#    print(sim_state.qvel[1])
-#    sim.model.sensor_names
-#    print("S_roll2_joint")
-    print(sim.data.get_sensor("S_roll2_joint"))
-#    print("Sjp_para2_joint")
-#    print(sim.data.get_sensor("Sjp_para2_joint"))
-#    print("S_instrument_joint")
-#    print(sim.data.get_sensor("S_instrument_joint"))
 
-#    print("qvel")
-#    print(sim_state.qpos[1])
+    joint1_pos = sim_state.qpos[1]
+    joint2_pos = sim_state.qpos[2]
+    joint3_pos = sim_state.qpos[3]
+
+    joint1_vel = sim_state.qvel[1]
+    joint2_vel = sim_state.qvel[2]
+    joint3_vel = sim_state.qvel[3]
+
+    joint1_tor = sim.data.get_sensor("S_roll2_joint")
+    joint2_tor = sim.data.get_sensor("S_para2_joint")
+    joint3_tor = sim.data.get_sensor("S_instrument_joint")
+
+    pos_1_filter = kalman_object.roll_position_predict(joint1_pos)
+    pos_2_filter = kalman_object.link_position_predict(joint2_pos)
+    pos_3_filter = kalman_object.slide_position_predict(joint3_pos)
+
+    vel_1_filter = kalman_object.roll_velocity_predict(joint1_vel)
+    vel_2_filter = kalman_object.link_velocity_predict(joint2_vel)
+    vel_3_filter = kalman_object.slide_velocity_predict(joint3_vel)
+
+    tor_1_filter = kalman_object.roll_torque_predict(joint1_tor)
+    tor_2_filter = kalman_object.link_torque_predict(joint2_tor)
+    tor_3_filter = kalman_object.slide_torque_predict(joint3_tor)
+
+    torque = np.array([joint1_tor, joint2_tor, joint3_tor])
+    torque_filter = np.array([tor_1_filter, tor_2_filter, tor_3_filter])
+
+    # print("torque:")
+    # print(torque)
+    # print("torque_filter:")
+    # print(torque_filter)
+
+    pos_vel_1 = np.array([pos_1_filter, vel_1_filter]).reshape(2, 1)
+    pos_vel_2 = np.array([pos_2_filter, vel_2_filter]).reshape(2, 1)
+    pos_vel_3 = np.array([pos_3_filter, vel_3_filter]).reshape(2, 1)
+
+    assert (pos_vel_1.shape == (2, 1))
+    assert (pos_vel_2.shape == (2, 1))
+    assert (pos_vel_3.shape == (2, 1))
+
+    pos_vel_1 = np.mat(pos_vel_1)
+    pos_vel_2 = np.mat(pos_vel_2)
+    pos_vel_3 = np.mat(pos_vel_3)
+
+    acc_1_filter = kalman_object.roll_acceleration_predict(pos_vel_1)
+    acc_2_filter = kalman_object.link_acceleration_predict(pos_vel_2)
+    acc_3_filter = kalman_object.slide_acceleration_predict(pos_vel_3)
+
+    input_data = np.array([pos_1_filter, pos_2_filter, pos_3_filter,
+                           vel_1_filter, vel_2_filter, vel_3_filter,
+                           acc_1_filter, acc_2_filter, acc_3_filter]).reshape(1,9)
+    assert (input_data.shape == (1,9))
+
+    torque_predict = kalman_object.load_model.predict(input_data)
+    torque_filter = np.array([tor_1_filter, tor_2_filter, tor_3_filter])
+    # print("torque_predict:")
+    # print(torque_predict)
+    # print("torque_filter:")
+    # print(torque_filter)
 
     sim.data.ctrl[0] = data.data[0]
     sim.data.ctrl[1] = data.data[1]
     sim.data.ctrl[2] = data.data[2]
+
+    # stop = time.time()
+    # print(str((stop - start) * 1000) + "ms")
     # sim.data.ctrl[3] = data.data[3]
     # sim.data.ctrl[4] = data.data[4]
     # sim.data.ctrl[5] = data.data[5]
 
-#def acquisition(event):
-#    sim_state = sim.get_state()
-#    joint1_pos = sim_state.qpos[1]
-#    joint2_pos = sim_state.qpos[2]
-#    joint3_pos = sim_state.qpos[3]
+def acquisition(event):
+   sim_state = sim.get_state()
+   joint1_pos = sim_state.qpos[1]
+   joint2_pos = sim_state.qpos[2]
+   joint3_pos = sim_state.qpos[3]
 
-#    joint1_vel = sim_state.qvel[1]
-#    joint2_vel = sim_state.qvel[2]
-#    joint3_vel = sim_state.qvel[3]
+   joint1_vel = sim_state.qvel[1]
+   joint2_vel = sim_state.qvel[2]
+   joint3_vel = sim_state.qvel[3]
 
-#    joint1_tor = sim.data.get_sensor("S_roll2_joint")
-#    joint2_tor = sim.data.get_sensor("S_para2_joint")
-#    joint3_tor = sim.data.get_sensor("S_instrument_joint")
+   joint1_tor = sim.data.get_sensor("S_roll2_joint")
+   joint2_tor = sim.data.get_sensor("S_para2_joint")
+   joint3_tor = sim.data.get_sensor("S_instrument_joint")
+
+   torque = np.array([joint1_tor, joint2_tor, joint3_tor])
+
+   print(torque)
 
 #    fo=open('data.dat','a+')
 #    fo.write(str(joint1_pos) +' '+ str(joint2_pos)+' '+str(joint3_pos)+' '+str(joint1_vel)+' '+str(joint2_vel)+' '+
 #    str(joint3_vel)+' '+str(joint1_tor)+' '+str(joint2_tor)+' '+str(joint3_tor)+'\n')
 #    fo.close()
 
+
 def listener():
     rospy.init_node('listener', anonymous=True)
     rospy.Subscriber('/ik', ik, callback_omega_1)
 
-#    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
+    rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
 
-    rate = rospy.Rate(1000)
+    rate = rospy.Rate(50) #0.02s
     t = 0
     while not rospy.is_shutdown():
+        # start = time.time()
         t += 1
         sim.step()
         viewer.render()
         if t > 100 and os.getenv('TESTING') is not None:
             break
         rate.sleep()
+        # stop = time.time()
+        # print(str((stop - start) * 1000) + "ms")
 
 if __name__ == '__main__':
     model = load_model_from_path("/home/zzz/mujoco_ros/src/mujoco_description/robot.xml")
