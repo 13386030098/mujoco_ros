@@ -34,6 +34,7 @@ class kalman(object):
         if not self.__first_init:
         # for position prediction
         # for roll
+
             self.Q_P_roll = 1e-3 # process variance
             self.R_P_roll = 0.01**2 # estimate of measurement variance, change to see effect
             self.xhat_P_roll = 0
@@ -455,83 +456,21 @@ class kalman(object):
 
 
 def callback_omega_1(data):
-    # start = time.time()
-    kalman_object = kalman()
-
-    sim_state = sim.get_state()
-
-    joint1_pos = sim_state.qpos[1]
-    joint2_pos = sim_state.qpos[2]
-    joint3_pos = sim_state.qpos[3]
-
-    joint1_vel = sim_state.qvel[1]
-    joint2_vel = sim_state.qvel[2]
-    joint3_vel = sim_state.qvel[3]
-
-    joint1_tor = sim.data.get_sensor("S_roll2_joint")
-    joint2_tor = sim.data.get_sensor("S_para2_joint")
-    joint3_tor = sim.data.get_sensor("S_instrument_joint")
-
-    pos_1_filter = kalman_object.roll_position_predict(joint1_pos)
-    pos_2_filter = kalman_object.link_position_predict(joint2_pos)
-    pos_3_filter = kalman_object.slide_position_predict(joint3_pos)
-
-    vel_1_filter = kalman_object.roll_velocity_predict(joint1_vel)
-    vel_2_filter = kalman_object.link_velocity_predict(joint2_vel)
-    vel_3_filter = kalman_object.slide_velocity_predict(joint3_vel)
-
-    tor_1_filter = kalman_object.roll_torque_predict(joint1_tor)
-    tor_2_filter = kalman_object.link_torque_predict(joint2_tor)
-    tor_3_filter = kalman_object.slide_torque_predict(joint3_tor)
-
-    torque = np.array([joint1_tor, joint2_tor, joint3_tor])
-    torque_filter = np.array([tor_1_filter, tor_2_filter, tor_3_filter])
-
-    # print("torque:")
-    # print(torque)
-    # print("torque_filter:")
-    # print(torque_filter)
-
-    pos_vel_1 = np.array([pos_1_filter, vel_1_filter]).reshape(2, 1)
-    pos_vel_2 = np.array([pos_2_filter, vel_2_filter]).reshape(2, 1)
-    pos_vel_3 = np.array([pos_3_filter, vel_3_filter]).reshape(2, 1)
-
-    assert (pos_vel_1.shape == (2, 1))
-    assert (pos_vel_2.shape == (2, 1))
-    assert (pos_vel_3.shape == (2, 1))
-
-    pos_vel_1 = np.mat(pos_vel_1)
-    pos_vel_2 = np.mat(pos_vel_2)
-    pos_vel_3 = np.mat(pos_vel_3)
-
-    acc_1_filter = kalman_object.roll_acceleration_predict(pos_vel_1)
-    acc_2_filter = kalman_object.link_acceleration_predict(pos_vel_2)
-    acc_3_filter = kalman_object.slide_acceleration_predict(pos_vel_3)
-
-    input_data = np.array([pos_1_filter, pos_2_filter, pos_3_filter,
-                           vel_1_filter, vel_2_filter, vel_3_filter,
-                           acc_1_filter, acc_2_filter, acc_3_filter]).reshape(1,9)
-    assert (input_data.shape == (1,9))
-
-    torque_predict = kalman_object.load_model.predict(input_data)
-    torque_filter = np.array([tor_1_filter, tor_2_filter, tor_3_filter])
-    # print("torque_predict:")
-    # print(torque_predict)
-    # print("torque_filter:")
-    # print(torque_filter)
 
     sim.data.ctrl[0] = data.data[0]
     sim.data.ctrl[1] = data.data[1]
     sim.data.ctrl[2] = data.data[2]
 
-    # stop = time.time()
-    # print(str((stop - start) * 1000) + "ms")
     # sim.data.ctrl[3] = data.data[3]
     # sim.data.ctrl[4] = data.data[4]
     # sim.data.ctrl[5] = data.data[5]
 
 def acquisition(event):
+
    sim_state = sim.get_state()
+
+   kalman_object = kalman()
+
    joint1_pos = sim_state.qpos[1]
    joint2_pos = sim_state.qpos[2]
    joint3_pos = sim_state.qpos[3]
@@ -544,15 +483,61 @@ def acquisition(event):
    joint2_tor = sim.data.get_sensor("S_para2_joint")
    joint3_tor = sim.data.get_sensor("S_instrument_joint")
 
-   torque = np.array([joint1_tor, joint2_tor, joint3_tor])
+   pos_1_filter = kalman_object.roll_position_predict(joint1_pos)
+   pos_2_filter = kalman_object.link_position_predict(joint2_pos)
+   pos_3_filter = kalman_object.slide_position_predict(joint3_pos)
 
-   print(torque)
+   vel_1_filter = kalman_object.roll_velocity_predict(joint1_vel)
+   vel_2_filter = kalman_object.link_velocity_predict(joint2_vel)
+   vel_3_filter = kalman_object.slide_velocity_predict(joint3_vel)
+
+   tor_1_filter = kalman_object.roll_torque_predict(joint1_tor)
+   tor_2_filter = kalman_object.link_torque_predict(joint2_tor)
+   tor_3_filter = kalman_object.slide_torque_predict(joint3_tor)
+
+   pos_vel_1 = np.array([pos_1_filter, vel_1_filter]).reshape(2, 1)
+   pos_vel_2 = np.array([pos_2_filter, vel_2_filter]).reshape(2, 1)
+   pos_vel_3 = np.array([pos_3_filter, vel_3_filter]).reshape(2, 1)
+
+   assert (pos_vel_1.shape == (2, 1))
+   assert (pos_vel_2.shape == (2, 1))
+   assert (pos_vel_3.shape == (2, 1))
+
+   pos_vel_1 = np.mat(pos_vel_1)
+   pos_vel_2 = np.mat(pos_vel_2)
+   pos_vel_3 = np.mat(pos_vel_3)
+
+   acc_1_filter = kalman_object.roll_acceleration_predict(pos_vel_1)
+   acc_2_filter = kalman_object.link_acceleration_predict(pos_vel_2)
+   acc_3_filter = kalman_object.slide_acceleration_predict(pos_vel_3)
+
+   input_data = np.array([pos_1_filter, pos_2_filter, pos_3_filter,
+                          vel_1_filter, vel_2_filter, vel_3_filter,
+                          acc_1_filter, acc_2_filter, acc_3_filter]).reshape(1,9)
+   assert (input_data.shape == (1,9))
+
+   torque_predict = kalman_object.load_model.predict(input_data)
+   # print(torque_predict.shape)
+   torque_filter = np.array([tor_1_filter, tor_2_filter, tor_3_filter])
+
+#   torque_error = torque_predict[0] -torque_predict[0, 0]
+#    print(torque_predict[0, 0])
+   print(tor_1_filter - torque_predict[0, 0])
+
+   # print("torque_predict:")
+   # print(torque_predict)
+   # print("torque_filter:")
+   # print(torque_filter)
+
+   fo=open('torque_collision_error.txt','a+')
+   fo.write(str(tor_1_filter - torque_predict[0, 0])+'\n')
+   fo.close()
+   #
 
 #    fo=open('data.dat','a+')
 #    fo.write(str(joint1_pos) +' '+ str(joint2_pos)+' '+str(joint3_pos)+' '+str(joint1_vel)+' '+str(joint2_vel)+' '+
 #    str(joint3_vel)+' '+str(joint1_tor)+' '+str(joint2_tor)+' '+str(joint3_tor)+'\n')
 #    fo.close()
-
 
 def listener():
     rospy.init_node('listener', anonymous=True)
@@ -560,7 +545,7 @@ def listener():
 
     rospy.Timer(rospy.Duration(0.02), acquisition)#250hz
 
-    rate = rospy.Rate(50) #0.02s
+    rate = rospy.Rate(1000)
     t = 0
     while not rospy.is_shutdown():
         # start = time.time()

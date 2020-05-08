@@ -6,14 +6,14 @@ Version:1.50
 
 <mujoco model="robot">
 
-   <compiler coordinate="local" angle="radian" inertiafromgeom="true" meshdir="meshes/"/>
+   <compiler coordinate="local" angle="radian" inertiafromgeom="true" meshdir="meshes/" texturedir="textures/"/>
 <!--   <option timestep="2e-3" iterations="10" tolerance="1e-10" impratio="20"/>-->
    <option timestep="0.00252" iterations="2" tolerance="1e-8" impratio="20"/>
 <!--  <option timestep="0.00255" iterations='1'/>-->
 <!--   <size njmax="-1" nconmax="-1" nstack="-1"/>-->
    <default>
        <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
-       <geom friction=".5 .1 .1" margin="0.000" contype="1" conaffinity="0" type="mesh"/>
+       <geom friction=".5 .1 .1"  contype="1" conaffinity="1" type="mesh" margin="1e-3" solref=".01 1" solimp=".99 .99 .01"/>
        <joint limited="true"  armature=".01"/>
     </default>
 
@@ -27,6 +27,7 @@ Version:1.50
                forcewidth="0.01"
                />
     </visual>
+
     <!--Assets-->
     <!-- -->
     <asset>
@@ -47,10 +48,13 @@ Version:1.50
         <texture name="floor_tex"   type="2d"       builtin="checker"  rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
         <texture name="robot_tex"   type="2d"       builtin="flat"     height="32"     width="32"      rgb1="0.45 0.45 0.45" />
         <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100"     height="100"    rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
+        <texture name="metal"        type="cube"    file="metal2.png"/>
 
          <!--Materials-->
         <material name='floor_mat'      texture="floor_tex"  shininess="0.8" texrepeat="10 10" specular="0.7"  reflectance="0.5" />
         <material name="robot_mat"      texture="robot_tex"  shininess="0.9" specular="0.75"   reflectance="0.3"/>
+        <material name="bench_mat"      texture="metal"   shininess="0.1" specular="0.5" reflectance="0.2"/>
+
     </asset>
 
     <!--Contacts-->
@@ -65,7 +69,11 @@ Version:1.50
         <!--Camera parameters-->
         <!--Floor Property-->
         <geom name='floor' material="floor_mat" pos='0 0 0' size='2.5 2.5 0.1'  type='plane' />
-        <body name="base_3" pos="0 0 2" quat="6.12323e-17 0 0 1">
+        <body name="box_link" pos="0.1 0.15 0">
+            <geom name="box_link" size=".05 .05 .5" pos ="0 0 0.4" type="box" material="bench_mat"/>
+            <inertial pos="0 0 0" mass="10" diaginertia="0 0 0" />
+        </body>
+        <body name="base_3" pos="0 0 1.5" quat="6.12323e-17 0 0 1">
             <inertial pos="-0.00333 0 -0.19505" quat="0.5 0.5 -0.5 0.5" mass="3.8" diaginertia="0.05 0.05 0.006" />
             <geom rgba="1 1 0.941187 1.0" type="mesh"  mesh="base_3"/>
             <body name="base_4" pos="-0.055 0 -0.36518" quat="0.866025 0 0.5 0">
@@ -74,11 +82,11 @@ Version:1.50
                 <body name="roll1" pos="0 0 -0.15236273603" quat="1 0 0 0">
                     <inertial pos="0.044235 0.000033 0.049109" quat="0.5 0.5 -0.5 0.5" mass="0.394" diaginertia="0.0006 0.0025 0.0023" />
                     <joint name="roll1_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3.14159 3.14159" damping="10000"/>
-                    <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll1" />
+                    <geom name="roll1" rgba="0.94 1 1 1" type="mesh"  mesh="roll1" />
                     <body name="roll2" pos="0.1619 0 -0.11296" quat="0.991445 0 0.130526 0 ">
                         <inertial pos="0.046702 -0.021926 0.003509" quat="0.5 0.5 -0.5 0.5" mass="0.646" diaginertia="0.0088 -0.0006 0.0026" />
                         <joint name="roll2_joint" type="hinge" pos="0 0 0" axis="0 0 1"  range="-3 3" damping="10"/>
-                        <geom rgba="0.94 1 1 1" type="mesh"  mesh="roll2" />
+                        <geom name="roll2" rgba="0.94 1 1 1" type="mesh"  mesh="roll2" />
                         <site rgba=".1 .1 .9 1" name="roll2_joint_site"  size=".003 .003 .003" type="ellipsoid"/>
                         <body name="para2" pos="0.06078 -0.0025 -0.27804" quat="0.664463 0.664463 0.241845 -0.241845 ">
                             <inertial pos="-0.065697 -0.000264 0.023081" quat="0.5 0.5 -0.5 0.5" mass="0.213" diaginertia="0.0002 0.0002 0.0002" />
@@ -135,6 +143,9 @@ Version:1.50
         <joint name="para3_joint_to_slide_joint" joint1="para2_joint" joint2="slide_joint" polycoef="0 1 0 0 0"/>
         <joint name="clip1_joint_to_clip2_joint" joint1="clip2_joint" joint2="clip1_joint" polycoef="0 1 0 0 0"/>
     </equality>
+
+
+
 
 
     <!--ACTUATORS-->
