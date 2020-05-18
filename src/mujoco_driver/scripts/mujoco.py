@@ -18,6 +18,10 @@ import rospy
 import os
 
 
+
+
+
+
 class kalman(object):
 
     load_model = 0
@@ -529,10 +533,10 @@ def acquisition(event):
    # print("torque_filter:")
    # print(torque_filter)
 
-   fo=open('torque_collision_error.txt','a+')
-   fo.write(str(tor_1_filter - torque_predict[0, 0])+'\n')
-   fo.close()
-   #
+   # fo=open('torque_collision_error.txt','a+')
+   # fo.write(str(tor_1_filter - torque_predict[0, 0])+'\n')
+   # fo.close()
+   # #
 
 #    fo=open('data.dat','a+')
 #    fo.write(str(joint1_pos) +' '+ str(joint2_pos)+' '+str(joint3_pos)+' '+str(joint1_vel)+' '+str(joint2_vel)+' '+

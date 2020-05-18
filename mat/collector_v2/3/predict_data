@@ -1,0 +1,5 @@
+test loss:  [0.604943549156189, 0.5277182397842407, 0.604943549156189]
+Dimension 1: nMSE = 1.345638% (training) / 1.236697% (validation)
+Dimension 2: nMSE = 4.669010% (training) / 3.697430% (validation)
+Dimension 3: nMSE = 2.246063% (training) / 1.704573% (validation)
+
