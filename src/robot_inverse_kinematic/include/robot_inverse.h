@@ -104,29 +104,10 @@ public:
     roll2_angle = std::atan2(frame_graber_end_to_remote_center_translation(0), frame_graber_end_to_remote_center_translation(1));
     link1_angle = std::asin(frame_graber_end_to_remote_center_translation(2)/slide_length);
     joint_values[0] = roll2_angle;
-    joint_values[1] = link1_angle-0.174533;
-    joint_values[2] = slide_length- 0.0935949;
+    joint_values[1] = link1_angle - 0.174533;
+    joint_values[2] = slide_length - 0.0935949;
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

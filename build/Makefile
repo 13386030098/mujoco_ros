@@ -1063,17 +1063,17 @@ geometry_msgs_generate_messages_cpp/fast:
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
-# Target rules for targets named omega_driver
+# Target rules for targets named omega_single
 
 # Build rule for target.
-omega_driver: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 omega_driver
-.PHONY : omega_driver
+omega_single: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 omega_single
+.PHONY : omega_single
 
 # fast build rule for target.
-omega_driver/fast:
-	$(MAKE) -f omega7_drive/CMakeFiles/omega_driver.dir/build.make omega7_drive/CMakeFiles/omega_driver.dir/build
-.PHONY : omega_driver/fast
+omega_single/fast:
+	$(MAKE) -f omega7_drive/CMakeFiles/omega_single.dir/build.make omega7_drive/CMakeFiles/omega_single.dir/build
+.PHONY : omega_single/fast
 
 #=============================================================================
 # Target rules for targets named omega_dual
@@ -1102,17 +1102,17 @@ robot_inverse_dual/fast:
 .PHONY : robot_inverse_dual/fast
 
 #=============================================================================
-# Target rules for targets named robot_inverse
+# Target rules for targets named robot_inverse_single
 
 # Build rule for target.
-robot_inverse: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse
-.PHONY : robot_inverse
+robot_inverse_single: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse_single
+.PHONY : robot_inverse_single
 
 # fast build rule for target.
-robot_inverse/fast:
-	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build
-.PHONY : robot_inverse/fast
+robot_inverse_single/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
+.PHONY : robot_inverse_single/fast
 
 # Help Target
 help:
@@ -1196,10 +1196,10 @@ help:
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... omega_driver_node"
 	@echo "... geometry_msgs_generate_messages_cpp"
-	@echo "... omega_driver"
+	@echo "... omega_single"
 	@echo "... omega_dual"
 	@echo "... robot_inverse_dual"
-	@echo "... robot_inverse"
+	@echo "... robot_inverse_single"
 .PHONY : help
 
 

@@ -1,0 +1,4 @@
+<launch>
+    <node name="omega_single_node" pkg="omega7_driver" type="omega_single" respawn="true" output="screen">
+  </node>
+</launch>

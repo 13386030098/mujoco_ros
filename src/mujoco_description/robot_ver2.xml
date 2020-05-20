@@ -1,0 +1,221 @@
+<!--
+MODEL : A 6 DOF robot with coupled degrees of freedom
+mujoco::Advanced physics simulation engine
+Version:1.50
+-->
+
+<mujoco model="robot">
+
+    <compiler angle="radian" inertiafromgeom="true" meshdir="meshes/" />
+    <option timestep="0.002"/>
+    <size nuser_actuator="5"/>
+
+    <asset>
+        <mesh name="base_3_col"      file="collision/base_3.stl"/>
+        <mesh name="base_4_col"      file="collision/base_4.stl"/>
+        <mesh name="roll1_col"       file="collision/roll1.stl"/>
+        <mesh name="roll2_col"       file="collision/roll2.stl"/>
+        <mesh name="para2_col"       file="collision/para2.stl"/>
+        <mesh name="para3_col"       file="collision/para3.stl"/>
+        <mesh name="slide_col"       file="collision/slide.stl"/>
+        <mesh name="instrument_col"  file="collision/instrument.stl"/>
+        <mesh name="rotate_col"      file="collision/rotate.stl"/>
+        <mesh name="roll_col"        file="collision/roll.stl"/>
+        <mesh name="clip1_col"       file="collision/clip.stl"/>
+        <mesh name="clip2_col"       file="collision/clip.stl"/>
+
+        <mesh name="base_3_viz"      file="visual/base_3.stl"/>
+        <mesh name="base_4_viz"      file="visual/base_4.stl"/>
+        <mesh name="roll1_viz"       file="visual/roll1.stl"/>
+        <mesh name="roll2_viz"       file="visual/roll2.stl"/>
+        <mesh name="para2_viz"       file="visual/para2.stl"/>
+        <mesh name="para3_viz"       file="visual/para3.stl"/>
+        <mesh name="slide_viz"       file="visual/slide.stl"/>
+        <mesh name="instrument_viz"  file="visual/instrument.stl"/>
+        <mesh name="rotate_viz"      file="visual/rotate.stl"/>
+        <mesh name="roll_viz"        file="visual/roll.stl"/>
+        <mesh name="clip1_viz"       file="visual/clip.stl"/>
+        <mesh name="clip2_viz"       file="visual/clip.stl"/>
+
+        <texture name="floor_tex"   type="2d"       builtin="checker"  rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
+        <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100"     height="100"    rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
+
+        <material name='floor_mat'      texture="floor_tex"  shininess="0.8" texrepeat="10 10" specular="0.7"  reflectance="0.5" />
+    </asset>
+
+    <visual>
+        <map fogstart="3" fogend="5" znear="0.05"/>
+        <quality shadowsize="2048"/>
+        <scale framelength="0.1"
+               framewidth="0.005"
+               contactwidth="0.1"
+               contactheight="0.005"
+               forcewidth="0.01"
+               />
+    </visual>
+
+    <default>
+        <default class="panda">
+            <joint pos="0 0 0" axis="0 0 1" limited="true"/>
+            <position forcelimited="true" ctrllimited="true" user="1002 40 2001 -0.005 0.005"/>
+            <default class="panda_viz">
+                <geom contype="0" conaffinity="0" group="0" type="mesh" rgba=".95 .99 .92 1" mass="0"/>
+            </default>
+
+            <default class="panda_col">
+                <geom contype="1" conaffinity="1" group="3" type="mesh" rgba=".5 .6 .7 1"/>
+            </default>
+
+            <default class="panda_arm">
+                <joint damping="100"/>
+            </default>
+             <default class="panda_forearm">
+                <joint damping="10"/>
+            </default>
+             <default class="panda_finger">
+                <joint damping="10" armature='5'/>
+                <geom friction="1 0.5 0.0001" solref="0.01 1" solimp="0.8 0.9 0.001" margin="0.001" user="0" rgba="0.5 0.6 0.7 .4" contype="1" conaffinity="0" condim="6" group="3" />
+                <position user="1002 40 2001 -0.0001 0.0001"/>
+            </default>
+        </default>
+
+
+    </default>
+
+    <worldbody>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="1 1 3" dir="-.5 -0.75 -1.5"/>
+        <geom name='floor' material="floor_mat" pos='0 0 0' size='2.5 2.5 0.1'  type='plane' />
+
+        <body name="base_3" childclass="panda" pos="0 0 1.5" quat="6.12323e-17 0 0 1">
+             <geom class="panda_viz" mesh="base_3_viz"/>
+             <geom class="panda_col" mesh="base_3_col" mass="3.8"/>
+             <body name="base_4" pos="-0.055 0 -0.36518" quat="0.866025 0 0.5 0">
+                 <geom class="panda_viz" mesh="base_4_viz"/>
+                 <geom class="panda_col" mesh="base_4_col" mass="0.152"/>
+                 <body name="roll1" pos="0 0 -0.15236273603" quat="1 0 0 0">
+                     <joint name="roll1_joint" range="-3.14159 3.14159" class="panda_arm" damping="500"/>
+                     <geom class="panda_viz" mesh="roll1_viz"/>
+                     <geom class="panda_col" mesh="roll1_col" mass="0.394"/>
+                     <body name="roll2" pos="0.1619 0 -0.11296" quat="0.991445 0 0.130526 0 ">
+                         <joint name="roll2_joint" range="-3 3" class="panda_arm"/>
+                         <geom class="panda_viz" mesh="roll2_viz"/>
+                         <geom class="panda_col" mesh="roll2_col" mass="0.646"/>
+                         <body name="para2" pos="0.06078 -0.0025 -0.27804" quat="0.664463 0.664463 0.241845 -0.241845 ">
+                             <joint name="para2_joint" range="-3.14 3.14" class="panda_arm"/>
+                             <geom class="panda_viz" mesh="para2_viz"/>
+                             <geom class="panda_col" mesh="para2_col" mass="0.213"/>
+                             <body name="para3" pos="-0.2 0 -0.0415" quat="0.5 0 0 0.866025 ">
+                                 <joint name="para3_joint" range="-3.14 3.14" class="panda_arm"/>
+                                 <geom class="panda_viz" mesh="para3_viz"/>
+                                 <geom class="panda_col" mesh="para3_col" mass="0.329"/>
+                                 <body name="slide" pos="-0.350 0 0.0305" quat="1 0 0 0">
+                                     <joint name="slide_joint" range="-3.14 3.14" class="panda_arm"/>
+                                     <geom class="panda_viz" mesh="slide_viz"/>
+                                     <geom class="panda_col" mesh="slide_col" mass="1.256"/>
+                                     <body name="instrument" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
+                                         <joint name="instrument_joint" type="slide" range="-0.20 0.20" class="panda_forearm"/>
+                                         <geom class="panda_viz" mesh="instrument_viz"/>
+                                         <geom class="panda_col" mesh="instrument_col" mass="0.19373"/>
+                                         <body name="rotate" pos="0 0 0.3759" quat="1 0 0 0">
+                                             <joint name="rotate_joint" range="-3.14 3.14" class="panda_forearm"/>
+                                             <geom class="panda_viz" mesh="rotate_viz"/>
+                                             <geom class="panda_col" mesh="rotate_col" mass="0.1"/>
+                                             <body name="roll" pos="0 0 0" quat="3.2758e-05 0.707107 0.707107 3.2758e-05">
+                                                 <joint name="roll_joint" axis="1 0 0" range="-3.14 3.14" class="panda_forearm"/>
+                                                 <geom class="panda_viz" mesh="roll_viz"/>
+                                                 <geom class="panda_col" mesh="roll_col" mass="0.1"/>
+                                                 <body name="clip1" pos="0 0.0003 -0.0089" quat="0.707107 -0.707107 0 0">
+                                                     <joint name="clip1_joint" range="-3.14 3.14" class="panda_finger"/>
+                                                     <geom class="panda_viz" mesh="clip1_viz"/>
+                                                     <geom class="panda_col" mesh="clip1_col" mass="0.1"/>
+                                                 </body>
+                                                 <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
+                                                     <joint name="clip2_joint" range="-3.14 3.14" class="panda_finger"/>
+                                                     <geom class="panda_viz" mesh="clip2_viz"/>
+                                                     <geom class="panda_col" mesh="clip2_col" mass="0.1"/>
+                                                 </body>
+                                             </body>
+                                         </body>
+                                     </body>
+                                 </body>
+                             </body>
+                         </body>
+                     </body>
+                 </body>
+             </body>
+         </body>
+
+    </worldbody>
+
+    <equality>
+        <joint name="para2_joint_to_para3_joint" joint1="para2_joint" joint2="para3_joint" polycoef="0 -1 0 0 0"/>
+        <joint name="para3_joint_to_slide_joint" joint1="para2_joint" joint2="slide_joint" polycoef="0 1 0 0 0"/>
+        <joint name="clip1_joint_to_clip2_joint" joint1="clip2_joint" joint2="clip1_joint" polycoef="0 -1 0 0 0"/>
+    </equality>
+
+    <actuator>
+        <position name="roll1_joint"      joint="roll1_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="roll2_joint"      joint="roll2_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
+        <position name="para2_joint"      joint="para2_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="instrument_joint" joint="instrument_joint"  kp="100"  forcerange="-87 87" ctrlrange="-2.20 2.20"/>     <!-- velocity="2.1750" -->
+        <position name="rotate_joint"     joint="rotate_joint"      kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+        <position name="roll_joint"       joint="roll_joint"        kp="20"  forcerange="-12 12" ctrlrange="-3.7525 2.1817"/> <!-- velocity="2.6100" -->
+        <position name="clip1_joint"      joint="clip1_joint"       kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+    </actuator>
+
+</mujoco>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -181,46 +181,19 @@ robot_inverse_dual/fast:
 .PHONY : robot_inverse_dual/fast
 
 # Convenience name for target.
-robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
-.PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
+robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/rule
 
 # Convenience name for target.
-robot_inverse: robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/rule
+robot_inverse_single: robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/rule
 
-.PHONY : robot_inverse
+.PHONY : robot_inverse_single
 
 # fast build rule for target.
-robot_inverse/fast:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build
-.PHONY : robot_inverse/fast
-
-src/robot_inverse.o: src/robot_inverse.cpp.o
-
-.PHONY : src/robot_inverse.o
-
-# target to build an object file
-src/robot_inverse.cpp.o:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/src/robot_inverse.cpp.o
-.PHONY : src/robot_inverse.cpp.o
-
-src/robot_inverse.i: src/robot_inverse.cpp.i
-
-.PHONY : src/robot_inverse.i
-
-# target to preprocess a source file
-src/robot_inverse.cpp.i:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/src/robot_inverse.cpp.i
-.PHONY : src/robot_inverse.cpp.i
-
-src/robot_inverse.s: src/robot_inverse.cpp.s
-
-.PHONY : src/robot_inverse.s
-
-# target to generate assembly for a file
-src/robot_inverse.cpp.s:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse.dir/src/robot_inverse.cpp.s
-.PHONY : src/robot_inverse.cpp.s
+robot_inverse_single/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
+.PHONY : robot_inverse_single/fast
 
 src/robot_inverse_dual.o: src/robot_inverse_dual.cpp.o
 
@@ -249,6 +222,33 @@ src/robot_inverse_dual.cpp.s:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/src/robot_inverse_dual.cpp.s
 .PHONY : src/robot_inverse_dual.cpp.s
 
+src/robot_inverse_single.o: src/robot_inverse_single.cpp.o
+
+.PHONY : src/robot_inverse_single.o
+
+# target to build an object file
+src/robot_inverse_single.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/src/robot_inverse_single.cpp.o
+.PHONY : src/robot_inverse_single.cpp.o
+
+src/robot_inverse_single.i: src/robot_inverse_single.cpp.i
+
+.PHONY : src/robot_inverse_single.i
+
+# target to preprocess a source file
+src/robot_inverse_single.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/src/robot_inverse_single.cpp.i
+.PHONY : src/robot_inverse_single.cpp.i
+
+src/robot_inverse_single.s: src/robot_inverse_single.cpp.s
+
+.PHONY : src/robot_inverse_single.s
+
+# target to generate assembly for a file
+src/robot_inverse_single.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/src/robot_inverse_single.cpp.s
+.PHONY : src/robot_inverse_single.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -261,15 +261,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... robot_inverse_dual"
-	@echo "... robot_inverse"
+	@echo "... robot_inverse_single"
 	@echo "... install/strip"
 	@echo "... install/local"
-	@echo "... src/robot_inverse.o"
-	@echo "... src/robot_inverse.i"
-	@echo "... src/robot_inverse.s"
 	@echo "... src/robot_inverse_dual.o"
 	@echo "... src/robot_inverse_dual.i"
 	@echo "... src/robot_inverse_dual.s"
+	@echo "... src/robot_inverse_single.o"
+	@echo "... src/robot_inverse_single.i"
+	@echo "... src/robot_inverse_single.s"
 .PHONY : help
 
 
