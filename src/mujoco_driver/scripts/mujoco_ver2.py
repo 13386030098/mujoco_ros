@@ -23,8 +23,8 @@ def callback_omega_1(data):
     sim.data.ctrl[1] = data.data[0]
     sim.data.ctrl[2] = data.data[1]
     sim.data.ctrl[3] = data.data[2]
-#    sim_state = sim.get_state()
-#    print(sim_state.qpos[0])
+    sim_state = sim.get_state()
+    print(sim_state.qpos[0])
 
     sim.data.ctrl[4] = data.data[3]
     sim.data.ctrl[5] = data.data[4]
@@ -40,6 +40,13 @@ def listener():
         t += 1
         sim.step()
         viewer.render()
+        sim.data.ctrl[1] = 1.5
+        sim_state = sim.get_state()
+
+#        print("qpos")
+#        print(sim_state.qpos[1])
+#        print("get_sensor")
+#        print(sim.data.get_sensor("roll2_joint"))
         if t > 100 and os.getenv('TESTING') is not None:
             break
         rate.sleep()

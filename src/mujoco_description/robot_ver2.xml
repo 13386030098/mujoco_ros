@@ -163,6 +163,14 @@ Version:1.50
         <position name="clip1_joint"      joint="clip1_joint"       kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
     </actuator>
 
+    <sensor>
+        <jointpos name="roll2_joint"      joint="roll2_joint"/>
+    </sensor>
+
+
+
+
+
 </mujoco>
 
 
