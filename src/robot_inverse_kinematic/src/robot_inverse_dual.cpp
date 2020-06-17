@@ -7,6 +7,11 @@
 #include <robot_msgs/omega.h>
 #include <robot_msgs/ik.h>
 
+#include <linux/input.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <thread>
+
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
@@ -96,10 +101,17 @@ private:
   bool is_first_1;
   bool is_first_2;
 
+  std::thread* keyboard_thread_;
+  bool key1, key2, key3, key4;
+
 public:
   teleoperation():
     is_first_1(true),
-    is_first_2(true)
+    is_first_2(true),
+    key1(false),
+    key2(false),
+    key3(false),
+    key4(false)
   {
     direction_pos_x = -1;
     direction_pos_y = 1;
@@ -110,18 +122,62 @@ public:
     scale_p_x = 0.3;
     scale_p_y = 0.3;
     scale_p_z = 0.3;
-    scale_r_x = 0.6;
-    scale_r_y = 0.6;
-    scale_r_z = 0.6;
+    scale_r_x = 0.1;
+    scale_r_y = 0.1;
+    scale_r_z = 0.1;
 
     std::cout<<"teleoperation start ..."<<std::endl;
     pub_omega1 = nh.advertise<robot_msgs::ik>("omega1/ik", 100, true);
     pub_omega2 = nh.advertise<robot_msgs::ik>("omega2/ik", 100, true);
     sub_omega1 = nh.subscribe("omega1/omega_map", 100, &teleoperation::operationCallback_1, this);
     sub_omega2 = nh.subscribe("omega2/omega_map", 100, &teleoperation::operationCallback_2, this);
+    keyboard_thread_ = new std::thread(boost::bind(&teleoperation::keyboard_func,this));// read keyboard input thread
+
   }
 
   ~teleoperation(){}
+
+  void keyboard_func(void)
+  {
+    int keys_fd;
+    struct input_event t;
+    keys_fd = open ("/dev/input/event4", O_RDONLY);
+    if (keys_fd <= 0){
+      ROS_ERROR("can't open keyboard device!");
+      exit(-1);
+      }
+    else std::cout <<"open keyboard device success"<<std::endl;
+    while (ros::ok())
+    {
+      if (read (keys_fd, &t, sizeof (t)) == sizeof (t))
+        {
+          if(t.value ==1 && t.code == KEY_1)
+          {
+            key1 = true;
+            key2 = false;
+            std::cout << "KEY_1" << std::endl;
+          }
+          if(t.value ==1 && t.code == KEY_2)
+          {
+            key1 = false;
+            key2 = true;
+            std::cout << "KEY_2" << std::endl;
+          }
+          if(t.value ==1 && t.code == KEY_5)
+          {
+            key3 = true;
+            key4 = false;
+            std::cout << "KEY_2" << std::endl;
+          }
+          if(t.value ==1 && t.code == KEY_6)
+          {
+            key3 = false;
+            key4 = true;
+            std::cout << "KEY_2" << std::endl;
+          }
+        }
+    }
+  }
 
   void operationCallback_1(const robot_msgs::omega::ConstPtr& omega7_msg)
   {
@@ -147,6 +203,16 @@ public:
     omega_1_button = omega7_msg->button[0];
 
     omega_1_button_desire = omega_1_button - omega_1_button_zero;
+
+    if(key1 == true)
+    {
+      master_1_pos_zero = master_1_pos;
+      master_1_rpy_zero = master_1_rpy;
+
+      slave_1_pos_zero = slave_1_desire_pos;
+//      slave_1_rotation_zero = slave_1_desire_rotation;
+      return;
+    }
 
     slave_1_desire_pos[0] = direction_pos_x * (master_1_pos[0]-master_1_pos_zero[0]) * scale_p_x + slave_1_pos_zero[0];
     slave_1_desire_pos[1] = direction_pos_y * (master_1_pos[1]-master_1_pos_zero[1]) * scale_p_y + slave_1_pos_zero[1];
@@ -223,6 +289,15 @@ public:
     omega_2_button = omega7_msg->button[0];
     omega_2_button_desire = omega_2_button - omega_2_button_zero;
 
+    if(key3 == true)
+    {
+      master_2_pos_zero = master_2_pos;
+      master_2_rpy_zero = master_2_rpy;
+
+      slave_2_pos_zero = slave_2_desire_pos;
+//      slave_1_rotation_zero = slave_1_desire_rotation;
+      return;
+    }
 
     slave_2_desire_pos[0] = direction_pos_x * (master_2_pos[0]-master_2_pos_zero[0]) * scale_p_x + slave_2_pos_zero[0];
     slave_2_desire_pos[1] = direction_pos_y * (master_2_pos[1]-master_2_pos_zero[1]) * scale_p_y + slave_2_pos_zero[1];

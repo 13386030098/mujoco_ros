@@ -71,12 +71,12 @@ public:
     direction_rpy_r = 1;
     direction_rpy_p = 1;
     direction_rpy_y = 1;
-    scale_p_x = 0.3;
-    scale_p_y = 0.3;
-    scale_p_z = 0.3;
-    scale_r_x = 1;
-    scale_r_y = 1;
-    scale_r_z = 1;
+    scale_p_x = 0.2;
+    scale_p_y = 0.2;
+    scale_p_z = 0.2;
+    scale_r_x = 0.1;
+    scale_r_y = 0.1;
+    scale_r_z = 0.1;
 
     std::cout<<"teleoperation start ..."<<std::endl;
     pub = nh.advertise<robot_msgs::ik>("/ik", 100, true);

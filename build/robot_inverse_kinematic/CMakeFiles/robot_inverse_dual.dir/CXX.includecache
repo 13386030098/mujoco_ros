@@ -65,6 +65,14 @@ robot_msgs/omega.h
 -
 robot_msgs/ik.h
 -
+linux/input.h
+-
+fcntl.h
+-
+unistd.h
+-
+thread
+-
 
 /opt/ros/kinetic/include/ros/advertise_options.h
 ros/forwards.h

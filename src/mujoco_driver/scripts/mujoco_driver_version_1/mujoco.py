@@ -563,7 +563,7 @@ def listener():
         # print(str((stop - start) * 1000) + "ms")
 
 if __name__ == '__main__':
-    model = load_model_from_path("/home/zzz/mujoco_ros/src/mujoco_description/robot.xml")
+    model = load_model_from_path("/home/zzz/mujoco_ros/src/mujoco_description/robot_ver2_dual.xml")
 
     sim = MjSim(model)
     viewer = MjViewer(sim)
