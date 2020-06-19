@@ -27,8 +27,7 @@ Version:1.50
     <mesh name="bone_part_col"   file="collision/bone_part.stl"/>
     <mesh name="base_0_col"      file="collision/base_0.stl"/>
     <mesh name="base_1_col"      file="collision/base_1.stl"/>
-    <mesh name="bowl_col"        file="collision/bowl.stl"/>
-    <mesh name="desk_col"        file="collision/desk.stl"/>
+    <mesh name="bed_col"        file="collision/bed.stl"/>
 
     <mesh name="base_3_viz"      file="visual/base_3.stl"/>
     <mesh name="base_4_viz"      file="visual/base_4.stl"/>
@@ -46,7 +45,7 @@ Version:1.50
     <mesh name="bone_part_viz"   file="visual/bone_part.stl"/>
     <mesh name="base_0_viz"      file="visual/base_0.stl"/>
     <mesh name="base_1_viz"      file="visual/base_1.stl"/>
-    <mesh name="desk_viz"        file="visual/desk.stl"/>
+    <mesh name="bed_viz"        file="visual/bed.stl"/>
 
         <texture name="floor_tex"   type="2d"       builtin="checker"  rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
         <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100"     height="100"    rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
@@ -90,7 +89,6 @@ Version:1.50
             </default>
         </default>
     </default>
-
     <!--Contacts-->
     <contact>
         <exclude body1="clip1" body2="bone"/>
@@ -104,13 +102,13 @@ Version:1.50
         <exclude body1="rotate_dual" body2="bone"/>
         <exclude body1="instrument_dual" body2="bone"/>
         <exclude body1="endoscope_third" body2="bone"/>
-        <exclude body1="box_link1" body2="bone"/>
-        <exclude body1="box_link2" body2="bone"/>
-        <exclude body1="box_link3" body2="bone"/>
-        <exclude body1="box_link4" body2="bone"/>
-        <exclude body1="box_link" body2="bone"/>
+        <exclude body1="box_1" body2="bone"/>
 
-<!--        <exclude body1="bowl" body2="bone"/>-->
+<!--        <exclude body1="box_small1" body2="bone"/>
+        <exclude body1="box_small2" body2="bone"/>
+        <exclude body1="box_small3" body2="bone"/>
+        <exclude body1="box_small4" body2="bone"/>-->
+
 
     </contact>
 
@@ -122,47 +120,46 @@ Version:1.50
           <geom  friction="1.5 1.5 .1" size=".4 .4 .001"  type="box" rgba=".5 .55 .5 1" mass="0.01"/>
         </body>-->
 
-        <geom pos="0.9 0.2 0.5" size=".15 .15 .001"  rgba=".5647 .933 .5647 1" type='plane'/>
+        <geom pos="0.9 0.2 0.5" size=".15 .15 .001"  rgba=".5647 .933 .5647 1" type='box'/>
 
 
-<!--        <body name="bowl" childclass="panda" pos="0.8 0.1 0.6">
-        <freejoint/>
-            <geom class="panda_viz" mesh="bowl_viz" rgba="0.6 0.749 1 1"/>
-            <geom class="panda_col" mesh="bowl_col" mass="1"/>
+        <body name="box_1" pos="0.92 0.17 0.6" euler='0 0 0'>
+          <freejoint/>
+          <geom  friction="1 0.5 0.01" size=".02 .02 .02"  type="box" rgba="0.6 0.449 1 1" mass="1" />
+        </body>
+
+<!--        <body name="box_2" pos="0.92 0.23 0.6" euler='0 0 0'>
+          <freejoint/>
+          <geom  friction="1 0.5 0.0001" size=".02 .02 .02"  type="box" rgba="0.6 0.549 1 1" mass="2"/>
         </body>-->
 
-        <body name="box_link" childclass="panda" pos="0.85 0.17 0.6" euler='0 0 0'>
+<!--        <body name="box_small1" childclass="panda" pos="0.9 0.13 0.6" euler='0 0 0'>
           <freejoint/>
-          <geom  friction="1 0.5 0.0001" size=".01 .01 .01"  type="box" rgba="0.6 0.749 1 1" mass="0.1"/>
+          <geom  friction="1 0.5 0.0001" size=".0005 .0005 .01"  type="box" rgba="0.2 0.749 1 1" mass="0.1"/>
         </body>
+        <body name="box_small2" childclass="panda" pos="0.9 0.18 0.6" euler='0 0 0'>
+          <freejoint/>
+          <geom  friction="1 0.5 0.0001" size=".0005 .0005 .01"  type="box" rgba="0.6 0.749 0.4 1" mass="0.1"/>
+        </body>
+        <body name="box_small3" childclass="panda" pos="0.9 0.23 0.6" euler='0 0 0'>
+          <freejoint/>
+          <geom  friction="1 0.5 0.0001" size=".0005 .0005 .01"  type="box" rgba="0.6 0.149 1 1" mass="0.1"/>
+        </body>
+        <body name="box_small4" childclass="panda" pos="0.9 0.28 0.6" euler='0 0 0'>
+          <freejoint/>
+          <geom  friction="1 0.5 0.0001" size=".0005 .0005 .01"  type="box" rgba="0.1 0.749 1 1" mass="0.1"/>
+        </body>-->
 
-        <body name="box_link1" childclass="panda" pos="0.82 0.17 0.6" euler='0 0 -1.57'>
-          <freejoint/>
-          <geom  friction="1 0.5 0.0001" size="0.0005 0.01"  type="capsule" rgba="1 0 0 1" mass="0.1"/>
-        </body>
-
-        <body name="box_link2" childclass="panda" pos="0.80 0.17 0.6" euler='0 0 -1.57'>
-          <freejoint/>
-          <geom  friction="1 0.5 0.0001" size="0.0005 0.01"  type="capsule" rgba="1 0 0 1" mass="0.1"/>
-        </body>
-        <body name="box_link3" childclass="panda" pos="0.8 0.09 0.6" euler='0 0 -1.57'>
-          <freejoint/>
-          <geom  friction="1 0.005 0.0001" size="0.0005 0.01"  type="capsule" rgba="1 0 0 1" mass="0.1"/>
-        </body>
-
-        <body name="box_link4" childclass="panda" pos="0.78 0.17 0.6" euler='0 0 -1.57'>
-          <freejoint/>
-          <geom  friction="1 0.5 0.0001" size="0.0005 0.01"  type="capsule" rgba="1 0 0 1" mass="0.1"/>
-        </body>
 
         <body name="bone" childclass="panda" pos="1.04 0.45 0.48" euler='0 -1.57 -1.57'>
              <geom class="panda_viz" mesh="bone_part_viz" rgba="0.6 0.749 1 1"/>
              <geom class="panda_col" mesh="bone_part_col" mass="10"/>
          </body>
-<!--         <body name="desk" childclass="panda" pos="3 0 0.8" euler='1.57 1.57 0'>
-              <geom class="panda_viz" mesh="desk_viz" rgba="0.6 0.749 1 1"/>
-              <geom class="panda_col" mesh="desk_col" mass="10"/>
-          </body>-->
+
+         <body name="desk" childclass="panda" pos="1 0.2 0.48" euler='1.57 1.57 0'>
+              <geom class="panda_viz" mesh="bed_viz" rgba="0.6 0.749 1 1"/>
+              <geom class="panda_col" mesh="bed_col" mass="10"/>
+          </body>
 
         <body name="base_0" childclass="panda" pos="-0.4 0.12 0" >
             <geom class="panda_viz" mesh="base_0_viz"/>
@@ -170,8 +167,6 @@ Version:1.50
             <body name="base_1"  pos="0.65742 0.044 1.815" euler='0 0 0.75'>
                 <geom class="panda_viz" mesh="base_1_viz"/>
                 <geom class="panda_col" mesh="base_1_col" mass="3.8"/>
-<!--                <geom class="panda_viz" type="box" pos="0.25 0 -0.11" euler='0 1.5708 0' size="0.07 0.07 0.2"/>-->
-<!--                <geom class="panda_viz" type="box" pos="0.52 0 -0.18" euler='0 0 0' size="0.07 0.07 0.14"/>-->
             </body>
         </body>
 
@@ -190,9 +185,6 @@ Version:1.50
         <body name="base_2_4" pos="0.1 0 1.7" euler='0 1.57 0'>
             <geom class="panda_viz" type="box" pos="0 0 0" euler='2 0 0' size="0.07 0.07 0.1"/>
         </body>
-
-
-
 
         <body name="base_3" childclass="panda" pos="0.25 -0.315 1.5" quat="-0.3 0 0 0.991665">
              <geom class="panda_viz" mesh="base_3_viz"/>
@@ -222,7 +214,7 @@ Version:1.50
                                      <geom class="panda_viz" mesh="slide_viz"/>
                                      <geom class="panda_col" mesh="slide_col" mass="1.256"/>
                                      <body name="instrument" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
-                                         <joint name="instrument_joint" type="slide" range="-0.20 0.20" class="panda_forearm"/>
+                                         <joint name="instrument_joint" type="slide" range="-0.40 0.40" class="panda_arm"/>
                                          <geom class="panda_viz" mesh="instrument_viz"/>
                                          <geom class="panda_col" mesh="instrument_col" mass="0.19373"/>
                                          <body name="rotate" pos="0 0 0.3759" quat="1 0 0 0">
@@ -236,12 +228,12 @@ Version:1.50
                                                  <body name="clip1" pos="0 0.0003 -0.0089" quat="0.707107 -0.707107 0 0">
                                                      <joint name="clip1_joint" range="-3.14 3.14" class="panda_finger"/>
                                                      <geom class="panda_viz" mesh="clip1_viz"/>
-                                                     <geom class="panda_col" mesh="clip1_col" mass="0.1"/>
+                                                     <geom class="panda_col" mesh="clip1_col" mass="0.1" />
                                                  </body>
                                                  <body name="clip2" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
                                                      <joint name="clip2_joint" range="-3.14 3.14" class="panda_finger"/>
                                                      <geom class="panda_viz" mesh="clip2_viz"/>
-                                                     <geom class="panda_col" mesh="clip2_col" mass="0.1"/>
+                                                     <geom class="panda_col" mesh="clip2_col" mass="0.1" />
                                                  </body>
                                              </body>
                                          </body>
@@ -282,7 +274,7 @@ Version:1.50
                                       <geom class="panda_viz" mesh="slide_viz"/>
                                       <geom class="panda_col" mesh="slide_col" mass="1.256"/>
                                       <body name="instrument_dual" pos="-0.1 0.08 0.0085" quat="0.5 0.5 -0.5 0.5">
-                                          <joint name="instrument_joint_dual" type="slide" range="-0.20 0.20" class="panda_forearm"/>
+                                          <joint name="instrument_joint_dual" type="slide" range="-0.40 0.40" class="panda_arm"/>
                                           <geom class="panda_viz" mesh="instrument_viz"/>
                                           <geom class="panda_col" mesh="instrument_col" mass="0.19373"/>
                                           <body name="rotate_dual" pos="0 0 0.3759" quat="1 0 0 0">
@@ -296,12 +288,12 @@ Version:1.50
                                                   <body name="clip1_dual" pos="0 0.0003 -0.0089" quat="0.707107 -0.707107 0 0">
                                                       <joint name="clip1_joint_dual" range="-3.14 3.14" class="panda_finger"/>
                                                       <geom class="panda_viz" mesh="clip1_viz"/>
-                                                      <geom class="panda_col" mesh="clip1_col" mass="0.1"/>
+                                                      <geom class="panda_col" mesh="clip1_col" mass="0.1" />
                                                   </body>
                                                   <body name="clip2_dual" pos="0 -0.0003 -0.0089" quat="3.2758e-05 3.2758e-05 0.707107 -0.707107 ">
                                                       <joint name="clip2_joint_dual" range="-3.14 3.14" class="panda_finger"/>
                                                       <geom class="panda_viz" mesh="clip2_viz"/>
-                                                      <geom class="panda_col" mesh="clip2_col" mass="0.1"/>
+                                                      <geom class="panda_col" mesh="clip2_col" mass="0.1" />
                                                   </body>
                                               </body>
                                           </body>
@@ -344,7 +336,7 @@ Version:1.50
                                            <joint name="instrument_joint_third" type="slide" range="-0.20 0.20" class="panda_forearm"/>
                                            <geom class="panda_viz" mesh="endoscope_viz"/>
                                            <geom class="panda_col" mesh="endoscope_col" mass="0.19373"/>
-                                           <camera name="camera" mode="fixed"  pos="0.02 0.1 -0.15" euler='0 0 2.82' fovy = "45"/>
+                                           <camera name="camera" mode="fixed"  pos="0.02 0.1 -0.1" euler='0 0 2.82' fovy = "45"/>
                                        </body>
                                    </body>
                                </body>
@@ -434,21 +426,21 @@ Version:1.50
     </equality>
 
     <actuator>
-        <position name="roll1_joint"      joint="roll1_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
-        <position name="roll2_joint"      joint="roll2_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
-        <position name="para2_joint"      joint="para2_joint"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
-        <position name="instrument_joint" joint="instrument_joint"  kp="100"  forcerange="-87 87" ctrlrange="-2.20 2.20"/>     <!-- velocity="2.1750" -->
-        <position name="rotate_joint"     joint="rotate_joint"      kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
-        <position name="roll_joint"       joint="roll_joint"        kp="20"  forcerange="-12 12" ctrlrange="-3.7525 2.1817"/> <!-- velocity="2.6100" -->
-        <position name="clip1_joint"      joint="clip1_joint"       kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+        <position name="roll1_joint"      joint="roll1_joint"       kp="2000" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="roll2_joint"      joint="roll2_joint"       kp="2000" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
+        <position name="para2_joint"      joint="para2_joint"       kp="2000" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="instrument_joint" joint="instrument_joint"  kp="2000"  forcerange="-87 87" ctrlrange="-0.40 0.40"/>     <!-- velocity="2.1750" -->
+        <position name="rotate_joint"     joint="rotate_joint"      kp="30"  forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+        <position name="roll_joint"       joint="roll_joint"        kp="30"  forcerange="-87 87" ctrlrange="-3.7525 2.1817"/> <!-- velocity="2.6100" -->
+        <position name="clip1_joint"      joint="clip1_joint"       kp="30"  forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
 
-        <position name="roll1_joint_dual"      joint="roll1_joint_dual"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
-        <position name="roll2_joint_dual"      joint="roll2_joint_dual"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
-        <position name="para2_joint_dual"      joint="para2_joint_dual"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
-        <position name="instrument_joint_dual" joint="instrument_joint_dual"  kp="100"  forcerange="-87 87" ctrlrange="-2.20 2.20"/>     <!-- velocity="2.1750" -->
-        <position name="rotate_joint_dual"     joint="rotate_joint_dual"      kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
-        <position name="roll_joint_dual"       joint="roll_joint_dual"        kp="20"  forcerange="-12 12" ctrlrange="-3.7525 2.1817"/> <!-- velocity="2.6100" -->
-        <position name="clip1_joint_dual"      joint="clip1_joint_dual"       kp="20"  forcerange="-12 12" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+        <position name="roll1_joint_dual"      joint="roll1_joint_dual"       kp="2000" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="roll2_joint_dual"      joint="roll2_joint_dual"       kp="2000" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
+        <position name="para2_joint_dual"      joint="para2_joint_dual"       kp="2000" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="instrument_joint_dual" joint="instrument_joint_dual"  kp="2000"  forcerange="-87 87" ctrlrange="-0.40 0.40"/>     <!-- velocity="2.1750" -->
+        <position name="rotate_joint_dual"     joint="rotate_joint_dual"      kp="30"  forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
+        <position name="roll_joint_dual"       joint="roll_joint_dual"        kp="30"  forcerange="-87 87" ctrlrange="-3.7525 2.1817"/> <!-- velocity="2.6100" -->
+        <position name="clip1_joint_dual"      joint="clip1_joint_dual"       kp="30"  forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.6100" -->
 
         <position name="roll1_joint_third"      joint="roll1_joint_third"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
         <position name="roll2_joint_third"      joint="roll2_joint_third"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->

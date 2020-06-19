@@ -100,16 +100,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : test/fast
+.PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -122,16 +122,16 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install/local
-install/local/fast: install/local
+# Special rule for the target test
+test/fast: test
 
-.PHONY : install/local/fast
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -195,6 +195,21 @@ robot_inverse_single/fast:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
 .PHONY : robot_inverse_single/fast
 
+# Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+
+# Convenience name for target.
+robot_inverse_single_ver1: robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+
+.PHONY : robot_inverse_single_ver1
+
+# fast build rule for target.
+robot_inverse_single_ver1/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build
+.PHONY : robot_inverse_single_ver1/fast
+
 src/robot_inverse_dual.o: src/robot_inverse_dual.cpp.o
 
 .PHONY : src/robot_inverse_dual.o
@@ -249,6 +264,33 @@ src/robot_inverse_single.cpp.s:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/src/robot_inverse_single.cpp.s
 .PHONY : src/robot_inverse_single.cpp.s
 
+src/robot_inverse_single_ver1.o: src/robot_inverse_single_ver1.cpp.o
+
+.PHONY : src/robot_inverse_single_ver1.o
+
+# target to build an object file
+src/robot_inverse_single_ver1.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/src/robot_inverse_single_ver1.cpp.o
+.PHONY : src/robot_inverse_single_ver1.cpp.o
+
+src/robot_inverse_single_ver1.i: src/robot_inverse_single_ver1.cpp.i
+
+.PHONY : src/robot_inverse_single_ver1.i
+
+# target to preprocess a source file
+src/robot_inverse_single_ver1.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/src/robot_inverse_single_ver1.cpp.i
+.PHONY : src/robot_inverse_single_ver1.cpp.i
+
+src/robot_inverse_single_ver1.s: src/robot_inverse_single_ver1.cpp.s
+
+.PHONY : src/robot_inverse_single_ver1.s
+
+# target to generate assembly for a file
+src/robot_inverse_single_ver1.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/src/robot_inverse_single_ver1.cpp.s
+.PHONY : src/robot_inverse_single_ver1.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -259,17 +301,21 @@ help:
 	@echo "... install"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... test"
 	@echo "... robot_inverse_dual"
+	@echo "... install/local"
 	@echo "... robot_inverse_single"
 	@echo "... install/strip"
-	@echo "... install/local"
+	@echo "... test"
+	@echo "... robot_inverse_single_ver1"
 	@echo "... src/robot_inverse_dual.o"
 	@echo "... src/robot_inverse_dual.i"
 	@echo "... src/robot_inverse_dual.s"
 	@echo "... src/robot_inverse_single.o"
 	@echo "... src/robot_inverse_single.i"
 	@echo "... src/robot_inverse_single.s"
+	@echo "... src/robot_inverse_single_ver1.o"
+	@echo "... src/robot_inverse_single_ver1.i"
+	@echo "... src/robot_inverse_single_ver1.s"
 .PHONY : help
 
 

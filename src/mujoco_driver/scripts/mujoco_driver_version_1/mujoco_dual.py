@@ -39,7 +39,7 @@ def listener():
         t += 1
         sim.step()
         viewer.render()
-#        sim.data.ctrl[7] = -0.3
+        sim.data.ctrl[7] = -0.3
 
         if t > 100 and os.getenv('TESTING') is not None:
             break

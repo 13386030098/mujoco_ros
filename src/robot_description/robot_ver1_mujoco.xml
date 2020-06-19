@@ -1,0 +1,65 @@
+<mujoco model="robot">
+
+    <compiler angle="radian" inertiafromgeom="true" meshdir="meshes_mujoco/" />
+    <option timestep="0.002"/>
+    <size nuser_actuator="5"/>
+
+    <asset>
+        <mesh name="base" file="base.stl" />
+        <mesh name="roll1" file="roll1.stl" />
+        <mesh name="roll2" file="roll2.stl" />
+        <mesh name="link1" file="link1.stl" />
+        <mesh name="link2" file="link2.stl" />
+        <mesh name="link3" file="link3.stl" />
+
+        <texture name="floor_tex"   type="2d"            builtin="checker"  rgb1=".2 .3 .4"   rgb2=".1 .2 .3" width="100"        height="100" />
+        <texture name="sky_tex"     type="skybox"        builtin="gradient" width="100"       height="100"    rgb1="1 1 1"       rgb2="0.3 0.3 0.8" />
+        <material name='floor_mat'  texture="floor_tex"  shininess="0.8"    texrepeat="10 10" specular="0.7"  reflectance="0.5" />
+    </asset>
+
+    <worldbody>
+        <light directional="true" cutoff="4" exponent="20" diffuse="1 1 1" specular="0 0 0" pos="1 1 3" dir="-.5 -0.75 -1.5"/>
+        <geom name='floor' material="floor_mat" pos='0 0 0' size='2.5 2.5 0.1'  type='plane' />
+
+        <body name="base" pos="0 0 1">
+            <inertial pos="0.00201925 8.10402e-07 -0.0438399" quat="0.415116 0.414461 -0.572937 0.572402" mass="0.95683" diaginertia="0.00167595 0.00152497 0.0014741" />
+            <geom type="mesh" rgba="1 1 0.941187 1" mesh="base" />
+            <body name="roll1" pos="0.1862 0 -0.1475" quat="0.5 0 0.866025 0">
+                <inertial pos="0.0878443 -3.55008e-06 -0.05009" quat="0.588609 0.391924 0.392126 0.588364" mass="4.7417" diaginertia="0.0481064 0.0462234 0.0117439" />
+                <joint name="roll1" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3" damping="100"/>
+                <geom type="mesh" rgba="0.94 1 1 1" mesh="roll1" />
+                <body name="roll2" pos="0.15587 0 0.155" quat="0.991445 0 -0.130526 0">
+                    <inertial pos="0.0660812 0.0457368 0.0366581" quat="0.543617 -0.0274505 0.104882 0.832302" mass="8.11253" diaginertia="0.140649 0.121949 0.0325068" />
+                    <joint name="roll2" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3" damping="100"/>
+                    <geom type="mesh" rgba="0.94 1 0.14 1" mesh="roll2" />
+                    <body name="link1" pos="0.06078 -0.029 0.25714" quat="0.45452 -0.454519 -0.541675 -0.541675">
+                        <inertial pos="-0.100837 -3.57571e-08 0.0341786" quat="0 0.705581 0 0.708629" mass="2.1924" diaginertia="0.0177068 0.0164509 0.00301792" />
+                        <joint name="link1" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3" damping="100"/>
+                        <geom type="mesh" rgba="0.94 1 1 1" mesh="link1" />
+                        <body name="link2" pos="-0.2 0 -0.071">
+                            <inertial pos="0.189805 3.3424e-06 0.0252509" quat="0.000344187 0.733789 0.000371754 0.679377" mass="3.96335" diaginertia="0.0688985 0.0686937 0.00586623" />
+                            <joint name="link2" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3" damping="100"/>
+                            <geom type="mesh" rgba="0.94 1 1 1" mesh="link2" />
+                            <body name="link3" pos="0.35 0 0.077" quat="0.953674 0 0 0.300842">
+                                <inertial pos="-0.0943417 -0.0667751 0.0231825" quat="0.0393095 0.710357 0.0171264 0.702534" mass="1.86206" diaginertia="0.0264599 0.0245244 0.00242496" />
+                                <joint name="link3" pos="0 0 0" axis="0 0 1" limited="true" range="-3 3" damping="100"/>
+                                <geom type="mesh" rgba="0.94 1 1 1" mesh="link3" />
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+
+    <equality>
+        <joint name="link1_link2" joint1="link1" joint2="link2" polycoef="0 -1 0 0 0"/>
+        <joint name="link1_link3" joint1="link1" joint2="link3" polycoef="0 1 0 0 0"/>
+    </equality>
+    <actuator>
+        <position name="roll1"      joint="roll1"       kp="870" forcerange="-87 87" ctrlrange="-2.9671 2.9671"/> <!-- velocity="2.1750" -->
+        <position name="roll2"      joint="roll2"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
+        <position name="link1"      joint="link1"       kp="870" forcerange="-87 87" ctrlrange="-2.8326 2.8326"/> <!-- velocity="2.1750" -->
+    </actuator>
+
+</mujoco>

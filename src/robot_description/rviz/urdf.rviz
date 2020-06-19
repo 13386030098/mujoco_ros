@@ -6,10 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Grid1
-        - /RobotModel1
         - /TF1
-        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 1135
   - Class: rviz/Selection
@@ -64,37 +61,31 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        child_20:
+        base:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        child_21:
+        link1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        clip21:
+        link2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        clip22:
+        link3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        instrument2:
+        remote_center:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        para22:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        para23:
+        roll1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -104,26 +95,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        roll_21:
+        tool_end:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        roll_22:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        rotate2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        slide21:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         world:
           Alpha: 1
           Show Axes: false
@@ -138,61 +113,48 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: false
-        child_20:
-          Value: false
-        child_21:
-          Value: false
-        clip21:
-          Value: false
-        clip22:
-          Value: false
-        instrument2:
-          Value: false
-        para22:
-          Value: false
-        para23:
-          Value: false
+        All Enabled: true
+        base:
+          Value: true
+        link1:
+          Value: true
+        link2:
+          Value: true
+        link3:
+          Value: true
+        remote_center:
+          Value: true
+        roll1:
+          Value: true
         roll2:
-          Value: false
-        roll_21:
-          Value: false
-        roll_22:
-          Value: false
-        rotate2:
-          Value: false
-        slide21:
-          Value: false
+          Value: true
+        tool_end:
+          Value: true
         world:
-          Value: false
-      Marker Scale: 0.100000001
+          Value: true
+      Marker Scale: 0.300000012
       Name: TF
       Show Arrows: true
       Show Axes: true
-      Show Names: false
+      Show Names: true
       Tree:
         world:
-          child_20:
-            child_21:
-              roll_21:
-                roll_22:
-                  para22:
-                    para23:
-                      slide21:
-                        instrument2:
-                          rotate2:
-                            roll2:
-                              clip21:
-                                {}
-                              clip22:
-                                {}
+          base:
+            roll1:
+              roll2:
+                link1:
+                  link2:
+                    link3:
+                      remote_center:
+                        tool_end:
+                          {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: world
+    Fixed Frame: base
     Frame Rate: 30
   Name: root
   Tools:
@@ -213,25 +175,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.902436614
+      Distance: 1.48734939
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.100697845
-        Y: 0.264382899
-        Z: 0.24937135
+        X: 0.329973519
+        Y: -0.124334939
+        Z: -0.427259564
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: -0.229601696
+      Pitch: 0.215398371
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 3.59539557
+      Yaw: 1.00539398
     Saved: ~
 Window Geometry:
   Displays:

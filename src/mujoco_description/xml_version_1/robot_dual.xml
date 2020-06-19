@@ -30,18 +30,41 @@ Version:1.50
     <!-- -->
     <asset>
         <!--Meshes-->
-        <mesh name="base_3"      file="base_3.stl"    />
-        <mesh name="base_4"      file="base_4.stl"    />
-        <mesh name="roll1"       file="roll1.stl"     /> 
-        <mesh name="roll2"       file="roll2.stl"     />
-        <mesh name="para2"       file="para2.stl"     />
-        <mesh name="para3"       file="para3.stl"     />
-        <mesh name="slide"       file="slide.stl"     />
-        <mesh name="instrument"  file="instrument.stl"/>
-        <mesh name="rotate"      file="rotate.stl"    />
-        <mesh name="roll"        file="roll.stl"      />
-        <mesh name="clip1"       file="clip.stl"      />
-        <mesh name="clip2"       file="clip.stl"      />
+        <mesh name="base_3"      file="collision/base_3.stl"/>
+        <mesh name="base_4"      file="collision/base_4.stl"/>
+        <mesh name="roll1"       file="collision/roll1.stl"/>
+        <mesh name="roll2"       file="collision/roll2.stl"/>
+        <mesh name="para2"       file="collision/para2.stl"/>
+        <mesh name="para3"       file="collision/para3.stl"/>
+        <mesh name="slide"       file="collision/slide.stl"/>
+        <mesh name="instrument"  file="collision/instrument.stl"/>
+        <mesh name="endoscope"   file="collision/endoscope.stl"/>
+        <mesh name="rotate"      file="collision/rotate.stl"/>
+        <mesh name="roll"        file="collision/roll.stl"/>
+        <mesh name="clip1"       file="collision/clip.stl"/>
+        <mesh name="clip2"       file="collision/clip.stl"/>
+        <mesh name="bone_part"   file="collision/bone_part.stl"/>
+        <mesh name="base_0"      file="collision/base_0.stl"/>
+        <mesh name="base_1"      file="collision/base_1.stl"/>
+        <mesh name="bed"        file="collision/bed.stl"/>
+
+<!--        <mesh name="base_3_viz"      file="visual/base_3.stl"/>
+        <mesh name="base_4_viz"      file="visual/base_4.stl"/>
+        <mesh name="roll1_viz"       file="visual/roll1.stl"/>
+        <mesh name="roll2_viz"       file="visual/roll2.stl"/>
+        <mesh name="para2_viz"       file="visual/para2.stl"/>
+        <mesh name="para3_viz"       file="visual/para3.stl"/>
+        <mesh name="slide_viz"       file="visual/slide.stl"/>
+        <mesh name="instrument_viz"  file="visual/instrument.stl"/>
+        <mesh name="endoscope_viz"   file="visual/endoscope.stl"/>
+        <mesh name="rotate_viz"      file="visual/rotate.stl"/>
+        <mesh name="roll_viz"        file="visual/roll.stl"/>
+        <mesh name="clip1_viz"       file="visual/clip.stl"/>
+        <mesh name="clip2_viz"       file="visual/clip.stl"/>
+        <mesh name="bone_part_viz"   file="visual/bone_part.stl"/>
+        <mesh name="base_0_viz"      file="visual/base_0.stl"/>
+        <mesh name="base_1_viz"      file="visual/base_1.stl"/>
+        <mesh name="bed_viz"        file="visual/bed.stl"/>-->
         <!--Textures-->
         <texture name="floor_tex"   type="2d"       builtin="checker"  rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
         <texture name="robot_tex"   type="2d"       builtin="flat"     height="32"     width="32"      rgb1="0.45 0.45 0.45" />

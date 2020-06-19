@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<robot name="robot">
+
+  <material name="Azure">
+    <color rgba="0.94 1 1 1"/>
+  </material>
+  <material name="Honeydew">
+    <color rgba="0.94 1 0.14 1"/>
+  </material>
+  <material name="white">
+    <color rgba="1 1 1 1"/>
+  </material>
+  <material name="lvory">
+  <color rgba="1 1 0.941187 1.0"/>
+  </material>
+
+  <!-- Used for fixing robot to Gazebo 'base_link' -->
+
+  <link name="world"/>
+  <joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0 0 0.5"/>
+  </joint>
+
+<!--instrument manipulator arm 1  -->
+
+
+  <link name="base">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description/meshes_mujoco/base.stl"/>
+      </geometry>
+      <material name="lvory"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robot_description/meshes_mujoco/base.stl"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="roll1" type="revolute">
+    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base"/>
+    <child link="roll1"/>
+    <origin rpy="0 2.0943951 0" xyz="0.1862 0 -0.1475"/>
+    <dynamics damping="0.1" friction="0.05"/>
+  </joint>
+
+    <link name="roll1">
+      <visual>
+        <geometry>
+          <mesh filename="package://robot_description/meshes_mujoco/roll1.stl"/>
+        </geometry>
+        <material name="Azure"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://robot_description/meshes_mujoco/roll1.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="roll2" type="revolute">
+      <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
+      <axis xyz="0 0 1"/>
+      <parent link="roll1"/>
+      <child link="roll2"/>
+      <origin rpy="0 -0.261799 0" xyz="0.15587 0 0.155"/>
+      <dynamics damping="0.1" friction="0.05"/>
+    </joint>
+<!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
+
+      <link name="roll2">
+        <visual>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/roll2.stl"/>
+          </geometry>
+          <material name="Honeydew"/>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/roll2.stl"/>
+          </geometry>
+        </collision>
+      </link>
+
+    <joint name="link1" type="revolute">
+      <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
+      <axis xyz="0 0 1"/>
+      <parent link="roll2"/>
+      <child link="link1"/>
+      <origin rpy="-1.570796 -1.745329 0" xyz="0.06078 -0.029 0.25714"/>
+      <dynamics damping="0.1" friction="0.05"/>
+    </joint>
+    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
+
+      <link name="link1">
+        <visual>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link1.stl"/>
+          </geometry>
+          <material name="Azure"/>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link1.stl"/>
+          </geometry>
+        </collision>
+      </link>
+
+    <joint name="link2" type="revolute">
+      <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
+      <axis xyz="0 0 1"/>
+      <mimic joint="link1" multiplier="-1.0" offset="0.0"/>
+      <parent link="link1"/>
+      <child link="link2"/>
+      <origin rpy="0 0 0" xyz="-0.2 0 -0.071"/>
+      <dynamics damping="0.1" friction="0.05"/>
+    </joint>
+    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
+
+      <link name="link2">
+        <visual>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link2.stl"/>
+          </geometry>
+          <material name="Azure"/>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link2.stl"/>
+          </geometry>
+        </collision>
+      </link>
+
+    <joint name="link3" type="revolute">
+      <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
+      <axis xyz="0 0 1"/>
+      <mimic joint="link2" multiplier="-1.0" offset="0.0"/>
+      <parent link="link2"/>
+      <child link="link3"/>
+      <origin rpy="0 0 0.61115" xyz="0.35 0 0.077"/>
+      <dynamics damping="0.1" friction="0.05"/>
+    </joint>
+    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
+
+      <link name="link3">
+        <visual>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link3.stl"/>
+          </geometry>
+          <material name="Azure"/>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://robot_description/meshes_mujoco/link3.stl"/>
+          </geometry>
+        </collision>
+      </link>
+
+    <joint name="remote_center" type="fixed">
+      <parent link="link3"/>
+      <child link="remote_center"/>
+      <origin rpy="0 1.570796 -0.5635668" xyz="0.14795 -0.13458 0.023"/>
+    </joint>
+
+    <link name="remote_center"/>
+
+    <joint name="graber_end" type="fixed">
+      <parent link="remote_center"/>
+      <child link="tool_end"/>
+      <origin rpy="0 0 0" xyz="0 0.05342048021 0.08453550906"/>
+    </joint>
+
+    <link name="tool_end"/>
+</robot>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

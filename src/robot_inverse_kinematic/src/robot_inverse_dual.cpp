@@ -122,9 +122,9 @@ public:
     scale_p_x = 0.3;
     scale_p_y = 0.3;
     scale_p_z = 0.3;
-    scale_r_x = 0.1;
-    scale_r_y = 0.1;
-    scale_r_z = 0.1;
+    scale_r_x = 0.5;
+    scale_r_y = 0.5;
+    scale_r_z = 0.5;
 
     std::cout<<"teleoperation start ..."<<std::endl;
     pub_omega1 = nh.advertise<robot_msgs::ik>("omega1/ik", 100, true);

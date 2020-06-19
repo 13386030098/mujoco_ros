@@ -1114,6 +1114,19 @@ robot_inverse_single/fast:
 	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
 .PHONY : robot_inverse_single/fast
 
+#=============================================================================
+# Target rules for targets named robot_inverse_single_ver1
+
+# Build rule for target.
+robot_inverse_single_ver1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse_single_ver1
+.PHONY : robot_inverse_single_ver1
+
+# fast build rule for target.
+robot_inverse_single_ver1/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build
+.PHONY : robot_inverse_single_ver1/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1200,6 +1213,7 @@ help:
 	@echo "... omega_dual"
 	@echo "... robot_inverse_dual"
 	@echo "... robot_inverse_single"
+	@echo "... robot_inverse_single_ver1"
 .PHONY : help
 
 
