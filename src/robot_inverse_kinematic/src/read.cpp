@@ -22,11 +22,17 @@ int main()
         if(shm != (void*)-1)
         {
             Box *pBox = (Box*)shm;
+            double num_1, num_2;
             while(1)
             {
                 if(pBox->flag == 1)
                 {
-                        printf("msg from writer is [%s]\n", pBox->szMsg);
+//                        printf("msg from writer is [%s]\n", pBox->szMsg);
+                        char* p = pBox->szMsg;
+                        printf("msg from writer is [%s]\n", p);
+                        sscanf(p,"%lf %lf",&num_1, &num_2);
+                        printf("num1 = %lf\n",num_1);
+                        printf("num2 = %lf\n",num_2);
                         pBox->flag = 0;
                 }
             }

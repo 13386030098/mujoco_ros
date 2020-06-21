@@ -119,6 +119,8 @@ public:
 
       kinematics_.getTransformAtIndex(8, frame_end_zero_position);
       slave_pos_zero = frame_end_zero_position.translation();
+//      std::cout << slave_pos_zero << std::endl;
+
 
       is_first_=false;
       return;
@@ -145,13 +147,14 @@ public:
 
     frame_end = Eigen::Translation3d(slave_desire_pos);
 
-    joint_values.resize(3);
+    joint_values.resize(6);
     kinematics_.getIk(frame_end, joint_values);
 
     robot_msgs::ik ik_msg;
-    ik_msg.data.resize(2);
+    ik_msg.data.resize(3);
     ik_msg.data[0] = joint_values[0];
     ik_msg.data[1] = joint_values[1];
+    ik_msg.data[2] = joint_values[2];
 
     pub.publish(ik_msg);
 

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/write.cpp
+sys/ipc.h
+-
+sys/shm.h
+-
+sys/types.h
+-
+string
+-
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+vector
+-
+iostream
+-
+

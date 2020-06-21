@@ -8,7 +8,6 @@ using namespace std;
 class HomoKinematics
 {
 private:
-
   Eigen::Matrix<double,8,6> xyz_rpy_graber_end_;
   Eigen::Affine3d frame_remote_center_;
   Eigen::Affine3d frame_graber_end_to_remote_center;
@@ -31,8 +30,8 @@ public:
        0.06078,-0.029,0.25714,-1.570796,-1.745329,0,//link1
        -0.2,0,-0.071,0,0,0,//link2
        0.35,0,0.077,0,0,0.61115,//link3
-       0.14795,-0.13458,0.023,0,1.570796,-0.5635668,//remote_center
-       0,0.05342,0.0845,0,0,0;//tool_end
+       0.15866,-0.12242,0.025,0,1.570796,-0.4829326,//remote_center
+       0,0.0464378391,0.08856368951,0,0,0;//tool_end
   }
 
   ~HomoKinematics(){}
@@ -73,15 +72,10 @@ public:
     roll2_angle = std::atan2(frame_graber_end_to_remote_center_translation(0), frame_graber_end_to_remote_center_translation(1));
     link1_angle = std::asin(frame_graber_end_to_remote_center_translation(2)/slide_length);
     joint_values[0] = roll2_angle;
-    joint_values[1] = link1_angle - 1.00704;
-    joint_values[2] = slide_length;
+    joint_values[1] = link1_angle ;
+    joint_values[2] = slide_length ;
   }
 };
-
-
-
-
-
 
 
 

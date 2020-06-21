@@ -169,7 +169,7 @@ public:
     double clip_angle = std::asin(std::cos(roll_angle)*(rotation_3_6(0,0)*std::cos(rotate_angle) + rotation_3_6(0,1)*std::sin(rotate_angle)) -
                                    rotation_3_6(0,2)*std::sin(roll_angle));
 
-    std::cout << clip_angle - 1.57079<<std::endl;
+//    std::cout << clip_angle - 1.57079<<std::endl;
 
     joint_values[3] = rotate_angle;
     joint_values[4] = roll_angle;
@@ -184,13 +184,13 @@ public:
     ik_msg.data[0] = joint_values[0];
     ik_msg.data[1] = joint_values[1];
     ik_msg.data[2] = joint_values[2];
-    ik_msg.data[3] = joint_values[3];
-    ik_msg.data[4] = joint_values[4];
-    ik_msg.data[5] = joint_values[5];
+//    ik_msg.data[3] = joint_values[3];
+//    ik_msg.data[4] = joint_values[4];
+//    ik_msg.data[5] = joint_values[5];
 
     pub.publish(ik_msg);
 
-//    std::cout << "ik_msg: " << std::endl<<ik_msg <<std::endl;
+    std::cout << "ik_msg: " << std::endl<<ik_msg <<std::endl;
 
   }
   void start(void)

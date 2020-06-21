@@ -2091,6 +2091,12 @@
       <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />
       </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />
+      </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />
+      </Unit>
       <Unit filename="/home/zzz/mujoco_ros/src/../build/catkin/catkin_generated/version/package.cmake">
           <Option virtualFolder="CMake Files\..\build\catkin\catkin_generated\version\" />
       </Unit>

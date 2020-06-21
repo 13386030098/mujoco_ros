@@ -1,10 +1,12 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/types.h>
-#include <string.h>
+#include <string>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <vector>
+#include <iostream>
 
 #define TEST_SIZE 2048
 
@@ -26,15 +28,19 @@ int main()
             Box *pBox = (Box*)shm;
             pBox->flag = 0;
 
-            int i = 0;
-            while(1)
+            auto s1 = std::to_string(42.5);
+            std::string s2 = " ";
+            auto s3 = std::to_string(50.9);
+            std::string str = s1 + s2 +s3;
+            char* p = (char*)str.data();
+             while(1)
             {
                 while(pBox->flag == 0)
                 {
-                    i++;
                     getchar();
-                    snprintf(pBox->szMsg, sizeof(pBox->szMsg), "%d", i);
-                    printf("write msg is [%s]\n", pBox->szMsg);
+                    snprintf(pBox->szMsg, sizeof(pBox->szMsg), "%s", p);
+//                    memcpy(shm, str, str.size() + 1);
+                    printf("shm = %s\n", pBox->szMsg);
                     pBox->flag = 1;
                 }
 

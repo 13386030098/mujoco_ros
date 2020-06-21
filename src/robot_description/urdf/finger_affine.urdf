@@ -16,7 +16,7 @@
   <link name="graber_4t_link">
     <visual>
         <geometry>
-            <mesh filename="package://davinci_description/meshes/visual/14_graber_4t.stl" />
+            <mesh filename="package://robot_description/meshes/visual/14_graber_4t.stl" />
         </geometry>
         <origin rpy="-1.5708 -1.5708 0" xyz="0 0 1"/>
         <material name="light_grey"/>
@@ -35,7 +35,7 @@
   <link name="graber_r5_link">
     <visual>
         <geometry>
-            <mesh filename="package://davinci_description/meshes/visual/15_graber_r5.stl" />
+            <mesh filename="package://robot_description/meshes/visual/15_graber_r5.stl" />
         </geometry>
         <origin rpy="1.5708 1.5708 0" xyz="0 0 0"/>
         <material name="black"/>
@@ -54,7 +54,7 @@
       <link name="graber_r67_link">
     <visual>
         <geometry>
-            <mesh filename="package://davinci_description/meshes/visual/16_graber_r67_affine.stl" />
+            <mesh filename="package://robot_description/meshes/visual/16_graber_r67_affine.stl" />
         </geometry>
         <origin rpy="0 0 3.14" xyz="0 0 0"/>
         <material name="light_grey"/>

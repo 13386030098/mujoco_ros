@@ -46,6 +46,10 @@ target_link_libraries(robot_inverse_dual ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 add_executable(robot_inverse_single_ver1 src/robot_inverse_single_ver1.cpp)
 target_link_libraries(robot_inverse_single_ver1 ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_executable(write src/write.cpp)
+target_link_libraries(write ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
+add_executable(read src/read.cpp)
+target_link_libraries(read ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 

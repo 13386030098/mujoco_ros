@@ -17,8 +17,8 @@
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="write_node">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/write_node" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_dual">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_dual" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -34,14 +34,14 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 write_node" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_dual" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="write_node/fast">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/write_node" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_dual/fast">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_dual" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -57,14 +57,14 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 write_node/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_dual/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="read_node">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/read_node" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_single">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_single" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -80,14 +80,14 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 read_node" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_single" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="read_node/fast">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/read_node" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_single/fast">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_single" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -103,14 +103,14 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 read_node/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_single/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="robot_inverse">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_single_ver1">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_single_ver1" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -126,14 +126,14 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_single_ver1" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
-      <Target title="robot_inverse/fast">
-         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse" prefix_auto="0" extension_auto="0" />
+      <Target title="robot_inverse_single_ver1/fast">
+         <Option output="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic/robot_inverse_single_ver1" prefix_auto="0" extension_auto="0" />
          <Option working_dir="/home/zzz/mujoco_ros/devel/lib/robot_inverse_kinematic" />
          <Option object_output="./" />
          <Option type="1" />
@@ -149,21 +149,21 @@
             <Add directory="/usr/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse/fast" />
+            <Build command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 robot_inverse_single_ver1/fast" />
             <CompileFile command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
             <Clean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
             <DistClean command="/usr/bin/make -f &quot;/home/zzz/mujoco_ros/build/robot_inverse_kinematic/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       </Build>
-      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/read.cpp">
-         <Option target="read_node"/>
+      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/robot_inverse_dual.cpp">
+         <Option target="robot_inverse_dual"/>
       </Unit>
-      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/robot_inverse.cpp">
-         <Option target="robot_inverse"/>
+      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/robot_inverse_single.cpp">
+         <Option target="robot_inverse_single"/>
       </Unit>
-      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/write.cpp">
-         <Option target="write_node"/>
+      <Unit filename="/home/zzz/mujoco_ros/src/robot_inverse_kinematic/src/robot_inverse_single_ver1.cpp">
+         <Option target="robot_inverse_single_ver1"/>
       </Unit>
       <Unit filename="/home/zzz/mujoco_ros/src/CMakeLists.txt">
           <Option virtualFolder="CMake Files\" />
@@ -2153,6 +2153,12 @@
       </Unit>
       <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/src/gtest/cmake/internal_utils.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\usr\src\gtest\cmake\" />
+      </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />
+      </Unit>
+      <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+          <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />
       </Unit>
       <Unit filename="/home/zzz/mujoco_ros/src/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
           <Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\" />

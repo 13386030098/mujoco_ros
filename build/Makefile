@@ -1089,6 +1089,19 @@ omega_dual/fast:
 .PHONY : omega_dual/fast
 
 #=============================================================================
+# Target rules for targets named write
+
+# Build rule for target.
+write: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 write
+.PHONY : write
+
+# fast build rule for target.
+write/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/write.dir/build.make robot_inverse_kinematic/CMakeFiles/write.dir/build
+.PHONY : write/fast
+
+#=============================================================================
 # Target rules for targets named robot_inverse_dual
 
 # Build rule for target.
@@ -1102,19 +1115,6 @@ robot_inverse_dual/fast:
 .PHONY : robot_inverse_dual/fast
 
 #=============================================================================
-# Target rules for targets named robot_inverse_single
-
-# Build rule for target.
-robot_inverse_single: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse_single
-.PHONY : robot_inverse_single
-
-# fast build rule for target.
-robot_inverse_single/fast:
-	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
-.PHONY : robot_inverse_single/fast
-
-#=============================================================================
 # Target rules for targets named robot_inverse_single_ver1
 
 # Build rule for target.
@@ -1126,6 +1126,32 @@ robot_inverse_single_ver1: cmake_check_build_system
 robot_inverse_single_ver1/fast:
 	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build
 .PHONY : robot_inverse_single_ver1/fast
+
+#=============================================================================
+# Target rules for targets named read
+
+# Build rule for target.
+read: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 read
+.PHONY : read
+
+# fast build rule for target.
+read/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/read.dir/build.make robot_inverse_kinematic/CMakeFiles/read.dir/build
+.PHONY : read/fast
+
+#=============================================================================
+# Target rules for targets named robot_inverse_single
+
+# Build rule for target.
+robot_inverse_single: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_inverse_single
+.PHONY : robot_inverse_single
+
+# fast build rule for target.
+robot_inverse_single/fast:
+	$(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
+.PHONY : robot_inverse_single/fast
 
 # Help Target
 help:
@@ -1211,9 +1237,11 @@ help:
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... omega_single"
 	@echo "... omega_dual"
+	@echo "... write"
 	@echo "... robot_inverse_dual"
-	@echo "... robot_inverse_single"
 	@echo "... robot_inverse_single_ver1"
+	@echo "... read"
+	@echo "... robot_inverse_single"
 .PHONY : help
 
 

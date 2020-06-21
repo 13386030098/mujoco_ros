@@ -164,7 +164,7 @@
     <joint name="remote_center" type="fixed">
       <parent link="link3"/>
       <child link="remote_center"/>
-      <origin rpy="0 1.570796 -0.5635668" xyz="0.14795 -0.13458 0.023"/>
+      <origin rpy="0 1.570796 -0.4829326" xyz="0.15866 -0.12242 0.025"/>
     </joint>
 
     <link name="remote_center"/>
@@ -172,7 +172,7 @@
     <joint name="graber_end" type="fixed">
       <parent link="remote_center"/>
       <child link="tool_end"/>
-      <origin rpy="0 0 0" xyz="0 0.05342048021 0.08453550906"/>
+      <origin rpy="0 0 0" xyz="0 0.0464378391 0.08856368951"/>
     </joint>
 
     <link name="tool_end"/>

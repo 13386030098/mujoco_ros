@@ -56,16 +56,6 @@ CMAKE_BINARY_DIR = /home/zzz/mujoco_ros/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -78,38 +68,26 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : edit_cache/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
+.PHONY : list_install_components/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
@@ -122,16 +100,38 @@ install/strip/fast: install/strip
 
 .PHONY : install/strip/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
 
-# Special rule for the target test
-test/fast: test
+# Special rule for the target install/local
+install/local/fast: install/local
 
-.PHONY : test/fast
+.PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,6 +166,21 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/write.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/write.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/write.dir/rule
+
+# Convenience name for target.
+write: robot_inverse_kinematic/CMakeFiles/write.dir/rule
+
+.PHONY : write
+
+# fast build rule for target.
+write/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write.dir/build.make robot_inverse_kinematic/CMakeFiles/write.dir/build
+.PHONY : write/fast
+
+# Convenience name for target.
 robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/rule:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/rule
 .PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/rule
@@ -179,6 +194,36 @@ robot_inverse_dual: robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/ru
 robot_inverse_dual/fast:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_dual.dir/build
 .PHONY : robot_inverse_dual/fast
+
+# Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+
+# Convenience name for target.
+robot_inverse_single_ver1: robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+
+.PHONY : robot_inverse_single_ver1
+
+# fast build rule for target.
+robot_inverse_single_ver1/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build
+.PHONY : robot_inverse_single_ver1/fast
+
+# Convenience name for target.
+robot_inverse_kinematic/CMakeFiles/read.dir/rule:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/read.dir/rule
+.PHONY : robot_inverse_kinematic/CMakeFiles/read.dir/rule
+
+# Convenience name for target.
+read: robot_inverse_kinematic/CMakeFiles/read.dir/rule
+
+.PHONY : read
+
+# fast build rule for target.
+read/fast:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read.dir/build.make robot_inverse_kinematic/CMakeFiles/read.dir/build
+.PHONY : read/fast
 
 # Convenience name for target.
 robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/rule:
@@ -195,20 +240,32 @@ robot_inverse_single/fast:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single.dir/build
 .PHONY : robot_inverse_single/fast
 
-# Convenience name for target.
-robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f CMakeFiles/Makefile2 robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
-.PHONY : robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+src/read.o: src/read.cpp.o
 
-# Convenience name for target.
-robot_inverse_single_ver1: robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/rule
+.PHONY : src/read.o
 
-.PHONY : robot_inverse_single_ver1
+# target to build an object file
+src/read.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read.dir/build.make robot_inverse_kinematic/CMakeFiles/read.dir/src/read.cpp.o
+.PHONY : src/read.cpp.o
 
-# fast build rule for target.
-robot_inverse_single_ver1/fast:
-	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build
-.PHONY : robot_inverse_single_ver1/fast
+src/read.i: src/read.cpp.i
+
+.PHONY : src/read.i
+
+# target to preprocess a source file
+src/read.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read.dir/build.make robot_inverse_kinematic/CMakeFiles/read.dir/src/read.cpp.i
+.PHONY : src/read.cpp.i
+
+src/read.s: src/read.cpp.s
+
+.PHONY : src/read.s
+
+# target to generate assembly for a file
+src/read.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/read.dir/build.make robot_inverse_kinematic/CMakeFiles/read.dir/src/read.cpp.s
+.PHONY : src/read.cpp.s
 
 src/robot_inverse_dual.o: src/robot_inverse_dual.cpp.o
 
@@ -291,22 +348,54 @@ src/robot_inverse_single_ver1.cpp.s:
 	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/build.make robot_inverse_kinematic/CMakeFiles/robot_inverse_single_ver1.dir/src/robot_inverse_single_ver1.cpp.s
 .PHONY : src/robot_inverse_single_ver1.cpp.s
 
+src/write.o: src/write.cpp.o
+
+.PHONY : src/write.o
+
+# target to build an object file
+src/write.cpp.o:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write.dir/build.make robot_inverse_kinematic/CMakeFiles/write.dir/src/write.cpp.o
+.PHONY : src/write.cpp.o
+
+src/write.i: src/write.cpp.i
+
+.PHONY : src/write.i
+
+# target to preprocess a source file
+src/write.cpp.i:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write.dir/build.make robot_inverse_kinematic/CMakeFiles/write.dir/src/write.cpp.i
+.PHONY : src/write.cpp.i
+
+src/write.s: src/write.cpp.s
+
+.PHONY : src/write.s
+
+# target to generate assembly for a file
+src/write.cpp.s:
+	cd /home/zzz/mujoco_ros/build && $(MAKE) -f robot_inverse_kinematic/CMakeFiles/write.dir/build.make robot_inverse_kinematic/CMakeFiles/write.dir/src/write.cpp.s
+.PHONY : src/write.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... list_install_components"
 	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
+	@echo "... write"
 	@echo "... robot_inverse_dual"
-	@echo "... install/local"
-	@echo "... robot_inverse_single"
-	@echo "... install/strip"
-	@echo "... test"
 	@echo "... robot_inverse_single_ver1"
+	@echo "... test"
+	@echo "... list_install_components"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... read"
+	@echo "... robot_inverse_single"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... src/read.o"
+	@echo "... src/read.i"
+	@echo "... src/read.s"
 	@echo "... src/robot_inverse_dual.o"
 	@echo "... src/robot_inverse_dual.i"
 	@echo "... src/robot_inverse_dual.s"
@@ -316,6 +405,9 @@ help:
 	@echo "... src/robot_inverse_single_ver1.o"
 	@echo "... src/robot_inverse_single_ver1.i"
 	@echo "... src/robot_inverse_single_ver1.s"
+	@echo "... src/write.o"
+	@echo "... src/write.i"
+	@echo "... src/write.s"
 .PHONY : help
 
 
