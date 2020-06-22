@@ -45,7 +45,7 @@
     <axis xyz="0 0 1"/>
     <parent link="base"/>
     <child link="roll1"/>
-    <origin rpy="0 2.0943951 0" xyz="0.1862 0 -0.1475"/>
+    <origin rpy="0 2.09439510239 0" xyz="0.1862 0 -0.1475"/>
     <dynamics damping="0.1" friction="0.05"/>
   </joint>
 
@@ -68,10 +68,9 @@
       <axis xyz="0 0 1"/>
       <parent link="roll1"/>
       <child link="roll2"/>
-      <origin rpy="0 -0.261799 0" xyz="0.15587 0 0.155"/>
+      <origin rpy="0 -0.26179938779 0" xyz="0.15587 0 0.155"/>
       <dynamics damping="0.1" friction="0.05"/>
     </joint>
-<!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
 
       <link name="roll2">
         <visual>
@@ -87,15 +86,14 @@
         </collision>
       </link>
 
-    <joint name="link1" type="revolute">
+     <joint name="link1" type="revolute">
       <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
       <axis xyz="0 0 1"/>
       <parent link="roll2"/>
       <child link="link1"/>
-      <origin rpy="-1.570796 -1.745329 0" xyz="0.06078 -0.029 0.25714"/>
+      <origin rpy="-1.57079632679 -1.74532925199 0" xyz="0.06078 -0.031 0.25714"/>
       <dynamics damping="0.1" friction="0.05"/>
     </joint>
-    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
 
       <link name="link1">
         <visual>
@@ -120,7 +118,6 @@
       <origin rpy="0 0 0" xyz="-0.2 0 -0.071"/>
       <dynamics damping="0.1" friction="0.05"/>
     </joint>
-    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
 
       <link name="link2">
         <visual>
@@ -142,10 +139,9 @@
       <mimic joint="link2" multiplier="-1.0" offset="0.0"/>
       <parent link="link2"/>
       <child link="link3"/>
-      <origin rpy="0 0 0.61115" xyz="0.35 0 0.077"/>
+      <origin rpy="0 0 0.65746552922" xyz="0.35 0 0.077"/>
       <dynamics damping="0.1" friction="0.05"/>
     </joint>
-    <!--    <origin rpy="0 0.261799 0" xyz="0.17 0 -0.11296"/>  -->
 
       <link name="link3">
         <visual>
@@ -164,7 +160,7 @@
     <joint name="remote_center" type="fixed">
       <parent link="link3"/>
       <child link="remote_center"/>
-      <origin rpy="0 1.570796 -0.4829326" xyz="0.15866 -0.12242 0.025"/>
+      <origin rpy="0 1.57079632679 -0.48293260402" xyz="0.15866 -0.12242 0.025"/>
     </joint>
 
     <link name="remote_center"/>

@@ -25,12 +25,12 @@ public:
     //order: x,y,z,r,p,y
     xyz_rpy_graber_end_ <<
        0,0,1,0,0,0,//base
-       0.1862,0,-0.1475,0,2.0943951,0,//roll1
-       0.15587,0,0.155,0,-0.261799,0,//roll2
-       0.06078,-0.029,0.25714,-1.570796,-1.745329,0,//link1
+       0.1862,0,-0.1475,0,2.09439510239,0,//roll1
+       0.15587,0,0.155,0,-0.26179938779,0,//roll2
+       0.06078,-0.031,0.25714,-1.57079632679,-1.74532925199,0,//link1
        -0.2,0,-0.071,0,0,0,//link2
-       0.35,0,0.077,0,0,0.61115,//link3
-       0.15866,-0.12242,0.025,0,1.570796,-0.4829326,//remote_center
+       0.35,0,0.077,0,0,0.65746552922,//link3
+       0.15866,-0.12242,0.025,0,1.57079632679,-0.48293260402,//remote_center
        0,0.0464378391,0.08856368951,0,0,0;//tool_end
   }
 
@@ -72,8 +72,8 @@ public:
     roll2_angle = std::atan2(frame_graber_end_to_remote_center_translation(0), frame_graber_end_to_remote_center_translation(1));
     link1_angle = std::asin(frame_graber_end_to_remote_center_translation(2)/slide_length);
     joint_values[0] = roll2_angle;
-    joint_values[1] = link1_angle ;
-    joint_values[2] = slide_length ;
+    joint_values[1] = link1_angle -1.08786 ;
+    joint_values[2] = slide_length -0.1;
   }
 };
 

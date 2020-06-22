@@ -20,380 +20,417 @@
   <joint name="fixed" type="fixed">
     <parent link="world"/>
     <child link="child_20"/>
-    <origin rpy="0 0 0" xyz="0 0 1"/>
+    <origin rpy="0 0 0.84" xyz="0 -0.42079 -0.41832"/>
   </joint>
 
 
-  <link name="child_20">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/base_3.STL"/>
-      </geometry>
-      <material name="lvory"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/base_3.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="3.86215"/>
-      <origin xyz="-0.00333 0 -0.19505"/>
-      <inertia ixx="0.05134744156" ixy="0" ixz="0.00199114783" iyy="0.05158047263" iyz="0" izz="0.00628888492"/>
-    </inertial>
-  </link>
 
-  <joint name="child_21" type="fixed">
-    <limit effort="1000.0" lower="-1.57" upper="2" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="child_20"/>
-    <child link="child_21"/>
-    <origin rpy="0 1.0471975512 0" xyz="-0.055 0 -0.36518"/>
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
+<link name="child_20">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/base_3.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="lvory"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/base_3.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="3.86215"/>
+  <origin xyz="-0.00333 0 -0.19505"/>
+  <inertia ixx="0.05134744156" ixy="0" ixz="0.00199114783" iyy="0.05158047263" iyz="0" izz="0.00628888492"/>
+</inertial>
+</link>
+<gazebo reference="child_20">
+<material>Gazebo/lvory</material>
+</gazebo>
 
-  <link name="child_21">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/base_4.STL"/>
-      </geometry>
-      <material name="Azure"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/base_4.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.152"/>
-      <origin xyz="0 0 -0.027355"/>
-      <inertia ixx="0.000175181" ixy="0" ixz="0" iyy="0.000175181" iyz="0" izz="0.000228852"/>
-    </inertial>
-  </link>
+<joint name="child_21" type="fixed">
+<limit effort="1000.0" lower="-3.14" upper="3.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="child_20"/>
+<child link="child_21"/>
+<origin rpy="0 0 0" xyz="-0.055 0 -0.36518"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
+<link name="child_21">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/base_4.STL"/>
+  </geometry>
+  <origin rpy="0 1.042 0" xyz="0 0 0"/>
+  <material name="Azure"/>
+</visual>
+<collision>
+  <origin rpy="0 1.042 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/base_4.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.152"/>
+  <origin xyz="0 0 -0.027355"/>
+  <inertia ixx="0.000175181" ixy="0" ixz="0" iyy="0.000175181" iyz="0" izz="0.000228852"/>
+</inertial>
+</link>
+<gazebo reference="child_21">
+<material>Gazebo/Azure</material>
+</gazebo>
 
-    <joint name="roll_21" type="fixed">
-    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="child_21"/>
-    <child link="roll_21"/>
-   <origin rpy="0 0 0" xyz="0 0 -0.15236273603"/>  
+<joint name="roll_21" type="revolute">
+<limit effort="1000.0" lower="-6.14" upper="6.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="child_21"/>
+<child link="roll_21"/>
+<origin rpy="0 1.0472 0" xyz="-0.13195 0 -0.07718"/>
 
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-  <link name="roll_21">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll1.STL"/>
-      </geometry>
-      <material name="Azure"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll1.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.394"/>
-      <origin xyz="0.044235 0.000033 0.049109"/>
-      <inertia ixx="0.000626256" ixy="-0.000000534" ixz="-0.000370428" iyy="0.002523005" iyz="0.000003701" izz="0.002325081"/>
-    </inertial>
-  </link>
+<link name="roll_21">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll1.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Azure"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll1.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.394"/>
+  <origin xyz="0.044235 0.000033 0.049109"/>
+  <inertia ixx="0.000626256" ixy="-0.000000534" ixz="-0.000370428" iyy="0.002523005" iyz="0.000003701" izz="0.002325081"/>
+</inertial>
+</link>
+<gazebo reference="roll_21">
+<material>Gazebo/Azure</material>
+</gazebo>
 
+<joint name="roll_22" type="revolute">
+<limit effort="1000.0" lower="-6.14" upper="6.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="roll_21"/>
+<child link="roll_22"/>
+<origin rpy="0 0.261799 0" xyz="0.1619 0 -0.11296"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-   <joint name="roll_22" type="revolute">
-    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="roll_21"/>
-    <child link="roll_22"/>
-    <origin rpy="0 0.261799 0" xyz="0.1619 0 -0.11296"/>  
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
-
-  <link name="roll_22">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll2.STL"/>
-      </geometry>
-      <material name="Azure"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll2.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.646"/>
-      <origin xyz="0.046702 -0.021926 0.003509"/>
-      <inertia ixx="0.008843242" ixy="-0.000648596" ixz="-0.001489503" iyy="-0.000648596" iyz="0.010050151" izz="0.002656789"/>
-    </inertial>
-  </link>
-
-
-
-
-   <joint name="para22" type="revolute">
-    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="roll_22"/>
-    <child link="para22"/>
-    <origin rpy="1.57079632679 0.69813170079 0" xyz="0.06078 -0.0025 -0.27804"/> 
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
-
-  <link name="para22">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/para2.STL"/>
-      </geometry>
-      <material name="Azure"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/para2.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.213"/>
-      <origin xyz="-0.065697 -0.000264 0.023081"/>
-      <inertia ixx="0.000169348" ixy="-0.000000853" ixz="0.000112124" iyy="0.001476824" iyz="0.000001488" izz="0.001508064"/>
-    </inertial>
-  </link>
-
-
-   <joint name="para23" type="revolute">
-    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <mimic joint="para22" multiplier="-1.0" offset="0.0"/>
-    <parent link="para22"/>
-    <child link="para23"/>
-    <origin rpy="0 0 2.09439510239" xyz="-0.2 0 -0.0415"/> 
-    <dynamics damping="0.1" friction="0.05"/> 
-  </joint>
-
-  <link name="para23">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/para3.STL"/>
-      </geometry>
-      <material name="Azure"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/para3.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.329"/>
-      <origin xyz="-0.153695 -0.000029 0.024048"/>
-      <inertia ixx="0.000265506" ixy="0.000003887" ixz="0.000254807" iyy="0.006634367" iyz="-0.000000291" izz="0.006705867"/>
-    </inertial>
-  </link>
+<link name="roll_22">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll2.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Azure"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll2.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.646"/>
+  <origin xyz="0.046702 -0.021926 0.003509"/>
+  <inertia ixx="0.008843242" ixy="-0.000648596" ixz="-0.001489503" iyy="-0.000648596" iyz="0.010050151" izz="0.002656789"/>
+</inertial>
+</link>
+<gazebo reference="roll_22">
+<material>Gazebo/Azure</material>
+</gazebo>
 
 
 
-  <joint name="slide21" type="revolute">
-    <limit effort="1000.0" lower="-3" upper="3" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <mimic joint="para23" multiplier="-1.0" offset="0.0"/>
-    <parent link="para23"/>
-    <child link="slide21"/>
-    <origin rpy="0 0 0" xyz="-0.350 0 0.0305"/>  
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
+<joint name="para22" type="revolute">
+<limit effort="1000.0" lower="-6.14" upper="6.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="roll_22"/>
+<child link="para22"/>
+<origin rpy="1.57079632679 0.69813170079 0" xyz="0.06078 -0.0025 -0.27804"/>  <!--40 0.69813-->
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-  <link name="slide21">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/slide1.STL"/>
-      </geometry>
-      <material name="Honeydew"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/slide1.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="1.256"/>
-      <origin xyz="-0.062296 0.123021 0.007665"/>
-      <inertia ixx="0.026848632" ixy="-0.000016539" ixz="0.000009909" iyy="0.000921411" iyz="-0.000025441" izz="0.026558272"/>
-    </inertial>
-  </link>
+<link name="para22">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/para2.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Azure"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/para2.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.213"/>
+  <origin xyz="-0.065697 -0.000264 0.023081"/>
+  <inertia ixx="0.000169348" ixy="-0.000000853" ixz="0.000112124" iyy="0.001476824" iyz="0.000001488" izz="0.001508064"/>
+</inertial>
+</link>
+<gazebo reference="para22">
+<material>Gazebo/Azure</material>
+</gazebo>
 
+<joint name="para23" type="revolute">
+<limit effort="1000.0" lower="-6.14" upper="6.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<mimic joint="para22" multiplier="-1.0" offset="0.0"/>
+<parent link="para22"/>
+<child link="para23"/>
+<origin rpy="0 0 2.09439510239" xyz="-0.2 0 -0.0415"/> <!--120-->
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-
-    <joint name="instrument2" type="prismatic">
-    <limit effort="1000.0" lower="-0.25" upper="0.25" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="slide21"/>
-    <child link="instrument2"/>
-    <origin rpy="0 -1.57079632679 1.57079632679" xyz="-0.1 0.08 0.0085"/>  
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
-
-  <link name="instrument2">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/instrument.STL"/>
-      </geometry>
-      <material name="Honeydew"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/instrument.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.19373"/>
-      <origin xyz="-0.00013 -0.00153 -0.02645"/>
-      <inertia ixx="0.00135922874" ixy="-0.00000013933" ixz="0.00000156796" iyy="0.00139739308" iyz="0.00000957102" izz="0.00006656010"/>
-    </inertial>
-  </link>
-
-
-
-
-  <joint name="remote_center" type="fixed">
-    <parent link="instrument2"/>
-    <child link="remote_center"/>
-    <origin rpy="1.3962634016 0 -3.1415" xyz="0 0 0.273205080757"/>
-  </joint>
-
-  <link name="remote_center"/>
-
-  <joint name="graber_end" type="fixed">
-    <parent link="remote_center"/>
-    <child link="graber_end"/>
-    <origin rpy="0 0 0" xyz="0 0.0921730028586 0.016252587969"/>  
-  </joint>
-
-  <link name="graber_end"/>
+<link name="para23">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/para3.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Azure"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/para3.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.329"/>
+  <origin xyz="-0.153695 -0.000029 0.024048"/>
+  <inertia ixx="0.000265506" ixy="0.000003887" ixz="0.000254807" iyy="0.006634367" iyz="-0.000000291" izz="0.006705867"/>
+</inertial>
+</link>
+<gazebo reference="para23">
+<material>Gazebo/Azure</material>
+</gazebo>
 
 
-   <joint name="rotate2" type="revolute">
-    <limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="instrument2"/>
-    <child link="rotate2"/>
-    <origin rpy="0 0 0" xyz="0 0 0.3759"/>  
-    <dynamics damping="0.01" friction="0.05"/>
-  </joint>
 
-  <link name="rotate2">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/rotate.STL"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/rotate.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.1"/>
-      <origin xyz="0.001 0.001 0.001"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-  </link>
+<joint name="slide21" type="revolute">
+<limit effort="1000.0" lower="-6.14" upper="6.14" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<mimic joint="para23" multiplier="-1.0" offset="0.0"/>
+<parent link="para23"/>
+<child link="slide21"/>
+<origin rpy="0 0 0" xyz="-0.350 0 0.0305"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-
-    <joint name="roll2" type="revolute">
-    <limit effort="1000.0" lower="-0.8" upper="0.8" velocity="3.14"/>
-    <axis xyz="1 0 0"/>
-    <parent link="rotate2"/>
-    <child link="roll2"/>
-    <origin rpy="3.1415 0 1.570796" xyz="0 0 0"/> 
-    <dynamics damping="0.01" friction="0.05"/>
-  </joint>
-
-  <link name="roll2">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll.STL"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/roll.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.01"/>
-      <origin xyz="0.001 0.001 0.001"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-  </link>
+<link name="slide21">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/slide1.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Honeydew"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/slide1.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="1.256"/>
+  <origin xyz="-0.062296 0.123021 0.007665"/>
+  <inertia ixx="0.026848632" ixy="-0.000016539" ixz="0.000009909" iyy="0.000921411" iyz="-0.000025441" izz="0.026558272"/>
+</inertial>
+</link>
+<gazebo reference="para23">
+<material>Gazebo/Azure</material>
+</gazebo>
 
 
-    <joint name="clip21" type="revolute">
-    <limit effort="1000.0" lower="-2" upper="2" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="roll2"/>
-    <child link="clip21"/>
-    <origin rpy="-1.570796 0 0" xyz="0 0.0003 -0.0089"/>  
-    <dynamics damping="0.1" friction="0.05"/>
-  </joint>
+<joint name="instrument2" type="prismatic">
+<limit effort="1000.0" lower="-0.5" upper="0.5" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="slide21"/>
+<child link="instrument2"/>
+<origin rpy="0 -1.57079632679 1.57079632679" xyz="-0.1 0.1 0.0085"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
 
-  <link name="clip21">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/clip.STL"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/clip.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.01"/>
-      <origin xyz="0.001 0.001 0.001"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-  </link>
+<link name="instrument2">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/instrument.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="Honeydew"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/instrument.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.19373"/>
+  <origin xyz="-0.00013 -0.00153 -0.02645"/>
+  <inertia ixx="0.00135922874" ixy="-0.00000013933" ixz="0.00000156796" iyy="0.00139739308" iyz="0.00000957102" izz="0.00006656010"/>
+</inertial>
+</link>
+<gazebo reference="instrument2">
+<material>Gazebo/blue</material>
+</gazebo>
 
-    <joint name="clip22" type="revolute">
-    <limit effort="1000.0" lower="-2" upper="2" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="roll2"/>
-    <child link="clip22"/>
-    <origin rpy="1.570796 3.1415 0" xyz="0 -0.0003 -0.0089"/> 
-    <dynamics damping="0.1" friction="0.05"/> 
-  </joint>
-<!--
-    <joint name="clip22" type="revolute">
-    <limit effort="1000.0" lower="-2" upper="2" velocity="3.14"/>
-    <axis xyz="0 0 1"/>
-    <parent link="clip21"/>
-    <child link="clip22"/>
-    <origin rpy="0 3.1415 0" xyz="0 0 -0.0006"/> 
-    <dynamics damping="0.1" friction="0.05"/> 
-  </joint>
--->
-  <link name="clip22">
-    <visual>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/clip.STL"/>
-      </geometry>
-      <material name="white"/>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="package://robot_description/meshes/clip.STL"/>
-      </geometry>
-    </collision>
-    <inertial>
-      <mass value="0.01"/>
-      <origin xyz="0.001 0.001 0.001"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-  </link>
+
+
+<joint name="remote_center" type="fixed">
+<parent link="instrument2"/>
+<child link="remote_center"/>
+<origin rpy="1.3962634016 0 -3.1415" xyz=" 0 0 0.273205080757"/>
+</joint>
+
+<link name="remote_center"/>
+
+<joint name="graber_end" type="fixed">
+<parent link="remote_center"/>
+<child link="graber_end"/>
+<origin rpy="0 0 0" xyz="0 0.0921730028586 0.016252587969"/>
+</joint>
+
+<link name="graber_end"/>
+
+
+
+<joint name="rotate2" type="revolute">
+<limit effort="1000.0" lower="-3.1415" upper="3.1415" velocity="3.14"/>
+<axis xyz="0 0 1"/>
+<parent link="instrument2"/>
+<child link="rotate2"/>
+<origin rpy="0 0 0" xyz="0 0 0.3759"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
+
+<link name="rotate2">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/rotate.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="white"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/rotate.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+  <origin xyz="0.001 0.001 0.001"/>
+  <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+</inertial>
+</link>
+
+
+<joint name="roll2" type="revolute">
+<limit effort="1000.0" lower="-1" upper="1" velocity="3.14"/>
+<axis xyz="1 0 0"/>
+<parent link="rotate2"/>
+<child link="roll2"/>
+<origin rpy="3.1415 0 1.570796" xyz="0 0 0"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
+
+<link name="roll2">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll.STL"/>
+  </geometry>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <material name="white"/>
+</visual>
+<collision>
+  <origin rpy="0 0 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/roll.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+  <origin xyz="0.001 0.001 0.001"/>
+  <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+</inertial>
+</link>
+
+
+<joint name="clip21" type="revolute">
+<limit effort="1000.0" lower="-2" upper="2" velocity="3.14"/>
+<axis xyz="0 1 0"/>
+<parent link="roll2"/>
+<child link="clip21"/>
+<origin rpy=" 0 0 0" xyz="0 0.0003 -0.0089"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
+
+<link name="clip21">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/clip.STL"/>
+  </geometry>
+  <origin rpy="1.570796 3.1415 3.1415" xyz="0 0 0"/>
+  <material name="white"/>
+</visual>
+<collision>
+  <origin rpy="1.570796 3.1415 3.1415" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/clip.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+  <origin xyz="0.001 0.001 0.001"/>
+  <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+</inertial>
+</link>
+
+<joint name="clip22" type="revolute">
+<limit effort="1000.0" lower="-2" upper="2" velocity="3.14"/>
+<axis xyz="0 1 0"/>
+<parent link="roll2"/>
+<child link="clip22"/>
+<origin rpy="0 0 0" xyz="0 -0.0003 -0.0089"/>
+<dynamics damping="0.1" friction="0.05"/>
+</joint>
+
+<link name="clip22">
+<visual>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/clip.STL"/>
+  </geometry>
+  <origin rpy="1.570796 3.1415 0" xyz="0 0 0"/>
+  <material name="white"/>
+</visual>
+<collision>
+  <origin rpy="1.570796 3.1415 0" xyz="0 0 0"/>
+  <geometry>
+    <mesh filename="package://robot_description/meshes/clip.STL"/>
+  </geometry>
+</collision>
+<inertial>
+  <mass value="0.01"/>
+  <origin xyz="0.001 0.001 0.001"/>
+  <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+</inertial>
+</link>
+
+
 
 
 

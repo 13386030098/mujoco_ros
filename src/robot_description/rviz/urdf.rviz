@@ -71,20 +71,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        link2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        link3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        remote_center:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         roll1:
           Alpha: 1
           Show Axes: false
@@ -95,10 +81,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        tool_end:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         world:
           Alpha: 1
           Show Axes: false
@@ -118,17 +100,9 @@ Visualization Manager:
           Value: true
         link1:
           Value: true
-        link2:
-          Value: true
-        link3:
-          Value: true
-        remote_center:
-          Value: true
         roll1:
           Value: true
         roll2:
-          Value: true
-        tool_end:
           Value: true
         world:
           Value: true
@@ -143,11 +117,7 @@ Visualization Manager:
             roll1:
               roll2:
                 link1:
-                  link2:
-                    link3:
-                      remote_center:
-                        tool_end:
-                          {}
+                  {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -182,18 +152,18 @@ Visualization Manager:
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.466776431
-        Y: -0.165166929
-        Z: -0.556805491
+        X: 0.030095458
+        Y: 0.0687254295
+        Z: -0.436516047
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.385398209
+      Pitch: 0.18539834
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.980394304
+      Yaw: 0.10039553
     Saved: ~
 Window Geometry:
   Displays:
